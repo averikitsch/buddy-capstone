@@ -1,0 +1,22 @@
+{
+	"ProjectName": "buddy-app",
+	"ProjectPath": "/Users/averikitsch/ada/capstone/buddy-capstone/buddy-app",
+	"SourceDir": "/",
+	"DistributionDir": "build",
+	"BuildCommand": "npm run-script build",
+	"StartCommand": "yarn start",
+	"InitializationTime": "2018-01-02-11-56-12",
+	"LastConfigurationTime": "2018-01-02-11-56-27",
+	"LastNPMInstallTime": "",
+	"FrontendLastBuildTime": "",
+	"LastPublishTime": "",
+	"BackendFormat": "yml",
+	"BackendLastBuildTime": "",
+	"BackendLastUpdateTime": "",
+	"BackendLastUpdateSuccessful": false,
+	"BackendProjectID": "1dbabbfc-c6c7-4c21-9794-a8c9052b90d7",
+	"BackendProjectName": "buddy-app",
+	"BackendProjectConsoleUrl": "https://console.aws.amazon.com/mobilehub/home#/1dbabbfc-c6c7-4c21-9794-a8c9052b90d7/build",
+	"BackendProjectCreationTime": "2018-01-02T19:56:30.998Z",
+	"BackendProjectLastUpdatedTime": "2018-01-02T19:56:30.998Z"
+}

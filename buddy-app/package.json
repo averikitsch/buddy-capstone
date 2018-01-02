@@ -20,11 +20,19 @@
   },
   "dependencies": {
     "aws-amplify": "^0.1.0",
-    "aws-sdk": "^2.176.0",
+    "aws-amplify-react-native": "^0.1.11",
     "expo": "^23.0.4",
     "react": "16.0.0",
     "react-native": "0.50.3",
-    "react-native-aws-cognito-js": "0.0.7",
-    "react-native-prompt": "^1.0.0"
+    "@expo/vector-icons": "^5.0.0",
+    "axios": "^0.16.1",
+    "form-data": "^2.2.0",
+    "native-base": "^2.1.4",
+    "react-native-router-flux": "^3.39.2",
+    "react-redux": "^5.0.5",
+    "redux": "^3.6.0",
+    "redux-devtools-extension": "^2.13.2",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.2.0"
   }
 }
