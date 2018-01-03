@@ -10,9 +10,9 @@ export default class ProductHeader extends React.Component {
           <Image style={styles.image} source={require('../assets/temp.jpeg')} />
         </View>
         <View style={styles.TextContainer}>
-          <Text style={styles.Header}>{this.props.name}</Text>
-          <Text style={styles.SubHeader}>{this.props.brand}</Text>
-          <Text style={styles.SubHeader}>{this.props.product}</Text>
+          <Text style={styles.Header}>{this.props.name.toUpperCase()}</Text>
+          <Text style={styles.SubHeader}>{this.props.brand.toUpperCase()}</Text>
+          <Text style={styles.SubHeader}>{this.props.product.toUpperCase()}</Text>
         </View>
       </View>
     )
@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
 
   },
   Header: {
-
+    fontWeight: 'bold',
   },
   SubHeader: {
     color: 'gray',
