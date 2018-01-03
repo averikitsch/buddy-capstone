@@ -1,57 +1,93 @@
 import React from 'react';
 import { AppRegistry, View, StatusBar, Image, StyleSheet } from 'react-native';
-import { Container, Body, Content, Left, Right, Title, Input, Item, Label, Button, Text } from 'native-base';
-import { Col, Row, Grid } from "react-native-easy-grid";
+import { Container, Header, Tab, Tabs, Text, ScrollableTab, Thumbnail, Title } from 'native-base';
 import Icon from 'react-native-vector-icons/Ionicons';
-import Header from './HeaderComponent';
-import ProductHeader from './ProductHeaderComponent';
-
-const testObj = {
-  name: 'Seatown Lemon Haze',
-  brand: 'Dawg Star',
-  product: 'Flower',
-  type: 'sativa',
-  cross: ['Lemon Skunk', 'Super Silver Haze'],
-  description: 'Gather your friends, strap on your explorer boots, don your chef hat, or unleash your inner artist – our Seatown Lemon Haze, also known as Super Lemon Haze, offers a creative, social and energetic high to get you ready for a moment of exploration or creativity.',
-  image: '../assets/temp.png',
-};
-
-const types = {
-  hybrid: "ios-happy-outline",
-  sativa: "ios-headset-outline",
-  indica: "ios-body-outline"
-};
-
-const styles = StyleSheet.create({
-  image: {
-    width: 55,
-    resizeMode: 'stretch',
-  }
-});
+import BuddyHeader from './HeaderComponent';
+import FlavorCard from './FlavorCard';
 
 export default class ProfileScreen extends React.Component {
   render() {
     return (
       <Container>
-      <Header />
-        <Content>
-          <ProductHeader name={testObj.name} brand={testObj.brand} product={testObj.product} image={testObj.image}/>
-        <View>
-
-
-            <Button block success>
-              <Text>track</Text>
-            </Button>
-
-            <Icon name={types[testObj.type]} />
-            <Text>{testObj.type}</Text>
-
-            <Text>{testObj.cross[0]} x {testObj.cross[1]}</Text>
-
-            <Text>{testObj.description}</Text>
-            </View>
-      </Content>
-    </Container>
+        <BuddyHeader name="Profile" />
+        <View style={styles.ProfileContainer}>
+          <View style={styles.ProfileHeaderContainer}>
+            <ProfileLinks />
+          </View>
+          <View style={styles.TabContainer}>
+            <TabsScrollable />
+          </View>
+        </View>
+      </Container>
     );
   }
 };
+
+class ProfileLinks extends React.Component {
+  render() {
+    return (
+      <Container>
+        <View style={styles.ProfileHeader}>
+          <Thumbnail large source={require('../assets/temp.jpeg')} />
+          <Title style={styles.ProfileName}>Name</Title>
+        </View>
+      </Container>
+    )
+  }
+}
+
+class TabsScrollable extends React.Component {
+  render() {
+    return (
+      <Container>
+        <Tabs renderTabBar={()=> <ScrollableTab />}>
+          <Tab heading="Tab1" style={styles.Card}>
+            <FlavorCard />
+          </Tab>
+          <Tab heading="Tab2" style={styles.Card}>
+            <Text>Tab 2!</Text>
+          </Tab>
+          <Tab heading="Tab3">
+            <Text>Tab 3!</Text>
+          </Tab>
+          <Tab heading="Tab4">
+            <Text>Tab 4!</Text>
+          </Tab>
+          <Tab heading="Tab5">
+            <Text>Tab 5!</Text>
+          </Tab>
+        </Tabs>
+      </Container>
+    );
+  }
+}
+
+const styles = StyleSheet.create({
+  ProfileContainer: {
+    flex: 1,
+    flexDirection: 'column',
+  },
+  ProfileHeader: {
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingTop: 50,
+  },
+  ProfileName: {
+    fontWeight: 'bold',
+    paddingTop: 10,
+  },
+  ProfileHeaderContainer: {
+    flex: 2,
+  },
+  TabContainer: {
+    flex: 4,
+  },
+  Card: {
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+    // alignItems: 'center',
+    // alignSelf: 'center',
+    padding: 5,
+  }
+})

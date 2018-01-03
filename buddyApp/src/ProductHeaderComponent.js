@@ -33,6 +33,7 @@ const styles = StyleSheet.create({
     flex: 2,
     flexDirection: 'row',
     justifyContent: 'center',
+    alignItems: 'center',
   },
   image: {
     width: 100,
@@ -45,7 +46,6 @@ const styles = StyleSheet.create({
     flex: 4,
     flexDirection: 'column',
     justifyContent: 'space-around',
-
   },
   Header: {
     fontWeight: 'bold',
