@@ -1,37 +1,57 @@
-import React from "react";
-import { AppRegistry, View, StatusBar } from "react-native";
-import { Container, Body, Content, Header, Left, Right, Icon, Title, Input, Item, Label, Button, Text } from "native-base";
+import React from 'react';
+import { AppRegistry, View, StatusBar, Image, StyleSheet } from 'react-native';
+import { Container, Body, Content, Left, Right, Title, Input, Item, Label, Button, Text } from 'native-base';
+import { Col, Row, Grid } from "react-native-easy-grid";
+import Icon from 'react-native-vector-icons/Ionicons';
+import Header from './HeaderComponent';
+import ProductHeader from './ProductHeaderComponent';
 
-export default class NineChat extends React.Component {
+const testObj = {
+  name: 'Seatown Lemon Haze',
+  brand: 'Dawg Star',
+  product: 'Flower',
+  type: 'sativa',
+  cross: ['Lemon Skunk', 'Super Silver Haze'],
+  description: 'Gather your friends, strap on your explorer boots, don your chef hat, or unleash your inner artist – our Seatown Lemon Haze, also known as Super Lemon Haze, offers a creative, social and energetic high to get you ready for a moment of exploration or creativity.',
+  image: '../assets/temp.png',
+};
+
+const types = {
+  hybrid: "ios-happy-outline",
+  sativa: "ios-headset-outline",
+  indica: "ios-body-outline"
+};
+
+const styles = StyleSheet.create({
+  image: {
+    width: 55,
+    resizeMode: 'stretch',
+  }
+});
+
+export default class ProfileScreen extends React.Component {
   render() {
-    const { navigate } = this.props.navigation;
     return (
       <Container>
-        <Header>
-          <Left>
-            <Button
-              transparent
-              onPress={() => this.props.navigation.navigate("DrawerOpen")}>
-              <Icon name="menu" />
+      <Header />
+        <Content>
+          <ProductHeader name={testObj.name} brand={testObj.brand} product={testObj.product} image={testObj.image}/>
+        <View>
+
+
+            <Button block success>
+              <Text>track</Text>
             </Button>
-          </Left>
-          <Body>
-            <Title>Nine Chat</Title>
-          </Body>
-          <Right />
-        </Header>
-        <Content padder>
-          <Item floatingLabel style={{ marginTop: 20 }}>
-            <Label>Nine Chat</Label>
-            <Input />
-          </Item>
-          <Button rounded danger
-            style={{ marginTop: 20, alignSelf: "center" }}
-            onPress={() => navigate("Profile")}>
-            <Text>Goto Nine Profile</Text>
-          </Button>
-        </Content>
-      </Container>
+
+            <Icon name={types[testObj.type]} />
+            <Text>{testObj.type}</Text>
+
+            <Text>{testObj.cross[0]} x {testObj.cross[1]}</Text>
+
+            <Text>{testObj.description}</Text>
+            </View>
+      </Content>
+    </Container>
     );
   }
-}
+};
