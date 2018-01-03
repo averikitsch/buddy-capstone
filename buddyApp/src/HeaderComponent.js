@@ -5,17 +5,25 @@ import { Container, Body, Content, Header, Left, Right, Title, Input, Item, Labe
 
 export default class HeaderComponent extends React.Component {
   render() {
-    return (
+    if (this.props.name) {
+      return (
         <Header style={styles.navbar}>
-          <Title>Buddy</Title>
+        <Title>{this.props.name}</Title>
         </Header>
-    )
+      )
+    } else {
+      return (
+        <Header style={styles.navbar}>
+        <Title>Buddy</Title>
+        </Header>
+      )
+    }
   }
 }
 
 const styles = StyleSheet.create({
   navbar: {
-      // paddingTop: 30,
+      paddingTop: 30,
       // height: 55,
       // backgroundColor: 'green',
       // borderBottomWidth: StyleSheet.hairlineWidth,
