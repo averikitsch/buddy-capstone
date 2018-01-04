@@ -7,6 +7,7 @@ import FlavorCard from './FlavorCard';
 import TypeCard from './TypeCard';
 import ProductCard from './ProductCard';
 import UsageCard from './UsageCard';
+import LogList from './LogList';
 
 export default class ProfileScreen extends React.Component {
   render() {
@@ -57,7 +58,7 @@ class TabsScrollable extends React.Component {
             <UsageCard />
           </Tab>
           <Tab heading="Logs">
-            <Text>Tab 5!</Text>
+            <LogList />
           </Tab>
         </Tabs>
       </Container>
