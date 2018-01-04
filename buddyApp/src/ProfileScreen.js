@@ -3,11 +3,11 @@ import { AppRegistry, View, StatusBar, Image, StyleSheet } from 'react-native';
 import { Container, Header, Tab, Tabs, Text, ScrollableTab, Thumbnail, Title } from 'native-base';
 import Icon from 'react-native-vector-icons/Ionicons';
 import BuddyHeader from './HeaderComponent';
-import FlavorCard from './FlavorCard';
-import TypeCard from './TypeCard';
-import ProductCard from './ProductCard';
-import UsageCard from './UsageCard';
-import LogList from './LogList';
+import FlavorCard from './ProfileCards/FlavorCard';
+import TypeCard from './ProfileCards/TypeCard';
+import ProductCard from './ProfileCards/ProductCard';
+import UsageCard from './ProfileCards/UsageCard';
+import LogList from './ProfileCards/LogList';
 
 export default class ProfileScreen extends React.Component {
   render() {

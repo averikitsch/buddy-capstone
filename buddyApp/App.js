@@ -6,10 +6,11 @@ import ProfileScreen from "./src/ProfileScreen.js";
 import { TabNavigator } from "react-navigation";
 import { Button, Text, Footer, FooterTab } from "native-base";
 import Icon from 'react-native-vector-icons/Ionicons';
+import FoundScreen from "./src/Found.js";
 
 export default (MainScreenNavigator = TabNavigator(
   {
-    ExploreScreen: { screen: ExploreScreen },
+    ExploreScreen: { screen: FoundScreen },
     SearchScreen: { screen: SearchScreen },
     ProfileScreen: { screen: ProfileScreen }
   },
@@ -39,7 +40,7 @@ export default (MainScreenNavigator = TabNavigator(
               onPress={() => props.navigation.navigate("ProfileScreen")}>
               <Icon name="md-contact" size={30} />
             </Button>
-            
+
           </FooterTab>
         </Footer>
       );
