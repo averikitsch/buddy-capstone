@@ -4,6 +4,9 @@ import { Container, Header, Tab, Tabs, Text, ScrollableTab, Thumbnail, Title } f
 import Icon from 'react-native-vector-icons/Ionicons';
 import BuddyHeader from './HeaderComponent';
 import FlavorCard from './FlavorCard';
+import TypeCard from './TypeCard';
+import ProductCard from './ProductCard';
+import UsageCard from './UsageCard';
 
 export default class ProfileScreen extends React.Component {
   render() {
@@ -41,19 +44,19 @@ class TabsScrollable extends React.Component {
     return (
       <Container>
         <Tabs renderTabBar={()=> <ScrollableTab />}>
-          <Tab heading="Tab1" style={styles.Card}>
+          <Tab heading="Flavor" style={styles.Card}>
             <FlavorCard />
           </Tab>
-          <Tab heading="Tab2" style={styles.Card}>
-            <Text>Tab 2!</Text>
+          <Tab heading="Type" >
+            <TypeCard />
           </Tab>
-          <Tab heading="Tab3">
-            <Text>Tab 3!</Text>
+          <Tab heading="Products">
+            <ProductCard />
           </Tab>
-          <Tab heading="Tab4">
-            <Text>Tab 4!</Text>
+          <Tab heading="Usage">
+            <UsageCard />
           </Tab>
-          <Tab heading="Tab5">
+          <Tab heading="Logs">
             <Text>Tab 5!</Text>
           </Tab>
         </Tabs>
