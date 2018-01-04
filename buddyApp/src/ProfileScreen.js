@@ -86,8 +86,7 @@ const styles = StyleSheet.create({
   Card: {
     flexDirection: 'column',
     justifyContent: 'flex-start',
-    // alignItems: 'center',
-    // alignSelf: 'center',
-    padding: 5,
+    padding: 0,
+    margin: 10,
   }
 })

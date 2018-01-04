@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Image } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { Container, Header, Content, Card, CardItem,  Text, Body } from 'native-base';
 import { VictoryBar, VictoryChart, VictoryPolarAxis, VictoryTheme, VictoryGroup, VictoryArea, VictoryLabel } from "victory-native";
 
@@ -11,8 +11,8 @@ export default class FlavorCard extends Component {
       <Container>
         <Content>
           <Card>
-            <CardItem>
-              <RadarChart data={flavorData}/>
+            <CardItem style={styles.card}>
+              <RadarChart data={flavorData} style={styles.chart}/>
             </CardItem>
           </Card>
         </Content>
@@ -24,6 +24,7 @@ export default class FlavorCard extends Component {
 class RadarChart extends React.Component {
   constructor(props) {
     super(props);
+    this.props.data.push({spicy: 100, sour: 100, sweet: 100, earthy: 100})
     this.state = {
       data: this.processData(this.props.data),
       maxima: this.getMaxima(this.props.data)
@@ -56,10 +57,11 @@ class RadarChart extends React.Component {
       <VictoryChart polar
         theme={VictoryTheme.material}
         domain={{ y: [ 0, 1 ] }}
-      >
-        <VictoryGroup colorScale={["green", "orange", "tomato"]}
-          style={{ data: { fillOpacity: 0.2, strokeWidth: 2 } }}
-        >
+        height={250}
+        padding={{top: 25, bottom: 25}}>
+
+        <VictoryGroup colorScale={["green","white"]}
+          style={{ data: { fillOpacity: 0.2, strokeWidth: 2 } }}>
           {this.state.data.map((data, i) => {
             return <VictoryArea key={i} data={data}/>;
           })}
@@ -84,16 +86,27 @@ class RadarChart extends React.Component {
           );
         })
       }
-        <VictoryPolarAxis
-          labelPlacement="parallel"
-          tickFormat={() => ""}
-          style={{
-            axis: { stroke: "none" },
-            grid: { stroke: "grey", opacity: 0.5 }
-          }}
-        />
+      <VictoryPolarAxis
+        labelPlacement="parallel"
+        tickFormat={() => ""}
+        style={{
+          axis: { stroke: "none" },
+          grid: { stroke: "grey", opacity: 0.5 }
+        }}
+      />
 
       </VictoryChart>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  card: {
+    flex: 1,
+  },
+  chart: {
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start',
+  }
+})
