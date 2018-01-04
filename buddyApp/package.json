@@ -11,7 +11,9 @@
     "react": "16.0.0",
     "react-native": "0.51.0",
     "react-native-easy-grid": "^0.1.15",
-    "react-navigation": "^1.0.0-beta.22"
+    "react-native-svg": "^6.0.1-rc.1",
+    "react-navigation": "^1.0.0-beta.22",
+    "victory-native": "^0.16.6"
   },
   "jest": {
     "preset": "react-native"
