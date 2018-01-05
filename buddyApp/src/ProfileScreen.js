@@ -11,12 +11,13 @@ import LogList from './ProfileCards/LogList';
 
 export default class ProfileScreen extends React.Component {
   render() {
+    // const { navigate } = this.props.navigation;
     return (
       <Container>
         <BuddyHeader name="Profile" />
         <View style={styles.ProfileContainer}>
           <View style={styles.ProfileHeaderContainer}>
-            <ProfileLinks />
+            <ProfileLinks navigation={this.props.navigation}/>
           </View>
           <View style={styles.TabContainer}>
             <TabsScrollable />
@@ -29,10 +30,12 @@ export default class ProfileScreen extends React.Component {
 
 class ProfileLinks extends React.Component {
   render() {
+    const { navigate } = this.props.navigation;
     return (
       <Container>
         <View style={styles.ProfileLinkContainer}>
-          <Icon name="ios-list-box" size={35} />
+          <Icon name="ios-list-box" size={35}
+          onPress={() => navigate("Logs")} />
         <View style={styles.ProfileHeader}>
           <Thumbnail large source={require('../assets/temp.jpeg')} />
           <Title style={styles.ProfileName}>Name</Title>

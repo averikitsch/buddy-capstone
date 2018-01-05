@@ -1,7 +1,6 @@
 import React from 'react';
-import { AppRegistry, View, StatusBar, Image, StyleSheet } from 'react-native';
+import { View, Image, StyleSheet } from 'react-native';
 import { Container, Body, Content, Left, Right, Title, Input, Item, Label, Button, Text } from 'native-base';
-import { Col, Row, Grid } from "react-native-easy-grid";
 import Icon from 'react-native-vector-icons/Ionicons';
 import Header from './HeaderComponent';
 import ProductHeader from './ProductHeaderComponent';
@@ -27,7 +26,7 @@ export default class FoundScreen extends React.Component {
         <Content>
           <ProductHeader name={testObj.name} brand={testObj.brand} product={testObj.product} image={testObj.image}/>
           <Button block success
-            onPress={() => navigate("Profile")}>
+            onPress={() => navigate("Track")}>
             <Text>track</Text>
           </Button>
           <ProductBody obj={testObj} />
