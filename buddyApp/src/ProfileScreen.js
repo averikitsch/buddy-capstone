@@ -31,9 +31,13 @@ class ProfileLinks extends React.Component {
   render() {
     return (
       <Container>
+        <View style={styles.ProfileLinkContainer}>
+          <Icon name="ios-list-box" size={35} />
         <View style={styles.ProfileHeader}>
           <Thumbnail large source={require('../assets/temp.jpeg')} />
           <Title style={styles.ProfileName}>Name</Title>
+        </View>
+          <Icon name="ios-cog" size={40} />
         </View>
       </Container>
     )
@@ -48,17 +52,14 @@ class TabsScrollable extends React.Component {
           <Tab heading="Flavor" style={styles.Card}>
             <FlavorCard />
           </Tab>
-          <Tab heading="Type" >
+          <Tab heading="Type" style={styles.Card}>
             <TypeCard />
           </Tab>
-          <Tab heading="Products">
+          <Tab heading="Products" style={styles.Card}>
             <ProductCard />
           </Tab>
-          <Tab heading="Usage">
+          <Tab heading="Usage" style={styles.Card}>
             <UsageCard />
-          </Tab>
-          <Tab heading="Logs">
-            <LogList />
           </Tab>
         </Tabs>
       </Container>
@@ -74,12 +75,16 @@ const styles = StyleSheet.create({
   ProfileHeader: {
     flexDirection: 'column',
     justifyContent: 'center',
-    alignItems: 'center',
-    paddingTop: 50,
   },
   ProfileName: {
     fontWeight: 'bold',
     paddingTop: 10,
+  },
+  ProfileLinkContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    paddingTop: 40,
   },
   ProfileHeaderContainer: {
     flex: 2,
