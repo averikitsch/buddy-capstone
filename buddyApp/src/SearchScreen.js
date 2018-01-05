@@ -1,27 +1,55 @@
 /* eslint-disable */
 import React from "react";
-import { AppRegistry, View, StatusBar } from "react-native";
+import { AppRegistry, Dimensions, View, StyleSheet } from "react-native";
 import { Container, Body, Content, Left, Right, Icon, Title, Input, Item, Label, Button, Text } from "native-base";
 import Header from './HeaderComponent';
+import Camera from 'react-native-camera';
 
 export default class SearchScreen extends React.Component {
   render() {
-    const { navigate } = this.props.navigation;
     return (
       <Container>
         <Header name="Search" />
-        <Content padder>
-          <Item floatingLabel style={{ marginTop: 20 }}>
-            <Label>Jade Chat</Label>
-            <Input />
-          </Item>
-          <Button rounded danger
-            style={{ marginTop: 20, alignSelf: "center" }}
-            onPress={() => navigate("Profile")}>
-            <Text>Goto Jade Profile</Text>
-          </Button>
-        </Content>
+        <CameraComponent />
       </Container>
+    )
+  }
+}
+
+class CameraComponent extends React.Component {
+  takePicture() {
+    this.camera.capture()
+    .then((data) => console.log(data))
+    .catch(err => console.error(err));
+  }
+  render() {
+    return (
+      <Camera
+        ref={(cam) => {
+          this.camera = cam;
+        }}
+        style={styles.preview}
+        aspect={Camera.constants.Aspect.fill}>
+        <Text style={styles.capture} onPress={this.takePicture.bind(this)}>[SMOKE]</Text>
+      </Camera>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  preview: {
+   flex: 1,
+   justifyContent: 'flex-end',
+   alignItems: 'center',
+   height: Dimensions.get('window').width,
+   width: Dimensions.get('window').width
+ },
+  capture: {
+    flex: 0,
+    backgroundColor: '#fff',
+    borderRadius: 5,
+    color: '#000',
+    padding: 10,
+    margin: 40
+  }
+})
