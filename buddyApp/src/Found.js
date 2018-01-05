@@ -20,12 +20,14 @@ const testObj = {
 
 export default class FoundScreen extends React.Component {
   render() {
+    const { navigate } = this.props.navigation;
     return (
       <Container>
       <Header />
         <Content>
           <ProductHeader name={testObj.name} brand={testObj.brand} product={testObj.product} image={testObj.image}/>
-          <Button block success>
+          <Button block success
+            onPress={() => navigate("Profile")}>
             <Text>track</Text>
           </Button>
           <ProductBody obj={testObj} />
