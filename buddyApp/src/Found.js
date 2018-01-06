@@ -29,6 +29,9 @@ export default class FoundScreen extends React.Component {
             onPress={() => navigate("Track")}>
             <Text>track</Text>
           </Button>
+          <Button block primary >
+            <Text>add to wishlist</Text>
+          </Button>
           <ProductBody obj={testObj} />
 
 

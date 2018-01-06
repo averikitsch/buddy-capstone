@@ -25,7 +25,9 @@
 	<key>NSCameraUsageDescription</key>
 	<string>This app lets user take a picture of packages</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Please store in camera roll</string>
+	<string>Can store image in camera roll</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Can store image in camera roll</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>
@@ -43,7 +45,7 @@
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string/>
+	<string></string>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSExceptionDomains</key>
