@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>application-identifier</key>
+	<string>SFGQG2S224.org.reactjs.native.example.Buddy</string>
+	<key>keychain-access-groups</key>
+	<array>
+		<string>SFGQG2S224.org.reactjs.native.example.Buddy</string>
+	</array>
+</dict>
+</plist>
