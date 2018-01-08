@@ -8,13 +8,13 @@ export default class HeaderComponent extends React.Component {
     if (this.props.name) {
       return (
         <Header style={styles.navbar}>
-        <Title>{this.props.name}</Title>
+        <Title style={styles.navbarHeader}>{this.props.name.toUpperCase()}</Title>
         </Header>
       )
     } else {
       return (
         <Header style={styles.navbar}>
-        <Title>Buddy</Title>
+        <Title style={styles.navbarHeader}>{"Buddy".toUpperCase()}</Title>
         </Header>
       )
     }
@@ -23,14 +23,10 @@ export default class HeaderComponent extends React.Component {
 
 const styles = StyleSheet.create({
   navbar: {
-      paddingTop: 30,
-      // height: 55,
-      // backgroundColor: 'green',
-      // borderBottomWidth: StyleSheet.hairlineWidth,
-      // borderBottomColor: '#DDDDDD',
-      // paddingHorizontal: 12,
-      // flexDirection: 'column', // step 1
-      // justifyContent: 'space-between', // step 2
-      // alignItems: 'center', // step 3
-    },
+    paddingTop: 30,
+  },
+  navbarHeader: {
+    fontFamily: 'Crete Round',
+    fontSize: 24,
+  },
 });

@@ -6,7 +6,7 @@ Amplify.configure(aws_exports);
 
 import TrackForm from './src/Screens/Track'
 
-class App extends React.Component {
+export default class App extends React.Component {
   render() {
     return (
       <TrackForm />
@@ -14,7 +14,7 @@ class App extends React.Component {
   }
 }
 
-export default withAuthenticator(App);
+// export default withAuthenticator(App);
 
 const styles = StyleSheet.create({
   container: {

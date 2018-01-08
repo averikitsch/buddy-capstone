@@ -4,9 +4,21 @@
 <dict>
 	<key>files</key>
 	<dict>
+		<key>Acme-Regular.ttf</key>
+		<data>
+		PnUVcTgErgCcPGtgdIv4KYwcwVg=
+		</data>
 		<key>Base.lproj/LaunchScreen.nib</key>
 		<data>
 		yQBjF05t7xKr+MkU9wPXsCZLJQc=
+		</data>
+		<key>CreteRound-Italic.ttf</key>
+		<data>
+		Mbxn7oLP6FpmIBbboWYlGpVrYVI=
+		</data>
+		<key>CreteRound-Regular.ttf</key>
+		<data>
+		0d+xyS6TtGd7KUS4Daw1tUfRqS0=
 		</data>
 		<key>Entypo.ttf</key>
 		<data>
@@ -16,6 +28,10 @@
 		<data>
 		QZrcvnS7qREj2zspB3XjYvIS8+U=
 		</data>
+		<key>Feather.ttf</key>
+		<data>
+		AiHzjp4t0CEzVCcxbr7QXuznQyM=
+		</data>
 		<key>FontAwesome.ttf</key>
 		<data>
 		E7HqtlqYPHpzvHmXxHnWaUP3xss=
@@ -24,13 +40,138 @@
 		<data>
 		SyvObHkkk6SlcWtv7C2+/olJLD8=
 		</data>
+		<key>Frameworks/IDEBundleInjection.framework/IDEBundleInjection</key>
+		<data>
+		ooz0sIAaLKBGoFU5iKq8DR11NmY=
+		</data>
+		<key>Frameworks/IDEBundleInjection.framework/Info.plist</key>
+		<data>
+		R/knOPjsjrJNiVtUa2S4kYE749M=
+		</data>
+		<key>Frameworks/IDEBundleInjection.framework/_CodeSignature/CodeResources</key>
+		<data>
+		qcVgsOCxIzxwcNXLWXgRrNjnuT8=
+		</data>
+		<key>Frameworks/IDEBundleInjection.framework/version.plist</key>
+		<data>
+		K7jOt4uC+lqy/StneXlQVk21axY=
+		</data>
+		<key>Frameworks/XCTest.framework/Info.plist</key>
+		<data>
+		CYfyvPIGUR84QvCD7SuNDvG6Bxc=
+		</data>
+		<key>Frameworks/XCTest.framework/XCTest</key>
+		<data>
+		M3EBma1BpAxt7iGIjYcrm9BnNOc=
+		</data>
+		<key>Frameworks/XCTest.framework/_CodeSignature/CodeResources</key>
+		<data>
+		5EUn1qFgVTwSkfSLCubcLwgrx0c=
+		</data>
+		<key>Frameworks/XCTest.framework/en.lproj/InfoPlist.strings</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			TuBj57ZP6zBqcL9HttO2Rucaw9E=
+			</data>
+			<key>optional</key>
+			<true/>
+		</dict>
+		<key>Frameworks/XCTest.framework/version.plist</key>
+		<data>
+		Etc/8BPenX54rv1uBx24u4bnqTg=
+		</data>
 		<key>Info.plist</key>
 		<data>
-		Gx0gl7aPZGxgjMWwJDtwxzX9cmg=
+		UWhsysOwOSvCU5YGb5dd2oe1V24=
 		</data>
 		<key>Ionicons.ttf</key>
 		<data>
 		D3lWcE/mG0nEHqGiIFEkD3AKK0Q=
+		</data>
+		<key>JosefinSans-Bold.ttf</key>
+		<data>
+		vZcHqtIipT+IoA2Diefg++7+qlI=
+		</data>
+		<key>JosefinSans-BoldItalic.ttf</key>
+		<data>
+		Dc1rAjKDKhKhxJeww6J0bcM6ORs=
+		</data>
+		<key>JosefinSans-Italic.ttf</key>
+		<data>
+		es8ataAwW+03bAlwct5LVgHjLa4=
+		</data>
+		<key>JosefinSans-Light.ttf</key>
+		<data>
+		KRPBDSxrKxL0xIRDgVI8enkOHhA=
+		</data>
+		<key>JosefinSans-LightItalic.ttf</key>
+		<data>
+		TI80KaFbADjeqB6pTUa7h/yyWp4=
+		</data>
+		<key>JosefinSans-Regular.ttf</key>
+		<data>
+		lfQF1mV4rmOeFUpSSfRZAJhoS6E=
+		</data>
+		<key>JosefinSans-SemiBold.ttf</key>
+		<data>
+		lpX3XnuNldbbMTDre+MihlOOSvc=
+		</data>
+		<key>JosefinSans-SemiBoldItalic.ttf</key>
+		<data>
+		uOxNbDMDOQFInfcGFWYJ5SjtPQ8=
+		</data>
+		<key>JosefinSans-Thin.ttf</key>
+		<data>
+		dIwlHovWF09l5GDbwRJgWy75I9o=
+		</data>
+		<key>JosefinSans-ThinItalic.ttf</key>
+		<data>
+		IvFD9LEM8qtTbt0IXW3GMMKdh8Q=
+		</data>
+		<key>Lato-Black.ttf</key>
+		<data>
+		VzIpy8RiIZCjit/z2QbgwUZoAr0=
+		</data>
+		<key>Lato-BlackItalic.ttf</key>
+		<data>
+		ziCVSFwCdO2QTglrgESLxI9Ww70=
+		</data>
+		<key>Lato-Bold.ttf</key>
+		<data>
+		wzDVnz5k4HolccK6T0EJsgoWj2k=
+		</data>
+		<key>Lato-BoldItalic.ttf</key>
+		<data>
+		IAf1RmYCIZQOnca5o8rpty++F68=
+		</data>
+		<key>Lato-Hairline.ttf</key>
+		<data>
+		+lQOSGzmLWiDIBsKVFxPrPJRElM=
+		</data>
+		<key>Lato-HairlineItalic.ttf</key>
+		<data>
+		TnXr/1SO9DK8QX6GhtUv+3ycvjU=
+		</data>
+		<key>Lato-Italic.ttf</key>
+		<data>
+		5M6oA1olioaaYTn7905tDCR71Js=
+		</data>
+		<key>Lato-Light.ttf</key>
+		<data>
+		brlRCP74G9jPv34g1MoGNOWYkBk=
+		</data>
+		<key>Lato-LightItalic.ttf</key>
+		<data>
+		WE80B3ZBL3fwTeBu4ENI74I9UJc=
+		</data>
+		<key>Lato-Regular.ttf</key>
+		<data>
+		En8kGHGp/kLNjQc6CDVBDzgk1Xw=
+		</data>
+		<key>MaterialCommunityIcons.ttf</key>
+		<data>
+		iEMpKSoaB/KiSnpQryZBH+pXuYo=
 		</data>
 		<key>MaterialIcons.ttf</key>
 		<data>
@@ -40,9 +181,73 @@
 		<data>
 		XF4wYBlFFw56fAqk3ggmUtwnNQI=
 		</data>
+		<key>OpenSans-Bold.ttf</key>
+		<data>
+		g4fU+OBhwmTcOuvr5gaLZuRdfG8=
+		</data>
+		<key>OpenSans-BoldItalic.ttf</key>
+		<data>
+		Q8t14ZfJamgP7YHf1wgyHwb+pIQ=
+		</data>
+		<key>OpenSans-ExtraBold.ttf</key>
+		<data>
+		ZOIxQGC2k79aBSZJQcGNcZwH/14=
+		</data>
+		<key>OpenSans-ExtraBoldItalic.ttf</key>
+		<data>
+		7Uh1Imp/yFYuQe68+TGJUGqW3Uk=
+		</data>
+		<key>OpenSans-Italic.ttf</key>
+		<data>
+		xTVXPbcPmmIIu5kQH/6DzbqdEaI=
+		</data>
+		<key>OpenSans-Light.ttf</key>
+		<data>
+		sIy1h7mjbj/4U3W5kL8J+LQN7GM=
+		</data>
+		<key>OpenSans-LightItalic.ttf</key>
+		<data>
+		xgceF2v14ZTpGdM80f2RReh7DJ4=
+		</data>
+		<key>OpenSans-Regular.ttf</key>
+		<data>
+		UTlm4mC7dhDUeyMp26GUFDgxiT4=
+		</data>
+		<key>OpenSans-SemiBold.ttf</key>
+		<data>
+		yuEF7rL3zddgYBsU+Ja/cOnCaE8=
+		</data>
+		<key>OpenSans-SemiBoldItalic.ttf</key>
+		<data>
+		PqTh7ANhMYzgw/6M+D+WAI7ha0g=
+		</data>
 		<key>PkgInfo</key>
 		<data>
 		n57qDP4tZfLD1rCS43W0B4LQjzE=
+		</data>
+		<key>PlugIns/BuddyTests.xctest.dSYM/Contents/Info.plist</key>
+		<data>
+		yBIfWSy7eQXQ2Ny1EL+aujVh0FA=
+		</data>
+		<key>PlugIns/BuddyTests.xctest.dSYM/Contents/Resources/DWARF/BuddyTests</key>
+		<data>
+		ihHgKCx1PaKDnaHgbS6QL3SSloQ=
+		</data>
+		<key>PlugIns/BuddyTests.xctest/BuddyTests</key>
+		<data>
+		PTeoG+/tbUriI1hB2YO64N9KbFY=
+		</data>
+		<key>PlugIns/BuddyTests.xctest/Info.plist</key>
+		<data>
+		V3cUN68w51KhZKzEAheYRkwQNkY=
+		</data>
+		<key>PlugIns/BuddyTests.xctest/_CodeSignature/CodeResources</key>
+		<data>
+		r4xnWqQ8LdC6YbatpS7r6jYyIfY=
+		</data>
+		<key>PoiretOne-Regular.ttf</key>
+		<data>
+		3Pogn23dq/37EsX4qboujxtVVz4=
 		</data>
 		<key>Roboto.ttf</key>
 		<data>
@@ -56,9 +261,33 @@
 		<data>
 		n/uBpaEREuKS8swyPphIa61ZdZk=
 		</data>
+		<key>Tillana-Bold.ttf</key>
+		<data>
+		17nidCKzFvT0Vsr6YfisRLM/U1Y=
+		</data>
+		<key>Tillana-ExtraBold.ttf</key>
+		<data>
+		49W21ir/+kpPnrbDj/DnIAG/w4Q=
+		</data>
+		<key>Tillana-Medium.ttf</key>
+		<data>
+		lKtvR7Ppcv4MHBrxbdyUIzOuR44=
+		</data>
+		<key>Tillana-Regular.ttf</key>
+		<data>
+		QYYwEI6pIv2xjbsjpOSNO5LtTOY=
+		</data>
+		<key>Tillana-SemiBold.ttf</key>
+		<data>
+		QmQdt30gKj1YmX13kFbpaZoePJY=
+		</data>
 		<key>Zocial.ttf</key>
 		<data>
 		C9pZx7zT05J94EfgkYdaRCi/0as=
+		</data>
+		<key>icomoon.ttf</key>
+		<data>
+		0l7/nuW2vA97/REM4Wx1+dOzrmE=
 		</data>
 		<key>rubicon-icon-font.ttf</key>
 		<data>
@@ -67,6 +296,17 @@
 	</dict>
 	<key>files2</key>
 	<dict>
+		<key>Acme-Regular.ttf</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			PnUVcTgErgCcPGtgdIv4KYwcwVg=
+			</data>
+			<key>hash2</key>
+			<data>
+			dv21gvVGU8JydNXNmG+ZTCjX+n0yPn657hTOiHXTncQ=
+			</data>
+		</dict>
 		<key>Base.lproj/LaunchScreen.nib</key>
 		<dict>
 			<key>hash</key>
@@ -76,6 +316,28 @@
 			<key>hash2</key>
 			<data>
 			glF8cQfzxGqBOWJNJZVPd2f7tjAVNn3nDT1l+/XeNhQ=
+			</data>
+		</dict>
+		<key>CreteRound-Italic.ttf</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			Mbxn7oLP6FpmIBbboWYlGpVrYVI=
+			</data>
+			<key>hash2</key>
+			<data>
+			7uQS5D2EO4mjFwucXbrizl2pX/cpkW06LDRBrtNBG0I=
+			</data>
+		</dict>
+		<key>CreteRound-Regular.ttf</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			0d+xyS6TtGd7KUS4Daw1tUfRqS0=
+			</data>
+			<key>hash2</key>
+			<data>
+			KwbudcNYBrn6s14FT7uXr5j7ayQZxhBWlzUdwaKzBsg=
 			</data>
 		</dict>
 		<key>Entypo.ttf</key>
@@ -100,6 +362,17 @@
 			J9GohnZmGjoiaVdpUtb3ANoFZEvAMFUR3iO3D3HKVDY=
 			</data>
 		</dict>
+		<key>Feather.ttf</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			AiHzjp4t0CEzVCcxbr7QXuznQyM=
+			</data>
+			<key>hash2</key>
+			<data>
+			sse5lKY8HPl6gBWzGq4njD9mmOqvSOduEWdc+dNdrHY=
+			</data>
+		</dict>
 		<key>FontAwesome.ttf</key>
 		<dict>
 			<key>hash</key>
@@ -122,6 +395,107 @@
 			fh3QPdTOkLZYBSVUzXRZ3xZxZxc4mlUvpMbVal+JM+Y=
 			</data>
 		</dict>
+		<key>Frameworks/IDEBundleInjection.framework/IDEBundleInjection</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			ooz0sIAaLKBGoFU5iKq8DR11NmY=
+			</data>
+			<key>hash2</key>
+			<data>
+			QTZkTlnemyTcrFMb3v3GdQcfmpRodaOjtevd5TjxiiY=
+			</data>
+		</dict>
+		<key>Frameworks/IDEBundleInjection.framework/Info.plist</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			R/knOPjsjrJNiVtUa2S4kYE749M=
+			</data>
+			<key>hash2</key>
+			<data>
+			wLDjbULmM78l0rN5jh2/yPax234qVZL29OQBQmdYmOU=
+			</data>
+		</dict>
+		<key>Frameworks/IDEBundleInjection.framework/_CodeSignature/CodeResources</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			qcVgsOCxIzxwcNXLWXgRrNjnuT8=
+			</data>
+			<key>hash2</key>
+			<data>
+			ZARlo4LD/z4nYhaCEocjb6nPjuZDCrLsQzn0n4GVr3s=
+			</data>
+		</dict>
+		<key>Frameworks/IDEBundleInjection.framework/version.plist</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			K7jOt4uC+lqy/StneXlQVk21axY=
+			</data>
+			<key>hash2</key>
+			<data>
+			VzM0aDQjkmLy+IyPasdn9DeGkOOTuNMbKUMz+3efAaU=
+			</data>
+		</dict>
+		<key>Frameworks/XCTest.framework/Info.plist</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			CYfyvPIGUR84QvCD7SuNDvG6Bxc=
+			</data>
+			<key>hash2</key>
+			<data>
+			Xsgm2dBly62EneiB04ryti89smi53XIXAOtYLFyW4ZE=
+			</data>
+		</dict>
+		<key>Frameworks/XCTest.framework/XCTest</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			M3EBma1BpAxt7iGIjYcrm9BnNOc=
+			</data>
+			<key>hash2</key>
+			<data>
+			qAlGOWS6ltLA/WrYd4Rz6EHPivttCiNu41NTW7ulBAI=
+			</data>
+		</dict>
+		<key>Frameworks/XCTest.framework/_CodeSignature/CodeResources</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			5EUn1qFgVTwSkfSLCubcLwgrx0c=
+			</data>
+			<key>hash2</key>
+			<data>
+			55ZdMLgNGz7Q67XNAv/M4f4uXy0R2d5+tlHRhlkL8t4=
+			</data>
+		</dict>
+		<key>Frameworks/XCTest.framework/en.lproj/InfoPlist.strings</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			TuBj57ZP6zBqcL9HttO2Rucaw9E=
+			</data>
+			<key>hash2</key>
+			<data>
+			89RGkjZaKuewYnjpzwhIswhqfrU8+pcEXqM/DHVrUmo=
+			</data>
+			<key>optional</key>
+			<true/>
+		</dict>
+		<key>Frameworks/XCTest.framework/version.plist</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			Etc/8BPenX54rv1uBx24u4bnqTg=
+			</data>
+			<key>hash2</key>
+			<data>
+			Jh5i9giCFfo5GhN25CjMKdDJ6Kdlz/p4L95RITR+WeA=
+			</data>
+		</dict>
 		<key>Ionicons.ttf</key>
 		<dict>
 			<key>hash</key>
@@ -131,6 +505,237 @@
 			<key>hash2</key>
 			<data>
 			u0dnmwuuuEgbf1HGitM65aUmc2y1CxcXzGD/a2X5CKM=
+			</data>
+		</dict>
+		<key>JosefinSans-Bold.ttf</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			vZcHqtIipT+IoA2Diefg++7+qlI=
+			</data>
+			<key>hash2</key>
+			<data>
+			WhOJBW+HkDocIXaijMdUWHNCrGXIYKS3nnxfwl7nMBg=
+			</data>
+		</dict>
+		<key>JosefinSans-BoldItalic.ttf</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			Dc1rAjKDKhKhxJeww6J0bcM6ORs=
+			</data>
+			<key>hash2</key>
+			<data>
+			GU1mhbmzkrzywqUV+odfddsJVDCsgSN+MiM/P9N7S8E=
+			</data>
+		</dict>
+		<key>JosefinSans-Italic.ttf</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			es8ataAwW+03bAlwct5LVgHjLa4=
+			</data>
+			<key>hash2</key>
+			<data>
+			iYwsxy0jBDcd1+xTHzRWnQECacc5Q/yYY5vTCL3DXEQ=
+			</data>
+		</dict>
+		<key>JosefinSans-Light.ttf</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			KRPBDSxrKxL0xIRDgVI8enkOHhA=
+			</data>
+			<key>hash2</key>
+			<data>
+			FdVGOHKuYs69gvGQxzH6UcWmM5tsPk2s7ClO7kr2Teg=
+			</data>
+		</dict>
+		<key>JosefinSans-LightItalic.ttf</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			TI80KaFbADjeqB6pTUa7h/yyWp4=
+			</data>
+			<key>hash2</key>
+			<data>
+			WhBjy1UJIAujSxk0v5Jh1kBWRBA+l5z/FhT6bFDw6Os=
+			</data>
+		</dict>
+		<key>JosefinSans-Regular.ttf</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			lfQF1mV4rmOeFUpSSfRZAJhoS6E=
+			</data>
+			<key>hash2</key>
+			<data>
+			c6TAduS0aceVbmo/Ylt54PtLan7jz+S8PtBTMglYb88=
+			</data>
+		</dict>
+		<key>JosefinSans-SemiBold.ttf</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			lpX3XnuNldbbMTDre+MihlOOSvc=
+			</data>
+			<key>hash2</key>
+			<data>
+			FDb8dA2iGDtxQ3Ax94+4jluGA1la4Qb/khfyehuRy+o=
+			</data>
+		</dict>
+		<key>JosefinSans-SemiBoldItalic.ttf</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			uOxNbDMDOQFInfcGFWYJ5SjtPQ8=
+			</data>
+			<key>hash2</key>
+			<data>
+			qoGFXMaRnT+U2kMzN560CC9/rYkN4L6RxTyKbW92gRI=
+			</data>
+		</dict>
+		<key>JosefinSans-Thin.ttf</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			dIwlHovWF09l5GDbwRJgWy75I9o=
+			</data>
+			<key>hash2</key>
+			<data>
+			B6ni6ZHlZ+2q3uCQ1G9kZv3pW1/t2voX8T4bcm5lt+c=
+			</data>
+		</dict>
+		<key>JosefinSans-ThinItalic.ttf</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			IvFD9LEM8qtTbt0IXW3GMMKdh8Q=
+			</data>
+			<key>hash2</key>
+			<data>
+			MnwLv59+4Kn5+rep6ldhvtzfUS8UlYOHN04BgOQ5i0Q=
+			</data>
+		</dict>
+		<key>Lato-Black.ttf</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			VzIpy8RiIZCjit/z2QbgwUZoAr0=
+			</data>
+			<key>hash2</key>
+			<data>
+			izK8U5ypXdotIgakMjS187D+lkvSWWbIYLyA7H8G1wI=
+			</data>
+		</dict>
+		<key>Lato-BlackItalic.ttf</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			ziCVSFwCdO2QTglrgESLxI9Ww70=
+			</data>
+			<key>hash2</key>
+			<data>
+			CWYMGfF3OnYbLlagW2ZoE9/W5hlrStnYX/iB8pow6Dk=
+			</data>
+		</dict>
+		<key>Lato-Bold.ttf</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			wzDVnz5k4HolccK6T0EJsgoWj2k=
+			</data>
+			<key>hash2</key>
+			<data>
+			FPfea2FpUDlQYpAuuPcPAcCpASI9tdQPKgVyisSoMPY=
+			</data>
+		</dict>
+		<key>Lato-BoldItalic.ttf</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			IAf1RmYCIZQOnca5o8rpty++F68=
+			</data>
+			<key>hash2</key>
+			<data>
+			IQHAC5yXOmZr8Sizp3akXfcQe9KRFgee4AVBqIY9UM4=
+			</data>
+		</dict>
+		<key>Lato-Hairline.ttf</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			+lQOSGzmLWiDIBsKVFxPrPJRElM=
+			</data>
+			<key>hash2</key>
+			<data>
+			Ae+NdV9BKpRaoLEiG/6YhSIAtUnE8WqtN35Jk3owvS8=
+			</data>
+		</dict>
+		<key>Lato-HairlineItalic.ttf</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			TnXr/1SO9DK8QX6GhtUv+3ycvjU=
+			</data>
+			<key>hash2</key>
+			<data>
+			lahHguB5fSfQednMarm7JOpnVYlTCZv0SBwI6Vsq5wo=
+			</data>
+		</dict>
+		<key>Lato-Italic.ttf</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			5M6oA1olioaaYTn7905tDCR71Js=
+			</data>
+			<key>hash2</key>
+			<data>
+			GmPdodLwGTNuk05B1/+o8+X0zuDragxHNIJ9vgnOUBU=
+			</data>
+		</dict>
+		<key>Lato-Light.ttf</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			brlRCP74G9jPv34g1MoGNOWYkBk=
+			</data>
+			<key>hash2</key>
+			<data>
+			BZA1QKBnVJH9qQFaeMBbtYl2mVG++rEqWKVWgXVWa0k=
+			</data>
+		</dict>
+		<key>Lato-LightItalic.ttf</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			WE80B3ZBL3fwTeBu4ENI74I9UJc=
+			</data>
+			<key>hash2</key>
+			<data>
+			sa86VRp+LZ+2QHcxl6APaXCiucZpmwx4YFmjdFPV0Sw=
+			</data>
+		</dict>
+		<key>Lato-Regular.ttf</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			En8kGHGp/kLNjQc6CDVBDzgk1Xw=
+			</data>
+			<key>hash2</key>
+			<data>
+			eucUtjwsi5QL3SEaDMZ48BFoo07qiqE8DfJTZPKSOKc=
+			</data>
+		</dict>
+		<key>MaterialCommunityIcons.ttf</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			iEMpKSoaB/KiSnpQryZBH+pXuYo=
+			</data>
+			<key>hash2</key>
+			<data>
+			1bSKsbDzuZUQE0oDJhp+sgYYtyyRBwyCUcQIAoyRcm4=
 			</data>
 		</dict>
 		<key>MaterialIcons.ttf</key>
@@ -153,6 +758,182 @@
 			<key>hash2</key>
 			<data>
 			sw1aNDI0CqTWoFwAl/BoysSnzVrJqfoRSzi3y6/KJCM=
+			</data>
+		</dict>
+		<key>OpenSans-Bold.ttf</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			g4fU+OBhwmTcOuvr5gaLZuRdfG8=
+			</data>
+			<key>hash2</key>
+			<data>
+			G0PeJEnTm2X/b2MxXUr9pYX3L7vsLj2aVvWd5sdRSdM=
+			</data>
+		</dict>
+		<key>OpenSans-BoldItalic.ttf</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			Q8t14ZfJamgP7YHf1wgyHwb+pIQ=
+			</data>
+			<key>hash2</key>
+			<data>
+			NXXSr6qtaZcDgCN6XWNXttskH1O3dgdILq+fKZuMB+w=
+			</data>
+		</dict>
+		<key>OpenSans-ExtraBold.ttf</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			ZOIxQGC2k79aBSZJQcGNcZwH/14=
+			</data>
+			<key>hash2</key>
+			<data>
+			OV8VAkDUPf+LrqZYa69WZTN95XuCBKUB+9YUiy/hZbc=
+			</data>
+		</dict>
+		<key>OpenSans-ExtraBoldItalic.ttf</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			7Uh1Imp/yFYuQe68+TGJUGqW3Uk=
+			</data>
+			<key>hash2</key>
+			<data>
+			1d45vN0BAInZ243Rrrrvr55pG/mkkoL/Q+HRhptBeJI=
+			</data>
+		</dict>
+		<key>OpenSans-Italic.ttf</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			xTVXPbcPmmIIu5kQH/6DzbqdEaI=
+			</data>
+			<key>hash2</key>
+			<data>
+			bLkYpwegbE+YIh0JNEr0uYycthhLEzCaV5yvBBjV63Q=
+			</data>
+		</dict>
+		<key>OpenSans-Light.ttf</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			sIy1h7mjbj/4U3W5kL8J+LQN7GM=
+			</data>
+			<key>hash2</key>
+			<data>
+			HI08xoEOzTYj6/99LD2xpEAkJgxa5mL4Fm1puUJYKO0=
+			</data>
+		</dict>
+		<key>OpenSans-LightItalic.ttf</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			xgceF2v14ZTpGdM80f2RReh7DJ4=
+			</data>
+			<key>hash2</key>
+			<data>
+			/acN+FmHs5T/OEuJlwO8DlWse9upTQb0dGLhVc8MA1A=
+			</data>
+		</dict>
+		<key>OpenSans-Regular.ttf</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			UTlm4mC7dhDUeyMp26GUFDgxiT4=
+			</data>
+			<key>hash2</key>
+			<data>
+			E8A+IqYzkZvrKEfFjIKF+4pzXulwl9fEj9QD+ClLBfg=
+			</data>
+		</dict>
+		<key>OpenSans-SemiBold.ttf</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			yuEF7rL3zddgYBsU+Ja/cOnCaE8=
+			</data>
+			<key>hash2</key>
+			<data>
+			tMIFCyXT0pbVz1hYnKAIFtxy30ImLC9inVxqmEoWGqQ=
+			</data>
+		</dict>
+		<key>OpenSans-SemiBoldItalic.ttf</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			PqTh7ANhMYzgw/6M+D+WAI7ha0g=
+			</data>
+			<key>hash2</key>
+			<data>
+			qPKvjnn0Zoaxz8+zof1T6U6IMI18buf4XHM/R5b8w6A=
+			</data>
+		</dict>
+		<key>PlugIns/BuddyTests.xctest.dSYM/Contents/Info.plist</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			yBIfWSy7eQXQ2Ny1EL+aujVh0FA=
+			</data>
+			<key>hash2</key>
+			<data>
+			8QPNuhumGnh4X5AuKKUzLLt4rREymkA3ZD4dQn9FkyE=
+			</data>
+		</dict>
+		<key>PlugIns/BuddyTests.xctest.dSYM/Contents/Resources/DWARF/BuddyTests</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			ihHgKCx1PaKDnaHgbS6QL3SSloQ=
+			</data>
+			<key>hash2</key>
+			<data>
+			aZUKF/1Q93izemmzWY7e2lLmwP7iF41yY2NPTm8dhyg=
+			</data>
+		</dict>
+		<key>PlugIns/BuddyTests.xctest/BuddyTests</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			PTeoG+/tbUriI1hB2YO64N9KbFY=
+			</data>
+			<key>hash2</key>
+			<data>
+			2gqtOuH74xvIOCQU10a3SwLta66Gm+PmFOvqLfuzTUk=
+			</data>
+		</dict>
+		<key>PlugIns/BuddyTests.xctest/Info.plist</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			V3cUN68w51KhZKzEAheYRkwQNkY=
+			</data>
+			<key>hash2</key>
+			<data>
+			Y1/hT6qcpGCqi/kYCY4wwwhdFSoF+Cu/r9vPaPbgh9g=
+			</data>
+		</dict>
+		<key>PlugIns/BuddyTests.xctest/_CodeSignature/CodeResources</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			r4xnWqQ8LdC6YbatpS7r6jYyIfY=
+			</data>
+			<key>hash2</key>
+			<data>
+			a9xrMo608fOLHv0cbbHG1bIHwI/ADP9TzbaJfbaCz8o=
+			</data>
+		</dict>
+		<key>PoiretOne-Regular.ttf</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			3Pogn23dq/37EsX4qboujxtVVz4=
+			</data>
+			<key>hash2</key>
+			<data>
+			dSndMnCzELttbxZVZ2WHDGz39gGZTlrRQHMFsII23es=
 			</data>
 		</dict>
 		<key>Roboto.ttf</key>
@@ -188,6 +969,61 @@
 			P1Ad2wXHCCm7tRz+nKn/9X854GBFfCV7PM8l33Z/CHA=
 			</data>
 		</dict>
+		<key>Tillana-Bold.ttf</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			17nidCKzFvT0Vsr6YfisRLM/U1Y=
+			</data>
+			<key>hash2</key>
+			<data>
+			dsU7iWNDJBgIf6N0jRS+JfCQ/YnNcJ9sFLY2ecTHIkQ=
+			</data>
+		</dict>
+		<key>Tillana-ExtraBold.ttf</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			49W21ir/+kpPnrbDj/DnIAG/w4Q=
+			</data>
+			<key>hash2</key>
+			<data>
+			ZulvnMqGSWn98SMRy3FXurYNbH2aR9gD/wakDv19ziU=
+			</data>
+		</dict>
+		<key>Tillana-Medium.ttf</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			lKtvR7Ppcv4MHBrxbdyUIzOuR44=
+			</data>
+			<key>hash2</key>
+			<data>
+			v/MIUXQsktiUo1jOeIZpeCqr7pWp9Rw5838sK4U/Rug=
+			</data>
+		</dict>
+		<key>Tillana-Regular.ttf</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			QYYwEI6pIv2xjbsjpOSNO5LtTOY=
+			</data>
+			<key>hash2</key>
+			<data>
+			/ZBxAPoMEx25mZYLt6xxJD5RXDMO4W4Y8o+olYvRgRs=
+			</data>
+		</dict>
+		<key>Tillana-SemiBold.ttf</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			QmQdt30gKj1YmX13kFbpaZoePJY=
+			</data>
+			<key>hash2</key>
+			<data>
+			i/4UvHa4vLLdY7kt90jjSVrw5+7ucdtJNgNOb+1xGcY=
+			</data>
+		</dict>
 		<key>Zocial.ttf</key>
 		<dict>
 			<key>hash</key>
@@ -197,6 +1033,17 @@
 			<key>hash2</key>
 			<data>
 			17EKHr4YMOWi8I9JA7moDiwZEsDdL3O5P88r+DIhZgI=
+			</data>
+		</dict>
+		<key>icomoon.ttf</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			0l7/nuW2vA97/REM4Wx1+dOzrmE=
+			</data>
+			<key>hash2</key>
+			<data>
+			hI7yhM9mL6ariJqB0ujJgUoM8IgrMdVR+MhEi002k64=
 			</data>
 		</dict>
 		<key>rubicon-icon-font.ttf</key>

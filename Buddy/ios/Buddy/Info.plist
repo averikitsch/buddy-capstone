@@ -65,6 +65,48 @@
 		<string>rubicon-icon-font.ttf</string>
 		<string>SimpleLineIcons.ttf</string>
 		<string>Zocial.ttf</string>
+		<string>Acme-Regular.ttf</string>
+		<string>CreteRound-Italic.ttf</string>
+		<string>CreteRound-Regular.ttf</string>
+		<string>JosefinSans-Bold.ttf</string>
+		<string>JosefinSans-BoldItalic.ttf</string>
+		<string>JosefinSans-Italic.ttf</string>
+		<string>JosefinSans-Light.ttf</string>
+		<string>JosefinSans-LightItalic.ttf</string>
+		<string>JosefinSans-Regular.ttf</string>
+		<string>JosefinSans-SemiBold.ttf</string>
+		<string>JosefinSans-SemiBoldItalic.ttf</string>
+		<string>JosefinSans-Thin.ttf</string>
+		<string>JosefinSans-ThinItalic.ttf</string>
+		<string>Lato-Black.ttf</string>
+		<string>Lato-BlackItalic.ttf</string>
+		<string>Lato-Bold.ttf</string>
+		<string>Lato-BoldItalic.ttf</string>
+		<string>Lato-Hairline.ttf</string>
+		<string>Lato-HairlineItalic.ttf</string>
+		<string>Lato-Italic.ttf</string>
+		<string>Lato-Light.ttf</string>
+		<string>Lato-LightItalic.ttf</string>
+		<string>Lato-Regular.ttf</string>
+		<string>OpenSans-Bold.ttf</string>
+		<string>OpenSans-BoldItalic.ttf</string>
+		<string>OpenSans-ExtraBold.ttf</string>
+		<string>OpenSans-ExtraBoldItalic.ttf</string>
+		<string>OpenSans-Italic.ttf</string>
+		<string>OpenSans-Light.ttf</string>
+		<string>OpenSans-LightItalic.ttf</string>
+		<string>OpenSans-Regular.ttf</string>
+		<string>OpenSans-SemiBold.ttf</string>
+		<string>OpenSans-SemiBoldItalic.ttf</string>
+		<string>PoiretOne-Regular.ttf</string>
+		<string>Tillana-Bold.ttf</string>
+		<string>Tillana-ExtraBold.ttf</string>
+		<string>Tillana-Medium.ttf</string>
+		<string>Tillana-Regular.ttf</string>
+		<string>Tillana-SemiBold.ttf</string>
+		<string>icomoon.ttf</string>
+		<string>Feather.ttf</string>
+		<string>MaterialCommunityIcons.ttf</string>
 	</array>
 </dict>
 </plist>
