@@ -25,21 +25,27 @@ export default class TrackScreen extends React.Component {
 };
 
 class ProductFormBody extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
       name: '',
       brand: '',
-      product: 'flower',
-      quantity: 0,
-      flavors: [],
-      activity: 0,
+      product: 1,
+      quantity: 1,
+      flavors: {spicy: false, sweet: false, sour: false, earthy: false},
+      activity: 2,
       duration: 0,
-      ranking: 0,
+      ranking: 2,
     }
     this.handleNameChange = this.handleNameChange.bind(this);
     this.handleBrandChange = this.handleBrandChange.bind(this);
     this.handleProductChange = this.handleProductChange.bind(this);
+    this.handleQuantityChange = this.handleQuantityChange.bind(this);
+    this.handleFlavorChange = this.handleFlavorChange.bind(this);
+    this.handleActivityChange = this.handleActivityChange.bind(this);
+    this.handleDurationChange = this.handleDurationChange.bind(this);
+    this.handleRankChange = this.handleRankChange.bind(this);
+    this.onPress = this.onPress.bind(this);
   }
   handleNameChange(name) {
     this.setState({
@@ -56,7 +62,40 @@ class ProductFormBody extends React.Component {
       product: product
     });
   }
-  onPress() {
+  handleQuantityChange(quantity) {
+    this.setState({
+      quantity: quantity
+    });
+  }
+  handleFlavorChange(flavors) {
+    const flavor = flavors[0];
+    const clickState = flavors[1];
+    const flavorObj = this.state.flavors;
+    flavorObj[flavor] = clickState;
+    this.setState({
+      flavors: flavorObj
+    });
+  }
+  handleActivityChange(activity) {
+    this.setState({
+      activity: activity
+    });
+  }
+  handleDurationChange(duration) {
+    this.setState({
+      duration: duration
+    });
+  }
+  handleRankChange(ranking) {
+    this.setState({
+      ranking: ranking
+    });
+  }
+  onPress(e) {
+    e.preventDefault();
+    console.log(this.refs);
+    console.log(this.state);
+    console.log(e);
 
   }
   render() {
@@ -76,19 +115,21 @@ class ProductFormBody extends React.Component {
           <RadioProductButton onProductChange={this.handleProductChange}/>
         </View>
         <View style={styles.inputLine}>
-          <QuantityPicker type={this.state.product}/>
+          <QuantityPicker type={this.state.product}
+          quantity={this.state.quantity} onQuantityChange={this.handleQuantityChange}/>
         </View>
         <View style={styles.inputLine}>
-          <RadioIconButton />
+          <RadioIconButton clicked={this.state.flavors} onFlavorChange={this.handleFlavorChange}/>
         </View>
         <View style={styles.inputLine}>
-          <ActivityPicker />
+          <ActivityPicker activity={this.state.activity} onActivityChange={this.handleActivityChange}/>
         </View>
         <View style={styles.inputLine}>
-          <RadioDurationButton />
+          <RadioDurationButton onDurationChange={this.handleDurationChange}/>
         </View>
         <View style={styles.inputLine}>
-          <RadioRankButton />
+          <RadioRankButton ranking={this.state.ranking}
+          onRankChange={this.handleRankChange}/>
         </View>
         <View style={styles.submitButtonLine}>
           <TouchableHighlight onPress={this.onPress}>
@@ -106,7 +147,14 @@ class ProductFormBody extends React.Component {
 class ProductFormHeader extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {text: ''};
+    this.handleTextChange = this.handleTextChange.bind(this);
+  }
+  handleTextChange(text) {
+    if (this.props.labelName === "name") {
+      this.props.onNameChange(text);
+    } else {
+      this.props.onBrandChange(text);
+    }
   }
   render() {
     return (
@@ -114,7 +162,7 @@ class ProductFormHeader extends React.Component {
       <TextInput
       style={[styles.label,{height: 40}]}
       placeholder={this.props.labelName.toUpperCase()}
-      onChangeText={(text) => this.setState({text})}
+      onChangeText={this.handleTextChange}
       />
       </View>
     )
@@ -122,11 +170,12 @@ class ProductFormHeader extends React.Component {
 }
 
 class RadioProductButton extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      value: 0,
-    }
+  constructor(props) {
+    super(props);
+    this.handleProductChange = this.handleProductChange.bind(this);
+  }
+  handleProductChange(value) {
+    this.props.onProductChange(value);
   }
   render() {
     const duration_props = [
@@ -143,13 +192,13 @@ class RadioProductButton extends React.Component {
         </Text>
         <RadioForm
           radio_props={duration_props}
-          initial={0}
+          initial={this.props.product}
           formHorizontal={true}
           labelHorizontal={false}
           buttonColor={'#2196f3'}
           animation={true}
           style={[styles.slider, styles.partialSlider]}
-          onPress={(value) => {this.setState({value:value})}}
+          onPress={this.handleProductChange}
           />
       </View>
     );
@@ -159,40 +208,43 @@ class RadioProductButton extends React.Component {
 class QuantityPicker extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      value: 1,
-    };
+    this.handleChange = this.handleChange.bind(this);
   }
-  change(value) {
-    this.setState(() => {
-      return {
-        value: parseFloat(value),
-      };
-    });
+  handleChange(value) {
+    this.props.onQuantityChange(parseFloat(value));
   }
   render() {
-    const {value} = this.state;
+    const value = this.props.quantity;
     const unit = {
-      flower: "bowl",
-      extract: "dab",
-      preroll: "g joint",
-      vape: "pull",
-      edible: "mg",
+      1: "bowl",
+      3: "dab",
+      2: "g joint",
+      4: "pull",
+      5: "mg",
     }
     const units = {
-      flower: "bowls",
-      extract: "dabs",
-      preroll: "g joint",
-      vape: "pulls",
-      edible: "mg",
+      1: "bowls",
+      3: "dabs",
+      2: "g joint",
+      4: "pulls",
+      5: "mg",
+    }
+    const values = {
+      1: {step: 1, max: 10},
+      2: {step: 0.25, max: 1},
+      3: {step: 1, max: 10},
+      4: {step: 1, max: 10},
+      5: {step: 2.5, max: 20},
     }
     return (
       <View style={styles.container}>
-        <Text style={styles.label}>{"Quantity: ".toUpperCase() + String(value)+" "+ ((value !== 1) ? units[this.props.type] : unit[this.props.type])}</Text>
+        <Text style={styles.label}>
+          {"Quantity: ".toUpperCase() + String(value)+" "+ ((value !== 1) ? units[this.props.type] : unit[this.props.type])}
+        </Text>
         <Slider
-          step={1}
-          maximumValue={5}
-          onValueChange={this.change.bind(this)}
+          step={values[this.props.type].step}
+          maximumValue={values[this.props.type].max}
+          onValueChange={this.handleChange}
           value={value}
           style={styles.partialSlider}
         />
@@ -204,19 +256,13 @@ class QuantityPicker extends React.Component {
 class ActivityPicker extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      value: 5,
-    };
+    this.handleChange = this.handleChange.bind(this);
   }
-  change(value) {
-    this.setState(() => {
-      return {
-        value: parseFloat(value),
-      };
-    });
+  handleChange(value) {
+    this.props.onActivityChange(parseFloat(value))
   }
   render() {
-    const {value} = this.state;
+    const value = this.props.activity;
     return (
       <View style={styles.container}>
         <Text style={styles.label}>{"Activity:".toUpperCase()}</Text>
@@ -224,8 +270,8 @@ class ActivityPicker extends React.Component {
         <Icon name="bed" size={25}/>
         <Slider
           step={1}
-          maximumValue={10}
-          onValueChange={this.change.bind(this)}
+          maximumValue={4}
+          onValueChange={this.handleChange}
           value={value}
           style={styles.partialSlider}
         />
@@ -237,6 +283,14 @@ class ActivityPicker extends React.Component {
 }
 
 class RadioIconButton extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleFlavorChange = this.handleFlavorChange.bind(this);
+  }
+  handleFlavorChange(flavors) {
+    this.props.onFlavorChange(flavors);
+    // console.log('clicked');
+  }
   render() {
     return (
       <View>
@@ -244,10 +298,13 @@ class RadioIconButton extends React.Component {
           {"Flavors:".toUpperCase()}
         </Text>
         <View style={styles.radioButtons}>
-          <IconButton flavor="spicy"  />
-          <IconButton flavor="sour"/>
-          <IconButton flavor="sweet"/>
-          <IconButton flavor="earthy" />
+          <IconButton flavor="spicy" clicked={this.props.clicked["spicy"]} addFlavor={this.handleFlavorChange}/>
+          <IconButton flavor="sour"
+          clicked={this.props.clicked["sour"]} addFlavor={this.handleFlavorChange}/>
+          <IconButton flavor="sweet"
+          clicked={this.props.clicked["sweet"]} addFlavor={this.handleFlavorChange}/>
+          <IconButton flavor="earthy"
+          clicked={this.props.clicked["earthy"]} addFlavor={this.handleFlavorChange}/>
         </View>
       </View>
     )
@@ -257,15 +314,17 @@ class RadioIconButton extends React.Component {
 class IconButton extends React.Component {
   constructor(props){
     super(props);
-    this.state = {
-      onClicked: false
-    }
+    // this.state = {
+    //   onClicked: false
+    // }
     this.handlerButtonOnClick = this.handlerButtonOnClick.bind(this);
   }
   handlerButtonOnClick(){
-    this.setState({
-       onClicked: !this.state.onClicked
-    });
+    // this.setState({
+    //    onClicked: !this.state.onClicked
+    // });
+    // console.log([this.props.flavor, !this.props.clicked]);
+    this.props.addFlavor([this.props.flavor, !this.props.clicked]);
   }
   render() {
     const flavorIcon = {
@@ -276,7 +335,7 @@ class IconButton extends React.Component {
     }
     const color = flavorIcon[this.props.flavor].color;
     const icon = flavorIcon[this.props.flavor].icon;
-    if (this.state.onClicked) {
+    if (this.props.clicked) {
       return (
         <View style={styles.iconButton}>
           <TouchableHighlight
@@ -307,11 +366,12 @@ class IconButton extends React.Component {
 }
 
 class RadioDurationButton extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      value: 0,
-    }
+  constructor(props) {
+    super(props);
+    this.handleDurationChange = this.handleDurationChange.bind(this);
+  }
+  handleDurationChange(value) {
+    this.props.onDurationChange(value);
   }
   render() {
     const duration_props = [
@@ -330,7 +390,7 @@ class RadioDurationButton extends React.Component {
           buttonColor={'#2196f3'}
           animation={true}
           style={[styles.slider, styles.partialSlider]}
-          onPress={(value) => {this.setState({value:value})}}
+          onPress={this.handleDurationChange}
           />
       </View>
     );
@@ -340,19 +400,13 @@ class RadioDurationButton extends React.Component {
 class RadioRankButton extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      value: 2,
-    };
+    this.handleChange = this.handleChange.bind(this);
   }
-  change(value) {
-    this.setState(() => {
-      return {
-        value: parseFloat(value),
-      };
-    });
+  handleChange(value) {
+    this.props.onRankChange(parseFloat(value))
   }
   render() {
-    const {value} = this.state;
+    const value = this.props.ranking;
     return (
       <View style={styles.container}>
         <Text style={styles.label}>{"Ranking:".toUpperCase()}</Text>
@@ -361,7 +415,7 @@ class RadioRankButton extends React.Component {
         <Slider
           step={1}
           maximumValue={4}
-          onValueChange={this.change.bind(this)}
+          onValueChange={this.handleChange}
           value={value}
           style={styles.partialSlider}
         />
