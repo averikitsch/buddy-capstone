@@ -3,7 +3,7 @@ import { View, Image, StyleSheet, Dimensions, TouchableHighlight } from 'react-n
 import { Container, Body, Content, Left, Right, Title, Input, Item, Label, Button, Text } from 'native-base';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Header from '../Components/HeaderComponent';
-import { colors } from '../assets/Theme';
+import { colors, flavorColors } from '../assets/Theme';
 
 const testObj = {
   name: 'Seatown Lemon Haze',
@@ -13,6 +13,29 @@ const testObj = {
   cross: ['Lemon Skunk', 'Super Silver Haze'],
   description: 'Gather your friends, strap on your explorer boots, don your chef hat, or unleash your inner artist – our Seatown Lemon Haze, also known as Super Lemon Haze, offers a creative, social and energetic high to get you ready for a moment of exploration or creativity.',
   image: '../assets/images/temp.jpeg',
+  flavors: [
+    "Lemon",
+    "Citrus",
+    "Sage"
+    ],
+  effects: {
+    positive: [
+    "Euphoric",
+    "Creative",
+    "Energetic",
+    "Uplifted"
+    ],
+    negative: [
+    "Dry Mouth"
+    ],
+    medical: [
+    "Depression",
+    "Insomnia",
+    "Pain",
+    "Fatigue",
+    "Inflammation"
+    ]
+  }
 };
 
 
@@ -97,10 +120,57 @@ class ProductBody extends React.Component {
           <Text style={styles.text}>
           {this.props.obj.description}</Text>
         </View>
+        <View>
+          <Text style={styles.label}>
+          Flavors:
+          </Text>
+          <View style={styles.flavorCards}>
+            {this.props.obj.flavors.map((flavor) => {
+              return <FlavorCard flavor={flavor} />
+            })}
+          </View>
+        </View>
+        <View>
+          <Text style={styles.label}>
+          Effects:
+          </Text>
+          <View style={styles.effectCards}>
+            {this.props.obj.effects.positive.map((effect) => {
+              return <EffectCard effect={effect} />
+            })}
+          </View>
+        </View>
       </View>
     )
   }
 }
+
+class FlavorCard extends React.Component {
+  render() {
+    const color = flavorColors[this.props.flavor];
+    return (
+      <View style={[styles.flavorCard, {backgroundColor: color}]}>
+        <Text style={[styles.flavorText]}>
+          {this.props.flavor}
+        </Text>
+      </View>
+    )
+  }
+}
+
+class EffectCard extends React.Component {
+  render() {
+    const color = 'hsl(120, 60%, 70%)';
+    return (
+      <View style={[styles.effectCard, {backgroundColor: color}]}>
+        <Text style={[styles.effectText]}>
+          {this.props.effect}
+        </Text>
+      </View>
+    )
+  }
+}
+
 
 const styles = StyleSheet.create({
   formContentBody: {
@@ -189,4 +259,24 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     marginTop: 10,
   },
+  flavorCards: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+
+  },
+  flavorCard: {
+    padding: 10,
+    margin: 10,
+    height: 80,
+    width: 80,
+    borderRadius:10,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  flavorText: {
+    color: "white",
+    fontWeight: 'bold',
+    fontFamily: 'Josefin Sans',
+  }
 });
