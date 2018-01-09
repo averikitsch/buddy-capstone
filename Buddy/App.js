@@ -5,11 +5,12 @@ import aws_exports from './aws-exports';
 Amplify.configure(aws_exports);
 
 import TrackForm from './src/Screens/Track'
+import Found from './src/Screens/Found'
 
 export default class App extends React.Component {
   render() {
     return (
-      <TrackForm />
+      <Found />
     );
   }
 }

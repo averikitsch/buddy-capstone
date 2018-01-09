@@ -7,7 +7,7 @@ export default class ProductHeader extends React.Component {
     return (
       <View style={styles.HeaderContainer}>
         <View style={styles.ImageContainer}>
-          <Image style={styles.image} source={require('../assets/temp.jpeg')} />
+          <Image style={styles.image} source={require('../assets/images/temp.jpeg')} />
         </View>
         <View style={styles.TextContainer}>
           <Text style={styles.Header}>{this.props.name.toUpperCase()}</Text>
