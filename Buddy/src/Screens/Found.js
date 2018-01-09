@@ -108,7 +108,7 @@ class ProductBody extends React.Component {
           </View>
           <View style={styles.cross}>
           <Text style={styles.text}>
-          {this.props.obj.type}
+          {this.props.obj.type.toUpperCase()}
           </Text>
             {/*<Text style={styles.text}>
             {this.props.obj.cross[0]}</Text>
@@ -120,8 +120,6 @@ class ProductBody extends React.Component {
           <Text style={styles.text}>
           {this.props.obj.description}</Text>
         </View>
-        <View style={styles.OuterCardWrapper}>
-        <View style={styles.CardWrapper}>
           {/*<Text style={styles.label}>
           Flavors:
           </Text>*/}
@@ -131,6 +129,8 @@ class ProductBody extends React.Component {
             })}
           </View>
 
+          <View style={styles.OuterCardWrapper}>
+          <View style={styles.CardWrapper}>
           {/*<Text style={styles.label}>
           Effects:
           </Text>*/}
@@ -286,6 +286,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     flexWrap: 'wrap',
+    margin: 15,
   },
   flavorCard: {
     padding: 10,
@@ -331,7 +332,7 @@ const styles = StyleSheet.create({
     borderStyle: 'dashed',
   },
   OuterCardWrapper: {
-    marginTop: 20,
+    // marginTop: 20,
     borderWidth: 2,
     borderColor: colors.darkGray,
   }
