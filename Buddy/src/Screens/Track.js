@@ -1,14 +1,13 @@
 import React from 'react';
-import { View, Image, StyleSheet, Text, Slider, Dimensions, TouchableHighlight, TextInput } from 'react-native';
-import { Container, Body, Content, Left, Right, Title, Input, Item, Form, Label, Button, Picker }  from 'native-base';
-import Icon2 from 'react-native-vector-icons/FontAwesome';
-import BuddyHeader from '../Components/HeaderComponent';
+import { View, Image, StyleSheet, Text, Slider, Dimensions, TouchableHighlight, TextInput, AsyncStorage } from 'react-native';
+import { Container, Content }  from 'native-base';
+import RadioForm, {RadioButton, RadioButtonInput, RadioButtonLabel} from 'react-native-simple-radio-button';
 import { createIconSetFromIcoMoon } from 'react-native-vector-icons';
 import IcoMoonConfig from '../selection.json';
 const Icon = createIconSetFromIcoMoon(IcoMoonConfig);
-import RadioForm, {RadioButton, RadioButtonInput, RadioButtonLabel} from 'react-native-simple-radio-button';
-
-
+import Icon2 from 'react-native-vector-icons/FontAwesome';
+import BuddyHeader from '../Components/HeaderComponent';
+import { colors } from '../assets/Theme';
 
 export default class TrackScreen extends React.Component {
   render() {
@@ -16,7 +15,7 @@ export default class TrackScreen extends React.Component {
     return (
       <Container>
       <BuddyHeader name="Track" />
-        <Content>
+        <Content style={styles.formContentBody}>
           <ProductFormBody />
         </Content>
     </Container>
@@ -93,10 +92,12 @@ class ProductFormBody extends React.Component {
   }
   onPress(e) {
     e.preventDefault();
-    console.log(this.refs);
+    AsyncStorage.getItem('logs')
+      .then(req => JSON.parse(req))
+      .then(json => console.log(json))
+      .catch(error => console.log('error!'));
+    AsyncStorage.setItem('logs',JSON.stringify(this.state));
     console.log(this.state);
-    console.log(e);
-
   }
   render() {
     return (
@@ -112,7 +113,7 @@ class ProductFormBody extends React.Component {
           <ProductFormHeader labelName="brand" onBrandChange={this.handleBrandChange}/>
         </View>
         <View style={styles.inputLine}>
-          <RadioProductButton onProductChange={this.handleProductChange}/>
+          <RadioProductButton select={this.state.product} onProductChange={this.handleProductChange}/>
         </View>
         <View style={styles.inputLine}>
           <QuantityPicker type={this.state.product}
@@ -125,7 +126,7 @@ class ProductFormBody extends React.Component {
           <ActivityPicker activity={this.state.activity} onActivityChange={this.handleActivityChange}/>
         </View>
         <View style={styles.inputLine}>
-          <RadioDurationButton onDurationChange={this.handleDurationChange}/>
+          <RadioDurationButton select={this.state.duration} onDurationChange={this.handleDurationChange}/>
         </View>
         <View style={styles.inputLine}>
           <RadioRankButton ranking={this.state.ranking}
@@ -178,7 +179,7 @@ class RadioProductButton extends React.Component {
     this.props.onProductChange(value);
   }
   render() {
-    const duration_props = [
+    const product_props = [
       {label: 'Flower', value: 1 },
       {label: 'Pre-roll', value: 2 },
       {label: 'Extract', value: 3 },
@@ -190,16 +191,42 @@ class RadioProductButton extends React.Component {
         <Text style={styles.label}>
           {"Product Type:".toUpperCase()}
         </Text>
-        <RadioForm
-          radio_props={duration_props}
+        {/*<RadioForm
+          radio_props={product_props}
           initial={this.props.product}
           formHorizontal={true}
           labelHorizontal={false}
-          buttonColor={'#2196f3'}
-          animation={true}
+          labelColor={colors.green}
+          buttonColor={colors.green}
+          buttonStyle={{color: colors.green}}
           style={[styles.slider, styles.partialSlider]}
           onPress={this.handleProductChange}
-          />
+          />*/}
+          <RadioForm
+            formHorizontal={true}
+            style={[styles.slider, styles.partialSlider]}
+          >
+          {product_props.map((obj) => {
+            return (
+            <RadioButton labelHorizontal={false} key={obj["value"]}>
+            <RadioButtonInput
+            obj={obj}
+            index={obj["value"]}
+            onPress={this.handleProductChange}
+            buttonInnerColor={colors.green}
+            buttonOuterColor={colors.green}
+            isSelected={(obj["value"] === this.props.select)}
+            />
+            <RadioButtonLabel
+            obj={obj}
+            index={obj["value"]}
+            labelHorizontal={false}
+            onPress={this.handleProductChange}
+            labelWrapStyle={{}}
+            />
+            </RadioButton>)
+          })}
+        </RadioForm>
       </View>
     );
   }
@@ -247,6 +274,7 @@ class QuantityPicker extends React.Component {
           onValueChange={this.handleChange}
           value={value}
           style={styles.partialSlider}
+          minimumTrackTintColor={colors.green}
         />
       </View>
     );
@@ -267,15 +295,16 @@ class ActivityPicker extends React.Component {
       <View style={styles.container}>
         <Text style={styles.label}>{"Activity:".toUpperCase()}</Text>
         <View style={styles.slider}>
-        <Icon name="bed" size={25}/>
+        <Icon name="bed" size={25} color={colors.darkGray}/>
         <Slider
           step={1}
           maximumValue={4}
           onValueChange={this.handleChange}
           value={value}
           style={styles.partialSlider}
+          minimumTrackTintColor={colors.green}
         />
-        <Icon name="jumping-dancer" size={25}/>
+        <Icon name="jumping-dancer" size={25} color={colors.darkGray}/>
         </View>
       </View>
     );
@@ -328,10 +357,10 @@ class IconButton extends React.Component {
   }
   render() {
     const flavorIcon = {
-      spicy: {icon: "food-2", color:"red"},
-      sweet: {icon:"food-1", color:"blue"},
-      sour: {icon:"fruit", color:"yellow"},
-      earthy: {icon:"forest", color:"green"},
+      spicy: {icon: "food-2", color: colors.spicy},
+      sweet: {icon:"food-1", color :colors.sweet},
+      sour: {icon:"fruit", color: colors.sour},
+      earthy: {icon:"forest", color: colors.earthy},
     }
     const color = flavorIcon[this.props.flavor].color;
     const icon = flavorIcon[this.props.flavor].icon;
@@ -383,15 +412,30 @@ class RadioDurationButton extends React.Component {
       <View>
         <Text style={styles.label}>{"Duration:".toUpperCase()}</Text>
         <RadioForm
-          radio_props={duration_props}
-          initial={0}
           formHorizontal={true}
-          labelHorizontal={true}
-          buttonColor={'#2196f3'}
-          animation={true}
           style={[styles.slider, styles.partialSlider]}
+        >
+        {duration_props.map((obj) => {
+          return (
+          <RadioButton labelHorizontal={false} key={obj["value"]}>
+          <RadioButtonInput
+          obj={obj}
+          index={obj["value"]}
           onPress={this.handleDurationChange}
+          buttonInnerColor={colors.green}
+          buttonOuterColor={colors.green}
+          isSelected={(obj["value"] === this.props.select)}
           />
+          <RadioButtonLabel
+          obj={obj}
+          index={obj["value"]}
+          labelHorizontal={false}
+          onPress={this.handleDurationChange}
+          labelWrapStyle={{}}
+          />
+          </RadioButton>)
+        })}
+      </RadioForm>
       </View>
     );
   }
@@ -411,15 +455,16 @@ class RadioRankButton extends React.Component {
       <View style={styles.container}>
         <Text style={styles.label}>{"Ranking:".toUpperCase()}</Text>
         <View style={styles.slider}>
-        <Icon2 name="thumbs-down" size={25}/>
+        <Icon2 name="thumbs-down" size={25} color={colors.darkGray}/>
         <Slider
           step={1}
           maximumValue={4}
           onValueChange={this.handleChange}
           value={value}
           style={styles.partialSlider}
+          minimumTrackTintColor={colors.green}
         />
-        <Icon2 name="thumbs-up" size={25}/>
+        <Icon2 name="thumbs-up" size={25} color={colors.darkGray}/>
         </View>
       </View>
     );
@@ -430,6 +475,9 @@ const styles = StyleSheet.create({
   formBody: {
     flex: 1,
     flexDirection: 'column',
+  },
+  formContentBody: {
+    backgroundColor: colors.liteTan,
   },
   inputLine: {
     flex: 1,
@@ -452,6 +500,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Crete Round',
     fontSize: 18,
     fontWeight: 'bold',
+    color: colors.darkGray,
   },
   container: {
     flex: 1,
@@ -493,7 +542,11 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
   },
   submitButton: {
-    backgroundColor: "blue",
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    borderColor: colors.darkGray,
+    borderWidth: 2,
+    marginBottom: 30,
   },
   submitButtonLine: {
     flexDirection: 'row',
