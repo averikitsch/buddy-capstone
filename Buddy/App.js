@@ -6,6 +6,7 @@ Amplify.configure(aws_exports);
 
 import TrackForm from './src/Screens/Track'
 import Found from './src/Screens/Found'
+import Profile from './src/Screens/SearchScreen'
 
 export default class App extends React.Component {
   render() {

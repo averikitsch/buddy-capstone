@@ -105,41 +105,57 @@ class ProductBody extends React.Component {
         <View style={styles.detailContainer}>
           <View style={styles.type}>
             <Icon name={types[this.props.obj.type]} size={35} />
-            <Text style={styles.text}>
-              {this.props.obj.type}
-            </Text>
           </View>
           <View style={styles.cross}>
-            <Text style={styles.text}>
+          <Text style={styles.text}>
+          {this.props.obj.type}
+          </Text>
+            {/*<Text style={styles.text}>
             {this.props.obj.cross[0]}</Text>
             <Text style={styles.text}>
-            {this.props.obj.cross[1]}</Text>
+            {this.props.obj.cross[1]}</Text>*/}
           </View>
         </View>
         <View style={styles.description}>
           <Text style={styles.text}>
           {this.props.obj.description}</Text>
         </View>
-        <View>
-          <Text style={styles.label}>
+        <View style={styles.OuterCardWrapper}>
+        <View style={styles.CardWrapper}>
+          {/*<Text style={styles.label}>
           Flavors:
-          </Text>
+          </Text>*/}
           <View style={styles.flavorCards}>
-            {this.props.obj.flavors.map((flavor) => {
-              return <FlavorCard flavor={flavor} />
+            {this.props.obj.flavors.map((flavor, i) => {
+              return <FlavorCard flavor={flavor} key={i.toString()} />
             })}
           </View>
-        </View>
-        <View>
-          <Text style={styles.label}>
+
+          {/*<Text style={styles.label}>
           Effects:
-          </Text>
-          <View style={styles.effectCards}>
-            {this.props.obj.effects.positive.map((effect, i) => {
-              return <EffectCard effect={effect} key={i} iter={i}/>
-            })}
+          </Text>*/}
+          <View style={styles.cardStack}>
+            <View style={styles.effectCards}>
+              <Icon name="md-add" size={35} color={`hsl(241, 41%, 43%)`} style={styles.effectIcon}/>
+                {this.props.obj.effects.positive.map((effect, i) => {
+                  return <EffectCard effect={effect} key={i.toString()} iter={i} type="positive"/>
+                })}
+            </View>
+            <View style={styles.effectCards}>
+              <Icon name="md-remove" size={35} color={`hsl(360, 51%, 43%)`} style={styles.effectIcon}/>
+              {this.props.obj.effects.negative.map((effect, i) => {
+                return <EffectCard effect={effect} key={i.toString()} iter={i} type="negative"/>
+              })}
+            </View>
+            <View style={styles.effectCards}>
+              <Icon name="ios-medical" size={35} color={`hsl(139, 41%, 41%)`} style={styles.effectIcon}/>
+              {this.props.obj.effects.medical.map((effect, i) => {
+                return <EffectCard effect={effect} key={i.toString()} iter={i} type="medical"/>
+              })}
+            </View>
           </View>
         </View>
+      </View>
       </View>
     )
   }
@@ -160,9 +176,14 @@ class FlavorCard extends React.Component {
 
 class EffectCard extends React.Component {
   render() {
-    const color = `hsl(360, 51%, ${36 + this.props.iter * 7}%)`;
-    /*`hsl(241, 41%, ${36 + this.props.iter * 7}%)`;
-    `hsl(139, 41%, ${36 + this.props.iter * 5}%)`;*/
+    let color;
+    if (this.props.type === "negative") {
+      color = `hsl(360, 51%, ${36 + this.props.iter * 7}%)`;
+    } else if (this.props.type === "positive") {
+      color = `hsl(241, 41%, ${36 + this.props.iter * 7}%)`;
+    } else {
+      color = `hsl(139, 41%, ${36 + this.props.iter * 5}%)`;
+    }
     return (
       <View style={[styles.effectCard, {backgroundColor: color}]}>
         <Text style={[styles.flavorText]}>
@@ -264,7 +285,7 @@ const styles = StyleSheet.create({
   flavorCards: {
     flexDirection: 'row',
     justifyContent: 'center',
-
+    flexWrap: 'wrap',
   },
   flavorCard: {
     padding: 10,
@@ -282,8 +303,36 @@ const styles = StyleSheet.create({
     fontFamily: 'Josefin Sans',
   },
   effectCard: {
-    padding: 3,
+    paddingTop: 3,
+    paddingHorizontal: 3,
     margin: 2,
     borderRadius:3,
+  },
+  effectCards: {
+    flexWrap: 'wrap',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+  },
+  cardStack: {
+    flexDirection: 'column',
+    justifyContent: 'center',
+  },
+  effectIcon: {
+    marginRight: 5,
+    flexDirection: 'column',
+    justifyContent: 'flex-end',
+  },
+  CardWrapper: {
+    margin: 2,
+    padding: 2,
+    borderWidth: 2,
+    borderColor: colors.darkGray,
+    borderStyle: 'dashed',
+  },
+  OuterCardWrapper: {
+    marginTop: 20,
+    borderWidth: 2,
+    borderColor: colors.darkGray,
   }
 });

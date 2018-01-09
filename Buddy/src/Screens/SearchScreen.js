@@ -2,7 +2,7 @@
 import React from "react";
 import { AppRegistry, Dimensions, View, StyleSheet } from "react-native";
 import { Container, Header, Body, Content, Left, Right, Icon, Title, Input, Item, Label, Button, Text } from "native-base";
-import BuddyHeader from './HeaderComponent';
+import BuddyHeader from '../Components/HeaderComponent';
 import Camera from 'react-native-camera';
 
 export default class SearchScreen extends React.Component {
