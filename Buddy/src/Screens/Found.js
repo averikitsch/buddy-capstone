@@ -135,8 +135,8 @@ class ProductBody extends React.Component {
           Effects:
           </Text>
           <View style={styles.effectCards}>
-            {this.props.obj.effects.positive.map((effect) => {
-              return <EffectCard effect={effect} />
+            {this.props.obj.effects.positive.map((effect, i) => {
+              return <EffectCard effect={effect} key={i} iter={i}/>
             })}
           </View>
         </View>
@@ -160,10 +160,12 @@ class FlavorCard extends React.Component {
 
 class EffectCard extends React.Component {
   render() {
-    const color = 'hsl(120, 60%, 70%)';
+    const color = `hsl(360, 51%, ${36 + this.props.iter * 7}%)`;
+    /*`hsl(241, 41%, ${36 + this.props.iter * 7}%)`;
+    `hsl(139, 41%, ${36 + this.props.iter * 5}%)`;*/
     return (
       <View style={[styles.effectCard, {backgroundColor: color}]}>
-        <Text style={[styles.effectText]}>
+        <Text style={[styles.flavorText]}>
           {this.props.effect}
         </Text>
       </View>
@@ -278,5 +280,10 @@ const styles = StyleSheet.create({
     color: "white",
     fontWeight: 'bold',
     fontFamily: 'Josefin Sans',
+  },
+  effectCard: {
+    padding: 3,
+    margin: 2,
+    borderRadius:3,
   }
 });
