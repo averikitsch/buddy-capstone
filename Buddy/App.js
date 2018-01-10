@@ -1,20 +1,29 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import Amplify, { withAuthenticator, Storage } from 'aws-amplify-react-native';
-import aws_exports from './aws-exports';
-Amplify.configure(aws_exports);
-import { TabNavigator, StackNavigator } from "react-navigation";
-import { Button, Footer, FooterTab } from "native-base";
-import Icon from 'react-native-vector-icons/Ionicons';
+// import Amplify, { withAuthenticator, Storage } from 'aws-amplify-react-native';
+// import aws_exports from './aws-exports';
+// Amplify.configure(aws_exports);
+import { TabNavigator, StackNavigator } from 'react-navigation';
+// import { Button, Footer, FooterTab } from 'native-base';
+// import Icon from 'react-native-vector-icons/Ionicons';
+import { Provider } from 'react-redux';
+import store from './src/store';
 
-import Navigator from "./src/Navigator";
+import Navigator from './src/Navigator';
+
+
+
 
 export default class Buddy extends React.Component {
   constructor() {
     super();
   }
   render() {
-    return <Navigator />;
+    return (
+      <Provider store={store}>
+        <Navigator />
+      </Provider>
+    );
   }
 }
 
