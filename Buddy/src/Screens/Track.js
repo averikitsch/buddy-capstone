@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Image, StyleSheet, Text, Slider, Dimensions, TouchableHighlight, TextInput, AsyncStorage } from 'react-native';
 import { Container, Content }  from 'native-base';
+import { connect } from 'react-redux';
 import RadioForm, {RadioButton, RadioButtonInput, RadioButtonLabel} from 'react-native-simple-radio-button';
 import { createIconSetFromIcoMoon } from 'react-native-vector-icons';
 import IcoMoonConfig from '../selection.json';
@@ -9,9 +10,17 @@ import Icon2 from 'react-native-vector-icons/FontAwesome';
 import BuddyHeader from '../Components/HeaderComponent';
 import { colors } from '../assets/Theme';
 
+
+@connect((store) => {
+  return {
+    log: store.logs.newLog,
+  };
+})
 export default class TrackScreen extends React.Component {
   render() {
     const { navigate } = this.props.navigation;
+    // const { params } = this.props.navigation.state;
+    console.log(this.props.log);
     return (
       <Container>
       <BuddyHeader name="Track" />
@@ -24,8 +33,8 @@ export default class TrackScreen extends React.Component {
 };
 
 class ProductFormBody extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       name: '',
       brand: '',
@@ -92,11 +101,11 @@ class ProductFormBody extends React.Component {
   }
   onPress(e) {
     e.preventDefault();
-    AsyncStorage.getItem('logs')
-      .then(req => JSON.parse(req))
-      .then(json => console.log(json))
-      .catch(error => console.log('error!'));
-    AsyncStorage.setItem('logs',JSON.stringify(this.state));
+    // AsyncStorage.getItem('logs')
+    //   .then(req => JSON.parse(req))
+    //   .then(json => console.log(json))
+    //   .catch(error => console.log('error!'));
+    // AsyncStorage.setItem('logs',JSON.stringify(this.state));
     console.log(this.state);
   }
   render() {
@@ -107,10 +116,16 @@ class ProductFormBody extends React.Component {
           <Image style={styles.image} source={require('../assets/temp.jpeg')} />
         </View>*/}
         <View style={styles.inputLine}>
-          <ProductFormHeader labelName="name" onNameChange={this.handleNameChange}/>
+          <ProductFormHeader
+            labelName="name"
+            defaultValue={this.state.name}
+          onNameChange={this.handleNameChange}/>
         </View>
         <View style={styles.inputLine}>
-          <ProductFormHeader labelName="brand" onBrandChange={this.handleBrandChange}/>
+          <ProductFormHeader
+            labelName="brand"
+            defaultValue={this.state.brand}
+          onBrandChange={this.handleBrandChange}/>
         </View>
         <View style={styles.inputLine}>
           <RadioProductButton select={this.state.product} onProductChange={this.handleProductChange}/>
@@ -149,6 +164,7 @@ class ProductFormHeader extends React.Component {
   constructor(props) {
     super(props);
     this.handleTextChange = this.handleTextChange.bind(this);
+    console.log(this.props.defaultValue)
   }
   handleTextChange(text) {
     if (this.props.labelName === "name") {
@@ -157,6 +173,7 @@ class ProductFormHeader extends React.Component {
       this.props.onBrandChange(text);
     }
   }
+  // value={this.props.defaultValue}
   render() {
     return (
       <View>

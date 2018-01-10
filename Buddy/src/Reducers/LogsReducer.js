@@ -9,6 +9,7 @@ export default function reducer(state={
       {id: 7, name: 'Kraken Black Pepper', brand: "Western Cultured", product: "Flower", date:'01-04-2018'},
       {id: 8, name: 'PermaFrost', brand: "Western Cultured", product: "Flower", date:'01-04-2018'},
     ],
+    newLog: {},
 }, action) {
 
   switch(action.type) {
@@ -23,6 +24,12 @@ export default function reducer(state={
         ...state,
         logs: state.logs.filter(logs => log.id !== action.payload)
       };
+    }
+    case "NEW_LOG": {
+      return {
+        ...state,
+        newLog: action.payload,
+      }
     }
     case "UPDATE_LOG": {
       return state;

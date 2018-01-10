@@ -1,27 +1,28 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { TabNavigator, StackNavigator } from "react-navigation";
-import { Button, Footer, FooterTab } from "native-base";
+import { TabNavigator, StackNavigator } from 'react-navigation';
+import { Button, Footer, FooterTab } from 'native-base';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-import FoundScreen from "./Screens/Found";
+import FoundScreen from './Screens/Found';
+import FoundNav from './Screens/StackNavTrack';
 import TrackScreen from './Screens/Track';
 import LogList from './Components/ProfileCards/LogList';
-import ExploreScreen from "./Screens/ExploreScreen";
-import SearchScreen from "./Screens/SearchScreen";
-import ProfileScreen from "./Screens/ProfileScreen";
+import ExploreScreen from './Screens/ExploreScreen';
+import SearchScreen from './Screens/SearchScreen';
+import ProfileScreen from './Screens/ProfileScreen';
 
 export default (MainScreenNavigator = TabNavigator(
   {
     Explore: { screen: LogList },
-    Search: { screen: ExploreScreen },
+    Search: { screen: FoundNav },
     Profile: { screen: ProfileScreen },
-    // Track: { screen: TrackScreen },
+    Track: { screen: TrackScreen },
     // Logs: { screen: LogList },
     //edit profile
   },
   {
-    tabBarPosition: "bottom",
+    tabBarPosition: 'bottom',
     tabBarComponent: props => {
       return (
         <Footer>
@@ -29,22 +30,22 @@ export default (MainScreenNavigator = TabNavigator(
             <Button
               vertical
               active={props.navigationState.index === 0}
-              onPress={() => props.navigation.navigate("Explore")}>
-              <Icon name="ios-compass" size={30} />
+              onPress={() => props.navigation.navigate('Explore')}>
+              <Icon name='ios-compass' size={30} />
             </Button>
 
             <Button
               vertical
               active={props.navigationState.index === 1}
-              onPress={() => props.navigation.navigate("Search")}>
-              <Icon name="ios-camera" size={35} />
+              onPress={() => props.navigation.navigate('Search')}>
+              <Icon name='ios-camera' size={35} />
             </Button>
 
             <Button
               vertical
               active={props.navigationState.index === 2}
-              onPress={() => props.navigation.navigate("Profile")}>
-              <Icon name="md-contact" size={30} />
+              onPress={() => props.navigation.navigate('Profile')}>
+              <Icon name='md-contact' size={30} />
             </Button>
 
           </FooterTab>

@@ -1,13 +1,15 @@
 import React from 'react';
 import { AppRegistry, View, StatusBar, Image, StyleSheet } from 'react-native';
 import { Container, Header, Tab, Tabs, Text, ScrollableTab, Thumbnail, Title } from 'native-base';
+import { connect } from 'react-redux';
+
 import Icon from 'react-native-vector-icons/Ionicons';
 import BuddyHeader from '../Components/HeaderComponent';
 import FlavorCard from '../Components/ProfileCards/FlavorCard';
 import TypeCard from '../Components/ProfileCards/TypeCard';
 import ProductCard from '../Components/ProfileCards/ProductCard';
 import UsageCard from '../Components/ProfileCards/UsageCard';
-import LogList from '../Components/ProfileCards/LogList';
+
 
 export default class ProfileScreen extends React.Component {
   render() {
@@ -34,13 +36,13 @@ class ProfileLinks extends React.Component {
     return (
       <Container>
         <View style={styles.ProfileLinkContainer}>
-          <Icon name="ios-list-box" size={35}
-          onPress={() => navigate("Logs")} />
+          {/*<Icon name="ios-list-box" size={35}
+          onPress={() => navigate("Logs")} />*/}
         <View style={styles.ProfileHeader}>
           <Thumbnail large source={require('../assets/images/temp.jpeg')} />
           <Title style={styles.ProfileName}>Name</Title>
         </View>
-          <Icon name="ios-cog" size={40} />
+          {/*<Icon name="ios-cog" size={40} />*/}
         </View>
       </Container>
     )

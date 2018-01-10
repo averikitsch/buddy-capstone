@@ -40,6 +40,14 @@ const testObj = {
 
 
 export default class FoundScreen extends React.Component {
+  // componentWillMount() {
+  //   const trackObj = {
+  //     name: testObj.name,
+  //     brand: testObj.brand,
+  //     product: testObj.product,
+  //   }
+  //   this.props.dispatch({type: 'NEW_LOG', payload: trackObj});
+  // }
   render() {
     const { navigate } = this.props.navigation;
     return (
