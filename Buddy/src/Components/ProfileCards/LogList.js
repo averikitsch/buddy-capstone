@@ -40,9 +40,9 @@ export default class LogListScreen extends React.Component {
   render() {
     let page = null;
     if (this.state.logs) {
-      page = <LogList navigation={this.props.navigation}/>
+      page = <LogList data={datas} navigation={this.props.navigation}/>
     } else {
-      page =<Text>wish</Text>
+      page = <Text>wish</Text>;
     }
     return (
       <Container>
@@ -75,7 +75,7 @@ class LogList extends React.Component {
     this.ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
     this.state = {
       basic: true,
-      listViewData: datas,
+      listViewData: this.props.data,
     };
   }
   deleteRow(secId, rowId, rowMap) {
