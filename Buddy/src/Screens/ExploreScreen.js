@@ -2,7 +2,7 @@
 import React from 'react';
 import { AppRegistry, View, StatusBar } from 'react-native';
 import { Container, Body, Content, Left, Right, Icon, Title, Input, Item, Label, Button, Text } from 'native-base';
-import Header from './HeaderComponent';
+import Header from '../Components/HeaderComponent';
 
 export default class ExploreScreen extends React.Component {
   render() {

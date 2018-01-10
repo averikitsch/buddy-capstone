@@ -11,7 +11,7 @@ import { colors } from '../assets/Theme';
 
 export default class TrackScreen extends React.Component {
   render() {
-    // const { navigate } = this.props.navigation;
+    const { navigate } = this.props.navigation;
     return (
       <Container>
       <BuddyHeader name="Track" />

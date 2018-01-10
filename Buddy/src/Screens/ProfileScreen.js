@@ -37,7 +37,7 @@ class ProfileLinks extends React.Component {
           <Icon name="ios-list-box" size={35}
           onPress={() => navigate("Logs")} />
         <View style={styles.ProfileHeader}>
-          <Thumbnail large source={require('../assets/temp.jpeg')} />
+          <Thumbnail large source={require('../assets/images/temp.jpeg')} />
           <Title style={styles.ProfileName}>Name</Title>
         </View>
           <Icon name="ios-cog" size={40} />

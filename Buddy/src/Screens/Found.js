@@ -41,7 +41,7 @@ const testObj = {
 
 export default class FoundScreen extends React.Component {
   render() {
-    // const { navigate } = this.props.navigation;
+    const { navigate } = this.props.navigation;
     return (
       <Container>
       <Header />
