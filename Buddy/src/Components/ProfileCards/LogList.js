@@ -1,23 +1,21 @@
 import React from 'react';
 import { StyleSheet, ListView, View, Image } from 'react-native';
 import { Container, Content, Card, CardItem, Button, Icon, List, ListItem, Title, Text, Body, Thumbnail, Left, Right, Segment, Header } from 'native-base';
+import { connect } from 'react-redux';
 // import Header from '../HeaderComponent'
 import ProductHeader from '../ProductHeaderComponent'
 
-const datas = [
-  {name: 'Lemon Drop', brand: "Dawg Star", product: "Flower"},
-  {name: 'GG #4', brand: "Dawg Star", product: "Flower"},
-  {name: 'LA Confidential', brand: "Dawg Star", product: "Flower"},
-  {name: 'Frosted Flakes', brand: "Dawg Star", product: "Flower"},
-  {name: 'Blueberry', brand: "Dawg Star", product: "Flower"},
-  {name: 'Island Breeze', brand: "Western Cultured", product: "Flower"},
-  {name: 'Kraken Black Pepper', brand: "Western Cultured", product: "Flower"},
-  {name: 'PermaFrost', brand: "Western Cultured", product: "Flower"},
-];
+
+@connect((store) => {
+  return {
+    logs: store.logs.logs,
+    wishlist: store.wishlist.wishlist,
+  };
+})
 
 export default class LogListScreen extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       logs: true,
       wish: false,
@@ -40,9 +38,9 @@ export default class LogListScreen extends React.Component {
   render() {
     let page = null;
     if (this.state.logs) {
-      page = <LogList data={datas} navigation={this.props.navigation}/>
+      page = <LogList data={this.props.logs} navigation={this.props.navigation} />;
     } else {
-      page = <Text>wish</Text>;
+      page = <WishList data={this.props.wishlist} navigation={this.props.navigation} />;
     }
     return (
       <Container>
@@ -65,10 +63,7 @@ export default class LogListScreen extends React.Component {
       );
   }
 }
-/*<Container>
-<Header name="logs" />
-<LogList navigation={this.props.navigation}/>
-</Container>*/
+
 class LogList extends React.Component {
   constructor(props) {
     super(props);
@@ -92,10 +87,56 @@ class LogList extends React.Component {
         <Content>
           <List
             dataSource={this.ds.cloneWithRows(this.state.listViewData)}
-            renderRow={data =>
+            renderRow={ data =>
               <ListItem>
                 <Log data={data} />
-              </ListItem>}
+              </ListItem>
+            }
+            renderLeftHiddenRow={data =>
+              <Button full onPress={() => navigate("Track")}>
+                <Icon active name="md-create" />
+              </Button>}
+            renderRightHiddenRow={(data, secId, rowId, rowMap) =>
+              <Button full danger onPress={_ => this.deleteRow(secId, rowId, rowMap)}>
+                <Icon active name="trash" />
+              </Button>}
+            leftOpenValue={75}
+            rightOpenValue={-75}
+          />
+        </Content>
+      </Container>
+    );
+  }
+}
+
+class WishList extends React.Component {
+  constructor(props) {
+    super(props);
+    this.ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
+    this.state = {
+      basic: true,
+      listViewData: this.props.data,
+    };
+  }
+  deleteRow(secId, rowId, rowMap) {
+    rowMap[`${secId}${rowId}`].props.closeRow();
+    const newData = [...this.state.listViewData];
+    newData.splice(rowId, 1);
+    this.setState({ listViewData: newData });
+  }
+  render() {
+    const { navigate } = this.props.navigation;
+    const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
+    return (
+      <Container>
+        <Content>
+          <List
+            dataSource={this.ds.cloneWithRows(this.state.listViewData)}
+            renderRow={ data =>
+              <ListItem>
+                <Log data={data} />
+              </ListItem>
+            }
             renderLeftHiddenRow={data =>
               <Button full onPress={() => navigate("Track")}>
                 <Icon active name="md-create" />
