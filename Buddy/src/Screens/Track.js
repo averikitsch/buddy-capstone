@@ -18,14 +18,15 @@ import { colors } from '../assets/Theme';
 })
 export default class TrackScreen extends React.Component {
   render() {
-    const { navigate } = this.props.navigation;
-    // const { params } = this.props.navigation.state;
+    // const { navigate } = this.props.navigation;
+    const { params } = this.props.navigation.state;
     console.log(this.props.log);
+    console.log(params)
     return (
       <Container>
       <BuddyHeader name="Track" />
         <Content style={styles.formContentBody}>
-          <ProductFormBody />
+          <ProductFormBody starterData={params}/>
         </Content>
     </Container>
     );
@@ -36,7 +37,7 @@ class ProductFormBody extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: '',
+      name: this.props.starterData ? this.props.starterData.name : '',
       brand: '',
       product: 1,
       quantity: 1,
@@ -118,17 +119,18 @@ class ProductFormBody extends React.Component {
         <View style={styles.inputLine}>
           <ProductFormHeader
             labelName="name"
-            defaultValue={this.state.name}
+            defaultValue={this.props.starterData}
           onNameChange={this.handleNameChange}/>
         </View>
         <View style={styles.inputLine}>
           <ProductFormHeader
             labelName="brand"
-            defaultValue={this.state.brand}
+            defaultValue={this.props.starterData}
           onBrandChange={this.handleBrandChange}/>
         </View>
         <View style={styles.inputLine}>
-          <RadioProductButton select={this.state.product} onProductChange={this.handleProductChange}/>
+          <RadioProductButton
+          select={this.props.starterData} onProductChange={this.handleProductChange}/>
         </View>
         <View style={styles.inputLine}>
           <QuantityPicker type={this.state.product}
@@ -175,12 +177,14 @@ class ProductFormHeader extends React.Component {
   }
   // value={this.props.defaultValue}
   render() {
+    const { labelName } = this.props;
     return (
       <View>
       <TextInput
       style={[styles.label,{height: 40}]}
-      placeholder={this.props.labelName.toUpperCase()}
+      placeholder={labelName.toUpperCase()}
       onChangeText={this.handleTextChange}
+      value={this.props.defaultValue ? this.props.defaultValue[labelName] : '' }
       />
       </View>
     )
@@ -203,6 +207,15 @@ class RadioProductButton extends React.Component {
       {label: 'Vape', value: 4 },
       {label: 'Edible', value: 5 },
     ];
+    productLabel = {
+    'Flower': 1,
+    'Pre-roll': 2,
+    'Extract': 3,
+    'Vape': 4,
+    'Edible': 5,
+    }
+    const select = (this.props.starterData ?
+    productLabel[this.props.starterData.product] : 1)
     return (
       <View>
         <Text style={styles.label}>
@@ -232,7 +245,7 @@ class RadioProductButton extends React.Component {
             onPress={this.handleProductChange}
             buttonInnerColor={colors.green}
             buttonOuterColor={colors.green}
-            isSelected={(obj["value"] === this.props.select)}
+            isSelected={(obj["value"] === select)}
             />
             <RadioButtonLabel
             obj={obj}

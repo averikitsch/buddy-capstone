@@ -41,14 +41,14 @@ const testObj = {
 
 export default class FoundScreen extends React.Component {
   // componentWillMount() {
-  //   const trackObj = {
-  //     name: testObj.name,
-  //     brand: testObj.brand,
-  //     product: testObj.product,
-  //   }
   //   this.props.dispatch({type: 'NEW_LOG', payload: trackObj});
   // }
   render() {
+    const trackObj = {
+      name: testObj.name,
+      brand: testObj.brand,
+      product: testObj.product,
+    }
     const { navigate } = this.props.navigation;
     return (
       <Container>
@@ -57,7 +57,7 @@ export default class FoundScreen extends React.Component {
           <ProductHeader name={testObj.name} brand={testObj.brand} product={testObj.product} image={testObj.image}/>
           <View style={styles.Buttons}>
           <TouchableHighlight style={styles.Button}
-            onPress={() => navigate("Track")}>
+            onPress={() => navigate("Track", trackObj)}>
             <Text style={styles.label}>{"track".toUpperCase()}</Text>
           </TouchableHighlight>
           <TouchableHighlight style={styles.Button}>
