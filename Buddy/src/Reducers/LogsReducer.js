@@ -9,32 +9,37 @@ export default function reducer(state={
       // {id: 7, name: 'Kraken Black Pepper', brand: "Western Cultured", product: "Flower", date:'01-04-2018'},
       // {id: 8, name: 'PermaFrost', brand: "Western Cultured", product: "Flower", date:'01-04-2018'},
     ],
-    newLog: {},
 }, action) {
 
   switch(action.type) {
     case "ADD_LOG": {
-      console.log('trying')
+      console.log('add log reducer')
       return {
         ...state,
         logs: [...state.logs, action.payload],
       };
     }
     case "DELETE_LOG": {
+      console.log('delete log reducer')
       return {
         ...state,
-        logs: state.logs.filter(logs => log.id !== action.payload)
+        logs: state.logs.filter(log => log !== action.payload)
       };
     }
-    case "NEW_LOG": {
+    case "UPDATE_LOG": {
+      const { logs } = state;
+      const newLogs = logs.map((item) => {
+        if(item !== action.payload) {
+          return item;
+        }
+        return action.payload;
+      });
       return {
         ...state,
-        newLog: action.payload,
+        logs: newLogs,
       }
     }
-    case "UPDATE_LOG": {
-      return state;
-    }
+    return state;
   }
   return state;
 }

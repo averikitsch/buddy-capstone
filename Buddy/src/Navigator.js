@@ -7,7 +7,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import FoundScreen from './Screens/Found';
 import FoundNav from './Screens/StackNavTrack';
 import TrackScreen from './Screens/Track';
-import LogList from './Components/ProfileCards/LogList';
+import LogList from './Screens/LogList';
 import ExploreScreen from './Screens/ExploreScreen';
 import SearchScreen from './Screens/SearchScreen';
 import ProfileScreen from './Screens/ProfileScreen';

@@ -3,15 +3,8 @@ import { StyleSheet, ListView, View, Image } from 'react-native';
 import { Container, Content, Card, CardItem, Button, Icon, List, ListItem, Title, Text, Body, Thumbnail, Left, Right, Segment, Header } from 'native-base';
 import { connect } from 'react-redux';
 // import Header from '../HeaderComponent'
-import ProductHeader from '../ProductHeaderComponent'
-
-
-// @connect((store) => {
-//   return {
-//     logs: store.logs.logs,
-//     wishlist: store.wishlist.wishlist,
-//   };
-// })
+import ProductHeader from '../Components/ProductHeaderComponent';
+import { rmLog, updateLog } from '../Actions/index';
 
 class LogListScreen extends React.Component {
   constructor(props) {
@@ -38,7 +31,11 @@ class LogListScreen extends React.Component {
   render() {
     let page = null;
     if (this.state.logs) {
-      page = <LogList data={this.props.logs} navigation={this.props.navigation} />;
+      page = <LogList
+        data={this.props.logs}
+        navigation={this.props.navigation}
+        dispatch={this.props.actions}
+      />;
     } else {
       page = <WishList data={this.props.wishlist} navigation={this.props.navigation} />;
     }
@@ -72,12 +69,22 @@ class LogList extends React.Component {
       basic: true,
       listViewData: this.props.data,
     };
+    this.deleteLog = this.deleteLog.bind(this);
   }
-  deleteRow(secId, rowId, rowMap) {
+  // deleteRow(secId, rowId, rowMap) {
+  //   console.log(this.props);
+  //   // rowMap[`${secId}${rowId}`].props.closeRow();
+  //   // const newData = [...this.state.listViewData];
+  //   // newData.splice(rowId, 1);
+  //   // this.setState({ listViewData: newData });
+  //   this.props.dispatch.rmLog()
+  // }
+  deleteLog(secId, rowId, rowMap) {
     rowMap[`${secId}${rowId}`].props.closeRow();
     const newData = [...this.state.listViewData];
-    newData.splice(rowId, 1);
+    const log = newData.splice(rowId, 1)[0];
     this.setState({ listViewData: newData });
+    this.props.dispatch.rmLog(log);
   }
   render() {
     const { navigate } = this.props.navigation;
@@ -97,7 +104,8 @@ class LogList extends React.Component {
                 <Icon active name="md-create" />
               </Button>}
             renderRightHiddenRow={(data, secId, rowId, rowMap) =>
-              <Button full danger onPress={_ => this.deleteRow(secId, rowId, rowMap)}>
+              <Button full danger onPress={_ => this.deleteLog(secId, rowId, rowMap)}>
+              {/*_ => this.deleteRow(secId, rowId, rowMap)*/}
                 <Icon active name="trash" />
               </Button>}
             leftOpenValue={75}
@@ -159,7 +167,7 @@ class Log extends React.Component {
     return (
       <View style={styles.HeaderContainer}>
         <View style={styles.ImageContainer}>
-          <Thumbnail square size={100} source={require('../../assets/images/temp.jpeg')} />
+          <Thumbnail square size={100} source={require('../assets/images/temp.jpeg')} />
         </View>
         <View style={styles.TextContainer}>
           <Body>
@@ -182,7 +190,15 @@ function mapStateToProps (store) {
    }
 }
 
-export default connect(mapStateToProps)(LogListScreen)
+function mapDispatchToProps (dispatch) {
+  return {
+  actions: {
+    rmLog: log => dispatch(rmLog(log)),
+    updateLog: log => dispatch(updateLog(log)),
+  }}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(LogListScreen)
 
 
 const styles = StyleSheet.create({

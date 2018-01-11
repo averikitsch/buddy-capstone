@@ -13,3 +13,19 @@ export function addWish(wish) {
     payload: wish,
   }
 }
+
+export function rmLog (log) {
+  console.log('remove log');
+  return {
+    type: 'DELETE_LOG',
+    payload: log,
+  }
+}
+
+export function updateLog (log) {
+  console.log('update log');
+  return {
+    type: 'UPDATE_LOG',
+    payload: log,
+  }
+}
