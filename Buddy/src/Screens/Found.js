@@ -1,9 +1,12 @@
 import React from 'react';
 import { View, Image, StyleSheet, Dimensions, TouchableHighlight } from 'react-native';
 import { Container, Body, Content, Left, Right, Title, Input, Item, Label, Button, Text } from 'native-base';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Header from '../Components/HeaderComponent';
 import { colors, flavorColors } from '../assets/Theme';
+import { addWish } from '../Actions/index';
 
 const testObj = {
   name: 'Seatown Lemon Haze',
@@ -38,11 +41,31 @@ const testObj = {
   }
 };
 
+// @connect(
+//   state => ({
+//     logs: state.logs,
+//   }),
+//   dispatch => ({
+//     action: { ...bindActionCreators(addWish, dispatch) }
+//   }),
+// )
 
-export default class FoundScreen extends React.Component {
-  // componentWillMount() {
-  //   this.props.dispatch({type: 'NEW_LOG', payload: trackObj});
-  // }
+class FoundScreen extends React.Component {
+  constructor() {
+    super();
+    this.onWishlistPress = this.onWishlistPress.bind(this);
+  }
+  onWishlistPress(e) {
+    e.preventDefault();
+    console.log("wish", this.props)
+    this.props.addWish({
+      name: testObj.name,
+      brand: testObj.brand,
+      product: testObj.product,
+      date: Date.now()
+    });
+    this.props.navigation.navigate("Explore");
+  }
   render() {
     const trackObj = {
       name: testObj.name,
@@ -60,7 +83,8 @@ export default class FoundScreen extends React.Component {
             onPress={() => navigate("Track", trackObj)}>
             <Text style={styles.label}>{"track".toUpperCase()}</Text>
           </TouchableHighlight>
-          <TouchableHighlight style={styles.Button}>
+          <TouchableHighlight style={styles.Button}
+            onPress={this.onWishlistPress}>
             <Text style={styles.label}>{"wishlist".toUpperCase()}</Text>
           </TouchableHighlight>
           </View>
@@ -75,6 +99,14 @@ export default class FoundScreen extends React.Component {
     );
   }
 };
+
+function mapDispatchToProps (dispatch) {
+  return {
+      addWish: wish => dispatch(addWish(wish))
+  };
+}
+export default connect(null, mapDispatchToProps)(FoundScreen);
+
 
 class ProductHeader extends React.Component {
   render() {

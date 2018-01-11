@@ -6,6 +6,8 @@ export default function reducer(state={
 
   switch(action.type) {
     case "ADD_WISHLIST": {
+      console.log('trying')
+
       return {
         ...state,
         wishlist: [...state.wishlist, action.payload],
