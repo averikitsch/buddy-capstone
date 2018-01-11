@@ -38,7 +38,7 @@ class ProductFormBody extends React.Component {
     super(props);
     this.state = {
       name: this.props.starterData ? this.props.starterData.name : '',
-      brand: '',
+      brand: this.props.starterData ? this.props.starterData.brand : '',
       product: 1,
       quantity: 1,
       flavors: {spicy: false, sweet: false, sour: false, earthy: false},
@@ -130,7 +130,7 @@ class ProductFormBody extends React.Component {
         </View>
         <View style={styles.inputLine}>
           <RadioProductButton
-          select={this.props.starterData} onProductChange={this.handleProductChange}/>
+          select={this.state.product} onProductChange={this.handleProductChange}/>
         </View>
         <View style={styles.inputLine}>
           <QuantityPicker type={this.state.product}
@@ -166,7 +166,6 @@ class ProductFormHeader extends React.Component {
   constructor(props) {
     super(props);
     this.handleTextChange = this.handleTextChange.bind(this);
-    console.log(this.props.defaultValue)
   }
   handleTextChange(text) {
     if (this.props.labelName === "name") {
@@ -184,7 +183,7 @@ class ProductFormHeader extends React.Component {
       style={[styles.label,{height: 40}]}
       placeholder={labelName.toUpperCase()}
       onChangeText={this.handleTextChange}
-      value={this.props.defaultValue ? this.props.defaultValue[labelName] : '' }
+      defaultValue={this.props.defaultValue ? this.props.defaultValue[labelName] : '' }
       />
       </View>
     )
@@ -207,15 +206,7 @@ class RadioProductButton extends React.Component {
       {label: 'Vape', value: 4 },
       {label: 'Edible', value: 5 },
     ];
-    productLabel = {
-    'Flower': 1,
-    'Pre-roll': 2,
-    'Extract': 3,
-    'Vape': 4,
-    'Edible': 5,
-    }
-    const select = (this.props.starterData ?
-    productLabel[this.props.starterData.product] : 1)
+
     return (
       <View>
         <Text style={styles.label}>
@@ -245,7 +236,7 @@ class RadioProductButton extends React.Component {
             onPress={this.handleProductChange}
             buttonInnerColor={colors.green}
             buttonOuterColor={colors.green}
-            isSelected={(obj["value"] === select)}
+            isSelected={(obj["value"] === this.props.select)}
             />
             <RadioButtonLabel
             obj={obj}
