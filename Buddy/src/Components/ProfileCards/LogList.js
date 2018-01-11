@@ -6,14 +6,14 @@ import { connect } from 'react-redux';
 import ProductHeader from '../ProductHeaderComponent'
 
 
-@connect((store) => {
-  return {
-    logs: store.logs.logs,
-    wishlist: store.wishlist.wishlist,
-  };
-})
+// @connect((store) => {
+//   return {
+//     logs: store.logs.logs,
+//     wishlist: store.wishlist.wishlist,
+//   };
+// })
 
-export default class LogListScreen extends React.Component {
+class LogListScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -172,6 +172,18 @@ class Log extends React.Component {
     )
   }
 }
+
+// Maps `state` to `props`:
+// These will be added as props to the component.
+function mapStateToProps (store) {
+  return {
+    logs: store.logs.logs,
+    wishlist: store.wishlist.wishlist,
+   }
+}
+
+export default connect(mapStateToProps)(LogListScreen)
+
 
 const styles = StyleSheet.create({
   HeaderContainer: {
