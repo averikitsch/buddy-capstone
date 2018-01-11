@@ -9,24 +9,19 @@ const Icon = createIconSetFromIcoMoon(IcoMoonConfig);
 import Icon2 from 'react-native-vector-icons/FontAwesome';
 import BuddyHeader from '../Components/HeaderComponent';
 import { colors } from '../assets/Theme';
+import { addLog } from '../Actions/index';
 
-
-@connect((store) => {
-  return {
-    log: store.logs.newLog,
-  };
-})
-export default class TrackScreen extends React.Component {
+class TrackScreen extends React.Component {
   render() {
-    // const { navigate } = this.props.navigation;
+    const { navigate } = this.props.navigation;
     const { params } = this.props.navigation.state;
-    console.log(this.props.log);
-    console.log(params)
+    // console.log(params)
     return (
       <Container>
       <BuddyHeader name="Track" />
         <Content style={styles.formContentBody}>
-          <ProductFormBody starterData={params}/>
+          <ProductFormBody starterData={params} dispatch={this.props.addLog}
+          navigation={this.props.navigation} />
         </Content>
     </Container>
     );
@@ -107,7 +102,19 @@ class ProductFormBody extends React.Component {
     //   .then(json => console.log(json))
     //   .catch(error => console.log('error!'));
     // AsyncStorage.setItem('logs',JSON.stringify(this.state));
-    console.log(this.state);
+    console.log("state", this.state);
+    // dispatch(addLog(this.state))
+    const {name, brand, product} = this.state;
+    const product_props = {
+      1: 'Flower',
+      2: 'Pre-roll',
+      3: 'Extract',
+      4: 'Vape',
+      5: 'Edible',
+    };
+    this.props.dispatch({name, brand, product: product_props[product], date: Date.now()});
+    const { navigate } = this.props.navigation;
+    navigate("Explore");
   }
   render() {
     return (
@@ -491,6 +498,16 @@ class RadioRankButton extends React.Component {
     );
   }
 }
+
+// Maps `dispatch` to `props`:
+function mapDispatchToProps (dispatch) {
+  return {
+      addLog: log => dispatch(addLog(log))
+  };
+}
+// Connect them:
+export default connect(null, mapDispatchToProps)(TrackScreen);
+
 
 const styles = StyleSheet.create({
   formBody: {
