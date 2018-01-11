@@ -4,13 +4,13 @@ import { Container, Content, Card, CardItem, Button, Icon, List, ListItem, Title
 import { connect } from 'react-redux';
 // import Header from '../HeaderComponent'
 import ProductHeader from '../Components/ProductHeaderComponent';
-import { rmLog, updateLog, rmWish } from '../Actions/index';
+import { rmLog, updateLog, rmWish, selectLog, deselectLog } from '../Actions/index';
 
 class LogListScreen extends React.Component {
   static navigationOptions = ({ navigation }) => ({
     header: null,
   });
-  
+
   constructor(props) {
     super(props);
     this.state = {
@@ -89,7 +89,8 @@ class LogList extends React.Component {
   handleClick(rowId) {
     console.log("click", rowId);
     const log = this.state.listViewData[rowId];
-    this.props.navigation.navigate('View', {log});
+    this.props.dispatch.selectLog(log);
+    this.props.navigation.navigate('View');
   }
   render() {
     const { navigate } = this.props.navigation;
@@ -204,6 +205,8 @@ function mapDispatchToProps (dispatch) {
     rmLog: log => dispatch(rmLog(log)),
     updateLog: log => dispatch(updateLog(log)),
     rmWish: wish => dispatch(rmWish(wish)),
+    selectLog: log => dispatch(selectLog(log)),
+    deselectLog: log => dispatch(deselectLog()),
   }}
 }
 

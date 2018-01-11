@@ -17,27 +17,79 @@ class ViewInfoScreen extends React.Component {
   render() {
     const log = this.props.navigation.params;
     const { navigate } = this.props.navigation;
-    if (log) {
+
     return (
       <Container>
 
         <Content style={styles.formContentBody}>
-          {Object.entries(log).map((item) => {
-            return <Text>{item}</Text>
-          })}
+          <ProductHeader product={this.props.log} />
+          <ProductTrackInfo product={this.props.log} />
         </Content>
     </Container>
     )
-  } else {
-    return (
-      <Container>
-      </Container>
-    )
-  }
   }
 };
 
-export default ViewInfoScreen;
+function mapStateToProps(store) {
+  return {
+    log: store.logs.selectedLog,
+   }
+}
+
+export default connect(mapStateToProps)(ViewInfoScreen);
+
+
+class ProductHeader extends React.Component {
+  render() {
+    console.log("this is log", this.props.product)
+    return (
+      <View style={styles.HeaderContainer}>
+        {/*<View style={styles.ImageContainer}>
+          <Image style={styles.image} source={require('../assets/images/temp.jpeg')} />
+        </View>*/}
+        <View style={styles.TextContainer}>
+          <Text style={styles.Header}>
+            {this.props.product.name.toUpperCase()}
+          </Text>
+          <Text style={styles.SubHeader}>
+            {this.props.product.brand.toUpperCase()}
+          </Text>
+          <Text style={styles.SubHeader}>
+            {this.props.product.product.toUpperCase()}
+          </Text>
+
+        </View>
+      </View>
+    )
+  }
+}
+
+class ProductTrackInfo extends React.Component {
+  render () {
+    return (
+      <View>
+      <Text style={styles.label}>
+        {this.props.product.date}
+      </Text>
+        <Text style={styles.label}>
+          Ranking: {this.props.product.ranking}
+        </Text>
+        <Text style={styles.label}>
+          Quantity:
+        </Text>
+        <Text style={styles.label}>
+          Flavors:
+        </Text>
+        <Text style={styles.label}>
+          Activity:
+        </Text>
+        <Text style={styles.label}>
+          Duration:
+        </Text>
+      </View>
+    )
+  }
+}
 
 const styles = StyleSheet.create({
   formContentBody: {

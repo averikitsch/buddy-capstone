@@ -37,3 +37,16 @@ export function updateLog (log) {
     payload: log,
   }
 }
+
+export function selectLog (log) {
+  return {
+    type: "SELECT_LOG",
+    payload: log,
+  }
+}
+
+export function deselectLog (log) {
+  return {
+    type: "DESELECT_LOG",
+  }
+}
