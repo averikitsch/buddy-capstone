@@ -7,6 +7,10 @@ import ProductHeader from '../Components/ProductHeaderComponent';
 import { rmLog, updateLog, rmWish } from '../Actions/index';
 
 class LogListScreen extends React.Component {
+  static navigationOptions = ({ navigation }) => ({
+    header: null,
+  });
+  
   constructor(props) {
     super(props);
     this.state = {
@@ -75,14 +79,6 @@ class LogList extends React.Component {
     // this.deleteLog = this.deleteLog.bind(this);
     this.handleClick = this.handleClick.bind(this);
   }
-  // deleteRow(secId, rowId, rowMap) {
-  //   console.log(this.props);
-  //   // rowMap[`${secId}${rowId}`].props.closeRow();
-  //   // const newData = [...this.state.listViewData];
-  //   // newData.splice(rowId, 1);
-  //   // this.setState({ listViewData: newData });
-  //   this.props.dispatch.rmLog()
-  // }
   deleteLog(secId, rowId, rowMap) {
     rowMap[`${secId}${rowId}`].props.closeRow();
     const newData = [...this.state.listViewData];
@@ -92,9 +88,8 @@ class LogList extends React.Component {
   }
   handleClick(rowId) {
     console.log("click", rowId);
-    Alert.alert('you clicked')
     const log = this.state.listViewData[rowId];
-    // this.props.navigation('ViewLog', {log});
+    this.props.navigation.navigate('View', {log});
   }
   render() {
     const { navigate } = this.props.navigation;
@@ -104,16 +99,15 @@ class LogList extends React.Component {
         <Content>
           <List
             dataSource={this.ds.cloneWithRows(this.state.listViewData)}
-            renderRow={ (data, secId, rowId, rowMap) =>
+            renderRow={ data =>
               <ListItem>
                 <Log
                   data={data}
-                  onClick={_ => this.handleClick(rowId)}
                 />
               </ListItem>
             }
-            renderLeftHiddenRow={data =>
-              <Button full onPress={() => navigate("Track")}>
+            renderLeftHiddenRow={(data, secId, rowId, rowMap) =>
+              <Button full onPress={_ => this.handleClick(rowId)}>
                 <Icon active name="md-create" />
               </Button>}
             renderRightHiddenRow={(data, secId, rowId, rowMap) =>

@@ -11,11 +11,12 @@ import LogList from './Screens/LogList';
 import ExploreScreen from './Screens/ExploreScreen';
 import SearchScreen from './Screens/SearchScreen';
 import ProfileScreen from './Screens/ProfileScreen';
+import ViewNav from './Screens/StackNavView';
 
 export default (MainScreenNavigator = TabNavigator(
   {
-    Explore: { screen: LogList },
-    Search: { screen: FoundNav },
+    Explore: { screen: ViewNav },
+    Search: { screen:  FoundNav }, //FoundNav
     Profile: { screen: ProfileScreen },
     Track: { screen: TrackScreen },
     // Logs: { screen: LogList },

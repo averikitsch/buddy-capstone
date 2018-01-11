@@ -9,6 +9,7 @@ export default function reducer(state={
       // {id: 7, name: 'Kraken Black Pepper', brand: "Western Cultured", product: "Flower", date:'01-04-2018'},
       // {id: 8, name: 'PermaFrost', brand: "Western Cultured", product: "Flower", date:'01-04-2018'},
     ],
+  selectedLog: null,
 }, action) {
 
   switch(action.type) {
@@ -32,11 +33,25 @@ export default function reducer(state={
         if(item !== action.payload) {
           return item;
         }
-        return action.payload;
-      });
+          return action.payload;
+        });
       return {
         ...state,
         logs: newLogs,
+      }
+    }
+    case "SELECT_LOG": {
+      console.log('select log');
+      return {
+        ...state,
+        selectedLog: action.payload,
+      }
+    }
+    case "DESELECT_LOG": {
+      console.log('deselect log');
+      return {
+        ...state,
+        selectedLog: null,
       }
     }
     return state;
