@@ -16,7 +16,7 @@ export default function reducer(state={
     case "DELETE_WISHLIST": {
       return {
         ...state,
-        wishlist: state.wishlist.filter(wishlist => log.id !== action.payload)
+        wishlist: state.wishlist.filter(wishlist => wishlist !== action.payload)
       };
     }
     case "UPDATE_WISHLIST": {

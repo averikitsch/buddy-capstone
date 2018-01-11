@@ -22,6 +22,14 @@ export function rmLog (log) {
   }
 }
 
+export function rmWish (wish) {
+  console.log('remove wish');
+  return {
+    type: 'DELETE_WISHLIST',
+    payload: wish,
+  }
+}
+
 export function updateLog (log) {
   console.log('update log');
   return {

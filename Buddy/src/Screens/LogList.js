@@ -1,10 +1,10 @@
 import React from 'react';
-import { StyleSheet, ListView, View, Image } from 'react-native';
+import { StyleSheet, ListView, View, Image, Alert } from 'react-native';
 import { Container, Content, Card, CardItem, Button, Icon, List, ListItem, Title, Text, Body, Thumbnail, Left, Right, Segment, Header } from 'native-base';
 import { connect } from 'react-redux';
 // import Header from '../HeaderComponent'
 import ProductHeader from '../Components/ProductHeaderComponent';
-import { rmLog, updateLog } from '../Actions/index';
+import { rmLog, updateLog, rmWish } from '../Actions/index';
 
 class LogListScreen extends React.Component {
   constructor(props) {
@@ -37,7 +37,10 @@ class LogListScreen extends React.Component {
         dispatch={this.props.actions}
       />;
     } else {
-      page = <WishList data={this.props.wishlist} navigation={this.props.navigation} />;
+      page = <WishList
+        data={this.props.wishlist}
+        navigation={this.props.navigation}
+        dispatch={this.props.actions}/>;
     }
     return (
       <Container>
@@ -69,7 +72,8 @@ class LogList extends React.Component {
       basic: true,
       listViewData: this.props.data,
     };
-    this.deleteLog = this.deleteLog.bind(this);
+    // this.deleteLog = this.deleteLog.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
   // deleteRow(secId, rowId, rowMap) {
   //   console.log(this.props);
@@ -86,6 +90,12 @@ class LogList extends React.Component {
     this.setState({ listViewData: newData });
     this.props.dispatch.rmLog(log);
   }
+  handleClick(rowId) {
+    console.log("click", rowId);
+    Alert.alert('you clicked')
+    const log = this.state.listViewData[rowId];
+    // this.props.navigation('ViewLog', {log});
+  }
   render() {
     const { navigate } = this.props.navigation;
     const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
@@ -94,9 +104,12 @@ class LogList extends React.Component {
         <Content>
           <List
             dataSource={this.ds.cloneWithRows(this.state.listViewData)}
-            renderRow={ data =>
+            renderRow={ (data, secId, rowId, rowMap) =>
               <ListItem>
-                <Log data={data} />
+                <Log
+                  data={data}
+                  onClick={_ => this.handleClick(rowId)}
+                />
               </ListItem>
             }
             renderLeftHiddenRow={data =>
@@ -129,8 +142,9 @@ class WishList extends React.Component {
   deleteRow(secId, rowId, rowMap) {
     rowMap[`${secId}${rowId}`].props.closeRow();
     const newData = [...this.state.listViewData];
-    newData.splice(rowId, 1);
+    const wish = newData.splice(rowId, 1)[0];
     this.setState({ listViewData: newData });
+    this.props.dispatch.rmWish(wish);
   }
   render() {
     const { navigate } = this.props.navigation;
@@ -195,6 +209,7 @@ function mapDispatchToProps (dispatch) {
   actions: {
     rmLog: log => dispatch(rmLog(log)),
     updateLog: log => dispatch(updateLog(log)),
+    rmWish: wish => dispatch(rmWish(wish)),
   }}
 }
 
