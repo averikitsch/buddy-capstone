@@ -12,13 +12,16 @@ import { colors } from '../assets/Theme';
 import { addLog } from '../Actions/index';
 
 class TrackScreen extends React.Component {
+  static navigationOptions = ({ navigation }) => ({
+    title: 'TRACK',
+  });
   render() {
     const { navigate } = this.props.navigation;
     const { params } = this.props.navigation.state;
     // console.log(params)
     return (
       <Container>
-      <BuddyHeader name="Track" />
+      {/*<BuddyHeader name="Track" />*/}
         <Content style={styles.formContentBody}>
           <ProductFormBody starterData={params} dispatch={this.props.addLog}
           navigation={this.props.navigation} />

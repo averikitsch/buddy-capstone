@@ -51,6 +51,9 @@ const testObj = {
 // )
 
 class FoundScreen extends React.Component {
+  static navigationOptions = ({ navigation }) => ({
+    title: 'FOUND',
+  });
   constructor() {
     super();
     this.onWishlistPress = this.onWishlistPress.bind(this);
@@ -75,7 +78,7 @@ class FoundScreen extends React.Component {
     const { navigate } = this.props.navigation;
     return (
       <Container>
-      <Header />
+      {/*<Header />*/}
         <Content style={styles.formContentBody}>
           <ProductHeader name={testObj.name} brand={testObj.brand} product={testObj.product} image={testObj.image}/>
           <View style={styles.Buttons}>
