@@ -7,9 +7,10 @@ import { createIconSetFromIcoMoon } from 'react-native-vector-icons';
 import IcoMoonConfig from '../selection.json';
 const Icon = createIconSetFromIcoMoon(IcoMoonConfig);
 import Icon2 from 'react-native-vector-icons/FontAwesome';
-import BuddyHeader from '../Components/HeaderComponent';
+// import BuddyHeader from '../Components/HeaderComponent';
 import { colors } from '../assets/Theme';
 import { addLog } from '../Actions/index';
+import { product_props, product_map, duration_props, unit, units, quantityValues } from '../lib/TrackConverter';
 
 class TrackScreen extends React.Component {
   static navigationOptions = ({ navigation }) => ({
@@ -18,7 +19,6 @@ class TrackScreen extends React.Component {
   render() {
     const { navigate } = this.props.navigation;
     const { params } = this.props.navigation.state;
-    // console.log(params)
     return (
       <Container>
       {/*<BuddyHeader name="Track" />*/}
@@ -100,21 +100,8 @@ class ProductFormBody extends React.Component {
   }
   onPress(e) {
     e.preventDefault();
-    // AsyncStorage.getItem('logs')
-    //   .then(req => JSON.parse(req))
-    //   .then(json => console.log(json))
-    //   .catch(error => console.log('error!'));
-    // AsyncStorage.setItem('logs',JSON.stringify(this.state));
     console.log("state", this.state);
-    // dispatch(addLog(this.state))
     const {name, brand, product} = this.state;
-    const product_props = {
-      1: 'Flower',
-      2: 'Pre-roll',
-      3: 'Extract',
-      4: 'Vape',
-      5: 'Edible',
-    };
     this.props.dispatch({name, brand, product: product_props[product], date: Date.now()});
     const { navigate } = this.props.navigation;
     navigate("Explore");
@@ -122,10 +109,6 @@ class ProductFormBody extends React.Component {
   render() {
     return (
       <View style={styles.formBody}>
-
-        {/*<View style={styles.ImageContainer}>
-          <Image style={styles.image} source={require('../assets/temp.jpeg')} />
-        </View>*/}
         <View style={styles.inputLine}>
           <ProductFormHeader
             labelName="name"
@@ -167,7 +150,6 @@ class ProductFormBody extends React.Component {
           </TouchableHighlight>
         </View>
         </View>
-
     )
   }
 }
@@ -184,7 +166,6 @@ class ProductFormHeader extends React.Component {
       this.props.onBrandChange(text);
     }
   }
-  // value={this.props.defaultValue}
   render() {
     const { labelName } = this.props;
     return (
@@ -209,35 +190,16 @@ class RadioProductButton extends React.Component {
     this.props.onProductChange(value);
   }
   render() {
-    const product_props = [
-      {label: 'Flower', value: 1 },
-      {label: 'Pre-roll', value: 2 },
-      {label: 'Extract', value: 3 },
-      {label: 'Vape', value: 4 },
-      {label: 'Edible', value: 5 },
-    ];
-
     return (
       <View>
         <Text style={styles.label}>
           {"Product Type:".toUpperCase()}
         </Text>
-        {/*<RadioForm
-          radio_props={product_props}
-          initial={this.props.product}
-          formHorizontal={true}
-          labelHorizontal={false}
-          labelColor={colors.green}
-          buttonColor={colors.green}
-          buttonStyle={{color: colors.green}}
-          style={[styles.slider, styles.partialSlider]}
-          onPress={this.handleProductChange}
-          />*/}
           <RadioForm
             formHorizontal={true}
             style={[styles.slider, styles.partialSlider]}
           >
-          {product_props.map((obj) => {
+          {product_map.map((obj) => {
             return (
             <RadioButton labelHorizontal={false} key={obj["value"]}>
             <RadioButtonInput
@@ -273,35 +235,14 @@ class QuantityPicker extends React.Component {
   }
   render() {
     const value = this.props.quantity;
-    const unit = {
-      1: "bowl",
-      3: "dab",
-      2: "g joint",
-      4: "pull",
-      5: "mg",
-    }
-    const units = {
-      1: "bowls",
-      3: "dabs",
-      2: "g joint",
-      4: "pulls",
-      5: "mg",
-    }
-    const values = {
-      1: {step: 1, max: 10},
-      2: {step: 0.25, max: 1},
-      3: {step: 1, max: 10},
-      4: {step: 1, max: 10},
-      5: {step: 2.5, max: 20},
-    }
     return (
       <View style={styles.container}>
         <Text style={styles.label}>
           {"Quantity: ".toUpperCase() + String(value)+" "+ ((value !== 1) ? units[this.props.type] : unit[this.props.type])}
         </Text>
         <Slider
-          step={values[this.props.type].step}
-          maximumValue={values[this.props.type].max}
+          step={quantityValues[this.props.type].step}
+          maximumValue={quantityValues[this.props.type].max}
           onValueChange={this.handleChange}
           value={value}
           style={styles.partialSlider}
@@ -349,7 +290,6 @@ class RadioIconButton extends React.Component {
   }
   handleFlavorChange(flavors) {
     this.props.onFlavorChange(flavors);
-    // console.log('clicked');
   }
   render() {
     return (
@@ -374,16 +314,9 @@ class RadioIconButton extends React.Component {
 class IconButton extends React.Component {
   constructor(props){
     super(props);
-    // this.state = {
-    //   onClicked: false
-    // }
     this.handlerButtonOnClick = this.handlerButtonOnClick.bind(this);
   }
   handlerButtonOnClick(){
-    // this.setState({
-    //    onClicked: !this.state.onClicked
-    // });
-    // console.log([this.props.flavor, !this.props.clicked]);
     this.props.addFlavor([this.props.flavor, !this.props.clicked]);
   }
   render() {
@@ -434,11 +367,6 @@ class RadioDurationButton extends React.Component {
     this.props.onDurationChange(value);
   }
   render() {
-    const duration_props = [
-      {label: '< 1 hr', value: 0 },
-      {label: '1-2 hr', value: 1 },
-      {label: '3+ hr', value: 2 },
-    ];
     return (
       <View>
         <Text style={styles.label}>{"Duration:".toUpperCase()}</Text>
@@ -502,13 +430,12 @@ class RadioRankButton extends React.Component {
   }
 }
 
-// Maps `dispatch` to `props`:
 function mapDispatchToProps (dispatch) {
   return {
       addLog: log => dispatch(addLog(log))
   };
 }
-// Connect them:
+
 export default connect(null, mapDispatchToProps)(TrackScreen);
 
 
