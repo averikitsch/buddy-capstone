@@ -102,9 +102,7 @@ class ProductFormBody extends React.Component {
   }
   onPress(e) {
     e.preventDefault();
-    console.log("state convert", this.state);
     const log = this.state;
-    console.log("state convert", log);
     this.props.dispatch(log);
     this.props.navigation.navigate("Explore");
   }
@@ -192,7 +190,6 @@ class RadioProductButton extends React.Component {
     this.props.onProductChange(value);
   }
   render() {
-    console.log(this.props.select)
     return (
       <View>
         <Text style={styles.label}>
@@ -203,7 +200,6 @@ class RadioProductButton extends React.Component {
             style={[styles.slider, styles.partialSlider]}
           >
           {product_map.map((obj) => {
-            console.log(obj.value == this.props.select)
             return (
             <RadioButton labelHorizontal={false} key={obj.value.toString()}>
             <RadioButtonInput

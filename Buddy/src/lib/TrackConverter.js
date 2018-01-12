@@ -62,8 +62,9 @@ export const duration_map = Object.entries(duration_props).map((product) => {
 })
 
 const quantityMap = (state) => {
-  return `${quantityValues[state.product].step * state.quantity} ${(state.quantity == 1) ? unit[state.product] : units[state.product]}`
+  return `${state.quantity} ${(state.quantity == 1) ? unit[state.product] : units[state.product]}`
 }
+//quantityValues[state.product].step
 
 const addFlavor = (obj) => {
   return Object.keys(obj).filter((flavor) => {
