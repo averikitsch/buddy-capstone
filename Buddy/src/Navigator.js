@@ -18,7 +18,7 @@ export default (MainScreenNavigator = TabNavigator(
     Explore: { screen: ViewNav },
     Search: { screen:  FoundNav }, //FoundNav
     Profile: { screen: ProfileScreen },
-    Track: { screen: TrackScreen },
+    // Track: { screen: TrackScreen },
     // Logs: { screen: LogList },
     //edit profile
   },
