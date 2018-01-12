@@ -49,10 +49,21 @@ export const duration_props = {
   2: '3+ hr',
 }
 
+const activity_props = {
+  0: 'bed',
+  1: 'couch',
+  2: 'neutral',
+  3: 'up',
+  4: 'party',
+}
+
 export const duration_map = Object.entries(duration_props).map((product) => {
   return {label: product[1], value: product[0]};
 })
 
+const quantityMap = (state) => {
+  return `${quantityValues[state.product].step * state.quantity} ${(state.quantity == 1) ? unit[state.product] : units[state.product]}`
+}
 
 const addFlavor = (obj) => {
   return Object.keys(obj).filter((flavor) => {
@@ -82,10 +93,11 @@ export const convert = (state) => {
     product: product_props[state.product],
     type: state.type,
     duration: duration_props[state.duration],
-    activity: state.activity,
+    activity: activity_props[state.activity],
     ranking: state.ranking + 1,
     flavors: state.flavors ? addFlavor(state.flavors) : null,
     date: state.date,
+    quantity: quantityMap(state),
   }
 }
 

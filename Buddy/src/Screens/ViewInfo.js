@@ -24,7 +24,7 @@ class ViewInfoScreen extends React.Component {
       <Container>
 
         <Content padder style={styles.formContentBody}>
-          <ProductHeader product={log} />
+        <ProductHeader product={log} />
           <ProductTrackInfo product={log} />
         </Content>
     </Container>
@@ -67,6 +67,11 @@ class ProductHeader extends React.Component {
 
 class ProductTrackInfo extends React.Component {
   render () {
+    console.log(this.props.product)
+    const flavorCards = this.props.product.flavors.map((flavor, i) => {
+      console.log(flavor);
+      <IconButton flavor={flavor} key={i} />
+    })
     return (
       <View>
       <Text style={styles.label}>
@@ -79,16 +84,43 @@ class ProductTrackInfo extends React.Component {
           Quantity: {this.props.product.quantity}
         </Text>
         <Text style={styles.label}>
-          Flavors:
+          Flavors: {flavorCards}
         </Text>
+
         <Text style={styles.label}>
-          Activity:
+          Activity: {this.props.product.activity}
         </Text>
         <Text style={styles.label}>
           Duration: {this.props.product.duration}
         </Text>
       </View>
     )
+  }
+}
+
+class IconButton extends React.Component {
+  render() {
+    const flavorIcon = {
+      spicy: {icon: "food-2", color: colors.spicy},
+      sweet: {icon:"food-1", color :colors.sweet},
+      sour: {icon:"fruit", color: colors.sour},
+      earthy: {icon:"forest", color: colors.earthy},
+    }
+    const color = flavorIcon[this.props.flavor].color;
+    const icon = flavorIcon[this.props.flavor].icon;
+    console.log(icon);
+      return (
+        <View style={styles.iconButton}>
+          <View
+            style={[{backgroundColor: color}, styles.button]}
+            onPress={this.handlerButtonOnClick}>
+            <Icon name={icon} style={{color: "white"}} size={40} />
+          </View>
+          <Text style={{color: color, fontWeight: "bold"}}>
+            {this.props.flavor.toUpperCase()}
+          </Text>
+        </View>
+      )
   }
 }
 
