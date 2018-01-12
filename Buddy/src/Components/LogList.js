@@ -12,29 +12,25 @@ class LogList extends React.Component {
   constructor(props) {
     super(props);
     this.ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
-    this.state = {
-      basic: true,
-      listViewData: this.props.logs,
-    };
-    // this.deleteLog = this.deleteLog.bind(this);
+    // this.state = {
+    //   basic: true,
+    //   // listViewData: this.props.logs,
+    // };
     this.handleClick = this.handleClick.bind(this);
   }
-  // componentWillReceiveProps(nextProps) {
-  //   this.setState({
-  //     listViewData: this.props.logs,
-  //   })
-  // }
-  deleteLog(secId, rowId, rowMap) {
-    rowMap[`${secId}${rowId}`].props.closeRow();
-    const newData = [...this.state.listViewData];
-    const log = newData.splice(rowId, 1)[0];
-    this.setState({ listViewData: newData });
-    this.props.actions.rmLog(log);
+  deleteLog(data) {
+    console.log(data)
+    // rowMap[`${secId}${rowId}`].props.closeRow();
+    // const newData = [...this.state.listViewData];
+    // const log = newData.splice(rowId, 1)[0];
+    // console.log(log);
+    // this.setState({ listViewData: newData });
+    this.props.actions.rmLog(data);
   }
-  handleClick(rowId) {
-    console.log("click", rowId);
-    const log = this.state.listViewData[rowId];
-    this.props.actions.selectLog(log);
+  handleClick(data) {
+    // console.log("click", rowId);
+    // const log = this.state.listViewData[rowId];
+    this.props.actions.selectLog(data);
     this.props.navigation.navigate('View');
   }
   render() {
@@ -53,11 +49,11 @@ class LogList extends React.Component {
               </ListItem>
             }
             renderLeftHiddenRow={(data, secId, rowId, rowMap) =>
-              <Button full onPress={_ => this.handleClick(rowId)}>
+              <Button full onPress={_ => this.handleClick(data)}>
                 <Icon active name="md-create" />
               </Button>}
             renderRightHiddenRow={(data, secId, rowId, rowMap) =>
-              <Button full danger onPress={_ => this.deleteLog(secId, rowId, rowMap)}>
+              <Button full danger onPress={_ => this.deleteLog(data)}>
               {/*_ => this.deleteRow(secId, rowId, rowMap)*/}
                 <Icon active name="trash" />
               </Button>}

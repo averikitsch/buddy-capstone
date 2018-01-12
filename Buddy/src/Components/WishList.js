@@ -11,17 +11,17 @@ class WishList extends React.Component {
   constructor(props) {
     super(props);
     this.ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
-    this.state = {
-      basic: true,
-      listViewData: this.props.wishlist,
-    };
+    // this.state = {
+    //   basic: true,
+    //   listViewData: this.props.wishlist,
+    // };
   }
-  deleteRow(secId, rowId, rowMap) {
-    rowMap[`${secId}${rowId}`].props.closeRow();
-    const newData = [...this.state.listViewData];
-    const wish = newData.splice(rowId, 1)[0];
-    this.setState({ listViewData: newData });
-    this.props.actions.rmWish(wish);
+  deleteRow(data) {
+    // rowMap[`${secId}${rowId}`].props.closeRow();
+    // const newData = [...this.state.listViewData];
+    // const wish = newData.splice(rowId, 1)[0];
+    // this.setState({ listViewData: newData });
+    this.props.actions.rmWish(data);
   }
   render() {
     const { navigate } = this.props.navigation;
@@ -30,7 +30,7 @@ class WishList extends React.Component {
       <Container>
         <Content>
           <List
-            dataSource={this.ds.cloneWithRows(this.state.listViewData)}
+            dataSource={this.ds.cloneWithRows(this.props.wishlist)}
             renderRow={ data =>
               <ListItem>
                 <Log data={convert(data)} />
@@ -40,8 +40,8 @@ class WishList extends React.Component {
               <Button full onPress={() => navigate("Track")}>
                 <Icon active name="md-create" />
               </Button>}
-            renderRightHiddenRow={(data, secId, rowId, rowMap) =>
-              <Button full danger onPress={_ => this.deleteRow(secId, rowId, rowMap)}>
+            renderRightHiddenRow={(data) =>
+              <Button full danger onPress={_ => this.deleteRow(data)}>
                 <Icon active name="trash" />
               </Button>}
             leftOpenValue={75}

@@ -18,7 +18,7 @@ export default function reducer(state={
       const ids = state.logs.map((obj) => {
         return obj.id
       })
-      const nextId = Math.max(...ids);
+      const nextId = Math.max(...ids) + 1;
       const newLog = action.payload;
       newLog.id = nextId;
       return {
@@ -28,6 +28,7 @@ export default function reducer(state={
     }
     case "DELETE_LOG": {
       console.log('delete log reducer')
+      console.log(action.payload)
       return {
         ...state,
         logs: state.logs.filter(log => log.id !== action.payload.id)
