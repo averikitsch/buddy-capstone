@@ -2,17 +2,50 @@ import React, { Component } from 'react';
 import { StyleSheet } from 'react-native';
 import { Container, Header, Content, Card, CardItem,  Text, Body } from 'native-base';
 import { VictoryBar, VictoryChart, VictoryPolarAxis, VictoryTheme, VictoryGroup, VictoryArea, VictoryLabel } from "victory-native";
+import { connect } from 'react-redux';
 
-const flavorData = [{spicy: 60, sour: 20, sweet: 5, earthy: 15}];
 
-export default class FlavorCard extends Component {
+class FlavorCard extends Component {
+  constructor(){
+    super();
+    this.state = {
+      data: [],
+    }
+  }
+  componentWillMount() {
+    this.setState({
+      data: this.props.logs
+    })
+  }
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.logs.length > this.state.data) {
+      this.setState({
+        data: this.props.logs,
+      })
+    }
+  }
+  constructData(logs) {
+    const flavorData = {spicy: 0, sour: 0, sweet: 0, earthy: 0}
+    logs.forEach((log) => {
+      Object.keys(log.flavors).forEach((flavor) => {
+        log.flavors[flavor] ? flavorData[flavor] += 1 : null
+      })
+    })
+    const count = logs.length;
+    Object.keys(flavorData).forEach((flavor) => {
+      flavorData[flavor] /= count;
+      flavorData[flavor] *= 100;
+    })
+    return [flavorData];
+  }
   render() {
+    console.log(this.props.logs)
     return (
       <Container>
         <Content>
           <Card>
             <CardItem style={styles.card}>
-              <RadarChart data={flavorData} style={styles.chart}/>
+              <RadarChart data={this.constructData(this.state.data)} style={styles.chart}/>
             </CardItem>
           </Card>
         </Content>
@@ -20,6 +53,14 @@ export default class FlavorCard extends Component {
     );
   }
 }
+
+function mapStateToProps (store) {
+  return {
+    logs: store.logs.logs,
+   }
+}
+
+export default connect(mapStateToProps)(FlavorCard)
 
 class RadarChart extends React.Component {
   constructor(props) {

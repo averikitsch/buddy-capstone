@@ -9,7 +9,7 @@ const Icon = createIconSetFromIcoMoon(IcoMoonConfig);
 import Icon2 from 'react-native-vector-icons/FontAwesome';
 // import BuddyHeader from '../Components/HeaderComponent';
 import { colors } from '../assets/Theme';
-import { updateLog } from '../Actions/index';
+import { updateLog, deselectLog } from '../Actions/index';
 import { product_props, product_map, duration_map, unit, units, quantityValues, date } from '../lib/TrackConverter';
 
 class EditScreen extends React.Component {
@@ -22,7 +22,7 @@ class EditScreen extends React.Component {
       <Container>
       {/*<BuddyHeader name="Track" />*/}
         <Content style={styles.formContentBody}>
-          <ProductFormBody starterData={this.props.log} dispatch={this.props.updateLog}
+          <ProductFormBody starterData={this.props.log} dispatch={this.props.actions}
           navigation={this.props.navigation} />
         </Content>
     </Container>
@@ -104,7 +104,8 @@ class ProductFormBody extends React.Component {
     e.preventDefault();
     const log = this.state;
     console.log("update obj", log);
-    this.props.dispatch(log);
+    this.props.dispatch.updateLog(log);
+    this.props.dispatch.deselectLog();
     this.props.navigation.navigate("Logs");
   }
   render() {
@@ -439,8 +440,11 @@ function mapStateToProps (store) {
 
 function mapDispatchToProps (dispatch) {
   return {
-      updateLog: log => dispatch(updateLog(log))
-  };
+    actions :{
+      updateLog: log => dispatch(updateLog(log)),
+      deselectLog: () => dispatch(deselectLog()),
+    }
+}
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditScreen);

@@ -19,6 +19,11 @@ class LogList extends React.Component {
     // this.deleteLog = this.deleteLog.bind(this);
     this.handleClick = this.handleClick.bind(this);
   }
+  // componentWillReceiveProps(nextProps) {
+  //   this.setState({
+  //     listViewData: this.props.logs,
+  //   })
+  // }
   deleteLog(secId, rowId, rowMap) {
     rowMap[`${secId}${rowId}`].props.closeRow();
     const newData = [...this.state.listViewData];

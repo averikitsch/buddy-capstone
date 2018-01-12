@@ -38,13 +38,13 @@ export default class LogScreen extends React.Component {
     let page = null;
     if (this.state.logs) {
       page = <LogList
-        data={this.props.logs}
         navigation={this.props.navigation}/>;
+        // data={this.props.logs}
         // dispatch={this.props.actions}
     } else {
       page = <WishList
-        data={this.props.wishlist}
         navigation={this.props.navigation}/>;
+        // data={this.props.wishlist}
     }
     return (
       <Container>

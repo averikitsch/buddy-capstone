@@ -16,18 +16,28 @@ class ViewInfoScreen extends React.Component {
         onPress={() => navigation.navigate("Edit")}/>,
     });
   render() {
-    console.log('prop', this.props.log);
-    const log = convert(this.props.log)
-    console.log('log', log)
     const { navigate } = this.props.navigation;
-    return (
-      <Container>
+    console.log(this.props.log);
+    if (this.props.log) {
+      const log = convert(this.props.log)
+      return (
+        <Container>
 
         <Content padder style={styles.formContentBody}>
         <ProductHeader product={log} />
-          <ProductTrackInfo product={log} />
+        <ProductTrackInfo product={log} />
         </Content>
-    </Container>
+        </Container>
+      )
+    }
+    return (
+      <Container>
+
+      <Content padder style={styles.formContentBody}>
+      <Text> No Selected Log
+      </Text>
+      </Content>
+      </Container>
     )
   }
 };
