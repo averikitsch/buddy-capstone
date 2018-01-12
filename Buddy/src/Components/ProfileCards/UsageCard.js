@@ -13,24 +13,24 @@ const usageData = [
 ];
 
 class UsageCard extends Component {
-  constructor(){
-    super();
-    this.state = {
-      data: [],
-    }
-  }
-  componentWillMount() {
-    this.setState({
-      data: this.props.logs
-    })
-  }
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.logs.length > this.state.data) {
-      this.setState({
-        data: this.props.logs,
-      })
-    }
-  }
+  // constructor(){
+  //   super();
+  //   this.state = {
+  //     data: [],
+  //   }
+  // }
+  // componentWillMount() {
+  //   this.setState({
+  //     data: this.props.logs
+  //   })
+  // }
+  // componentWillReceiveProps(nextProps) {
+  //   if (nextProps.logs.length > this.state.data) {
+  //     this.setState({
+  //       data: this.props.logs,
+  //     })
+  //   }
+  // }
   constructData(logs) {
     const dates = logs.map((log) => {
       return log.date
@@ -52,7 +52,7 @@ class UsageCard extends Component {
         <Content>
           <Card>
             <CardItem>
-              <UseChart data={this.constructData(this.state.data)} />
+              <UseChart data={this.constructData(this.props.logs)} />
             </CardItem>
           </Card>
         </Content>

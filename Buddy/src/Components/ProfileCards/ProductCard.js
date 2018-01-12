@@ -13,24 +13,24 @@ import { connect } from 'react-redux';
 // ];
 
 class ProductCard extends Component {
-  constructor(){
-    super();
-    this.state = {
-      data: [],
-    }
-  }
-  componentWillMount() {
-    this.setState({
-      data: this.props.logs
-    })
-  }
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.logs.length > this.state.data) {
-      this.setState({
-        data: this.props.logs,
-      })
-    }
-  }
+  // constructor(){
+  //   super();
+  //   this.state = {
+  //     data: [],
+  //   }
+  // }
+  // componentWillMount() {
+  //   this.setState({
+  //     data: this.props.logs
+  //   })
+  // }
+  // componentWillReceiveProps(nextProps) {
+  //   if (nextProps.logs.length > this.state.data) {
+  //     this.setState({
+  //       data: this.props.logs,
+  //     })
+  //   }
+  // }
   constructData(logs) {
     const productData = [
       {product: "Flower", freq: 0},
@@ -54,7 +54,7 @@ class ProductCard extends Component {
         <Content>
           <Card>
             <CardItem>
-              <BarChart data={this.constructData(this.state.data)} />
+              <BarChart data={this.constructData(this.props.logs)} />
             </CardItem>
           </Card>
         </Content>

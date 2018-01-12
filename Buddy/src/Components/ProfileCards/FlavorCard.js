@@ -6,24 +6,24 @@ import { connect } from 'react-redux';
 
 
 class FlavorCard extends Component {
-  constructor(){
-    super();
-    this.state = {
-      data: [],
-    }
-  }
-  componentWillMount() {
-    this.setState({
-      data: this.props.logs
-    })
-  }
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.logs.length > this.state.data) {
-      this.setState({
-        data: this.props.logs,
-      })
-    }
-  }
+  // constructor(){
+  //   super();
+  //   this.state = {
+  //     data: [],
+  //   }
+  // }
+  // componentWillMount() {
+  //   this.setState({
+  //     data: this.props.logs
+  //   })
+  // }
+  // componentWillReceiveProps(nextProps) {
+  //   if (nextProps.logs.length > this.state.data) {
+  //     this.setState({
+  //       data: this.props.logs,
+  //     })
+  //   }
+  // }
   constructData(logs) {
     const flavorData = {spicy: 0, sour: 0, sweet: 0, earthy: 0}
     logs.forEach((log) => {
@@ -39,13 +39,13 @@ class FlavorCard extends Component {
     return [flavorData];
   }
   render() {
-    console.log(this.props.logs)
+    // console.log(this.props.logs)
     return (
       <Container>
         <Content>
           <Card>
             <CardItem style={styles.card}>
-              <RadarChart data={this.constructData(this.state.data)} style={styles.chart}/>
+              <RadarChart data={this.constructData(this.props.logs)} style={styles.chart}/>
             </CardItem>
           </Card>
         </Content>
@@ -63,14 +63,14 @@ function mapStateToProps (store) {
 export default connect(mapStateToProps)(FlavorCard)
 
 class RadarChart extends React.Component {
-  constructor(props) {
-    super(props);
-    this.props.data.push({spicy: 100, sour: 100, sweet: 100, earthy: 100})
-    this.state = {
-      data: this.processData(this.props.data),
-      maxima: this.getMaxima(this.props.data)
-    };
-  }
+  // constructor(props) {
+  //   super(props);
+  //   this.props.data.push({spicy: 100, sour: 100, sweet: 100, earthy: 100})
+  //   this.state = {
+  //     data: this.processData(this.props.data),
+  //     maxima: this.getMaxima(this.props.data)
+  //   };
+  // }
 
   getMaxima(data) {
     const groupedData = Object.keys(data[0]).reduce((memo, key) => {
@@ -94,6 +94,13 @@ class RadarChart extends React.Component {
   }
 
   render() {
+    console.log(this.props.data)
+    const dataCopy = this.props.data;
+    console.log(dataCopy)
+    dataCopy.push({spicy: 100, sour: 100, sweet: 100, earthy: 100})
+    console.log(dataCopy)
+    const data = this.processData(dataCopy);
+    const maxima = this.getMaxima(dataCopy);
     return (
       <VictoryChart polar
         theme={VictoryTheme.material}
@@ -103,12 +110,12 @@ class RadarChart extends React.Component {
 
         <VictoryGroup colorScale={["green","white"]}
           style={{ data: { fillOpacity: 0.2, strokeWidth: 2 } }}>
-          {this.state.data.map((data, i) => {
+          {data.map((data, i) => {
             return <VictoryArea key={i} data={data}/>;
           })}
         </VictoryGroup>
       {
-        Object.keys(this.state.maxima).map((key, i) => {
+        Object.keys(maxima).map((key, i) => {
           return (
             <VictoryPolarAxis key={i} dependentAxis
               style={{
@@ -121,7 +128,7 @@ class RadarChart extends React.Component {
               }
               labelPlacement="perpendicular"
               axisValue={i + 1} label={key}
-              tickFormat={(t) => Math.ceil(t * this.state.maxima[key])}
+              tickFormat={(t) => Math.ceil(t * maxima[key])}
               tickValues={[0.25, 0.5, 0.75]}
             />
           );
