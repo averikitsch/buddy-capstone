@@ -60,12 +60,12 @@ function mapStateToProps (store) {
 export default connect(mapStateToProps)(TypeCard)
 
 class PieChart extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      data: this.processData(this.props.data),
-    };
-  }
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     data: this.processData(this.props.data),
+  //   };
+  // }
   processData(data) {
     return Object.entries(data).map((key) => {
       return {x: key[0], y: key[1]}
@@ -75,7 +75,7 @@ class PieChart extends React.Component {
     return (
       <VictoryChart theme={VictoryTheme.material}>
         <VictoryPie
-        data={this.state.data}
+        data={this.processData(this.props.data)}
           colorScale={["orange", "cyan", "navy" ]}
           standalone={false}
           width={300} height={300}
