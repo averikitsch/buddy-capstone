@@ -1,6 +1,6 @@
 export default function reducer(state={
   wishlist:[
-    {id: 1, name: 'LA Confidential', brand: "Dawg Star", product: "Flower", date:'01-02-2018'},
+    {name: 'Mochi gelato', brand: "Dawg Star", product: 1, date:'01-01-2018', duration: 1, ranking: 5, activity: 3, type: 'sativa', flavors: { spicy: true, sweet: false, sour: false, earthy: false }, quantity: 1},
   ]
 }, action) {
 

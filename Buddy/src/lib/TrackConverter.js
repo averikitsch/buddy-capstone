@@ -7,6 +7,14 @@ export const product_props = {
   5: 'Edible',
 };
 
+export const product2num = {
+  'Flower':1,
+  'Pre-roll':2,
+  'Extract':3,
+  'Vape':4,
+  'Edible':5,
+};
+
 export const product_map = Object.entries(product_props).map((product) => {
   return {label: product[1], value: product[0]};
 })
@@ -52,7 +60,7 @@ const addFlavor = (obj) => {
   })
 }
 
-const date = () => {
+export const date = () => {
   let today = new Date();
   let dd = today.getDate();
   let mm = today.getMonth()+1; //January is 0!
@@ -76,7 +84,11 @@ export const convert = (state) => {
     duration: duration_props[state.duration],
     activity: state.activity,
     ranking: state.ranking + 1,
-    flavors: addFlavor(state.flavors),
-    date: date(),
+    flavors: state.flavors ? addFlavor(state.flavors) : null,
+    date: state.date,
   }
 }
+
+// export const quantityConvert = (state) => {
+//
+// }

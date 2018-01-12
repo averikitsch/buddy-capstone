@@ -7,6 +7,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import Header from '../Components/HeaderComponent';
 import { colors, flavorColors } from '../assets/Theme';
 import { addWish } from '../Actions/index';
+import { date, product2num } from '../lib/TrackConverter'
 
 const testObj = {
   name: 'Seatown Lemon Haze',
@@ -55,8 +56,8 @@ class FoundScreen extends React.Component {
     this.props.addWish({
       name: testObj.name,
       brand: testObj.brand,
-      product: testObj.product,
-      date: Date.now()
+      product: product2num[testObj.product],
+      date: date()
     });
     this.props.navigation.navigate("Explore");
   }

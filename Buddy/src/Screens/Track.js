@@ -10,7 +10,7 @@ import Icon2 from 'react-native-vector-icons/FontAwesome';
 // import BuddyHeader from '../Components/HeaderComponent';
 import { colors } from '../assets/Theme';
 import { addLog } from '../Actions/index';
-import { product_props, product_map, duration_map, unit, units, quantityValues, convert } from '../lib/TrackConverter';
+import { product_props, product_map, duration_map, unit, units, quantityValues, date } from '../lib/TrackConverter';
 
 class TrackScreen extends React.Component {
   static navigationOptions = ({ navigation }) => ({
@@ -44,6 +44,7 @@ class ProductFormBody extends React.Component {
       activity: 2,
       duration: 0,
       ranking: 2,
+      date: date(),
     }
     this.handleNameChange = this.handleNameChange.bind(this);
     this.handleBrandChange = this.handleBrandChange.bind(this);
@@ -102,7 +103,7 @@ class ProductFormBody extends React.Component {
   onPress(e) {
     e.preventDefault();
     console.log("state convert", this.state);
-    const log = convert(this.state);
+    const log = this.state;
     console.log("state convert", log);
     this.props.dispatch(log);
     this.props.navigation.navigate("Explore");

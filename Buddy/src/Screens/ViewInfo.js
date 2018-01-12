@@ -6,6 +6,7 @@ import { bindActionCreators } from 'redux';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Header from '../Components/HeaderComponent';
 import { colors, flavorColors } from '../assets/Theme';
+import { convert } from '../lib/TrackConverter';
 
 class ViewInfoScreen extends React.Component {
   // const { navigate } = this.props.navigation;
@@ -15,15 +16,16 @@ class ViewInfoScreen extends React.Component {
         onPress={() => navigation.navigate("Edit")}/>,
     });
   render() {
-    const log = this.props.navigation.params;
+    console.log('prop', this.props.log);
+    const log = convert(this.props.log)
+    console.log('log', log)
     const { navigate } = this.props.navigation;
-
     return (
       <Container>
 
-        <Content style={styles.formContentBody}>
-          <ProductHeader product={this.props.log} />
-          <ProductTrackInfo product={this.props.log} />
+        <Content padder style={styles.formContentBody}>
+          <ProductHeader product={log} />
+          <ProductTrackInfo product={log} />
         </Content>
     </Container>
     )
@@ -41,7 +43,6 @@ export default connect(mapStateToProps)(ViewInfoScreen);
 
 class ProductHeader extends React.Component {
   render() {
-    console.log("this is log", this.props.product)
     return (
       <View style={styles.HeaderContainer}>
         {/*<View style={styles.ImageContainer}>
@@ -75,7 +76,7 @@ class ProductTrackInfo extends React.Component {
           Ranking: {this.props.product.ranking}
         </Text>
         <Text style={styles.label}>
-          Quantity:
+          Quantity: {this.props.product.quantity}
         </Text>
         <Text style={styles.label}>
           Flavors:
@@ -84,7 +85,7 @@ class ProductTrackInfo extends React.Component {
           Activity:
         </Text>
         <Text style={styles.label}>
-          Duration:
+          Duration: {this.props.product.duration}
         </Text>
       </View>
     )
