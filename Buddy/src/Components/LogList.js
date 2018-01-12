@@ -44,7 +44,7 @@ class LogList extends React.Component {
       <Container>
         <Content>
           <List
-            dataSource={this.ds.cloneWithRows(this.state.listViewData)}
+            dataSource={this.ds.cloneWithRows(this.props.logs)}
             renderRow={ data =>
               <ListItem>
                 <Log
