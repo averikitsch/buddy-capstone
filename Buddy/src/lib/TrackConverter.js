@@ -35,8 +35,48 @@ export const quantityValues = {
   5: {step: 2.5, max: 20},
 }
 
-export const duration_props = [
-  {label: '< 1 hr', value: 0 },
-  {label: '1-2 hr', value: 1 },
-  {label: '3+ hr', value: 2 },
-];
+export const duration_props = {
+  0: '< 1 hr',
+  1: '1-2 hr',
+  2: '3+ hr',
+}
+
+export const duration_map = Object.entries(duration_props).map((product) => {
+  return {label: product[1], value: product[0]};
+})
+
+
+const addFlavor = (obj) => {
+  return Object.keys(obj).filter((flavor) => {
+    return obj[flavor]
+  })
+}
+
+const date = () => {
+  let today = new Date();
+  let dd = today.getDate();
+  let mm = today.getMonth()+1; //January is 0!
+
+  const yyyy = today.getFullYear();
+  if(dd<10){
+    dd='0'+dd;
+  }
+  if(mm<10){
+    mm='0'+mm;
+  }
+  return dd+'/'+mm+'/'+yyyy;
+}
+
+export const convert = (state) => {
+  return {
+    name: state.name,
+    brand: state.brand,
+    product: product_props[state.product],
+    type: state.type,
+    duration: duration_props[state.duration],
+    activity: state.activity,
+    ranking: state.ranking + 1,
+    flavors: addFlavor(state.flavors),
+    date: date(),
+  }
+}

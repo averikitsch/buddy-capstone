@@ -10,7 +10,7 @@ import Icon2 from 'react-native-vector-icons/FontAwesome';
 // import BuddyHeader from '../Components/HeaderComponent';
 import { colors } from '../assets/Theme';
 import { addLog } from '../Actions/index';
-import { product_props, product_map, duration_props, unit, units, quantityValues } from '../lib/TrackConverter';
+import { product_props, product_map, duration_map, unit, units, quantityValues, convert } from '../lib/TrackConverter';
 
 class TrackScreen extends React.Component {
   static navigationOptions = ({ navigation }) => ({
@@ -37,6 +37,7 @@ class ProductFormBody extends React.Component {
     this.state = {
       name: this.props.starterData ? this.props.starterData.name : '',
       brand: this.props.starterData ? this.props.starterData.brand : '',
+      type: this.props.starterData ? this.props.starterData.type : '',
       product: 1,
       quantity: 1,
       flavors: {spicy: false, sweet: false, sour: false, earthy: false},
@@ -100,11 +101,11 @@ class ProductFormBody extends React.Component {
   }
   onPress(e) {
     e.preventDefault();
-    console.log("state", this.state);
-    const {name, brand, product} = this.state;
-    this.props.dispatch({name, brand, product: product_props[product], date: Date.now()});
-    const { navigate } = this.props.navigation;
-    navigate("Explore");
+    console.log("state convert", this.state);
+    const log = convert(this.state);
+    console.log("state convert", log);
+    this.props.dispatch(log);
+    this.props.navigation.navigate("Explore");
   }
   render() {
     return (
@@ -190,6 +191,7 @@ class RadioProductButton extends React.Component {
     this.props.onProductChange(value);
   }
   render() {
+    console.log(this.props.select)
     return (
       <View>
         <Text style={styles.label}>
@@ -200,19 +202,20 @@ class RadioProductButton extends React.Component {
             style={[styles.slider, styles.partialSlider]}
           >
           {product_map.map((obj) => {
+            console.log(obj.value == this.props.select)
             return (
-            <RadioButton labelHorizontal={false} key={obj["value"]}>
+            <RadioButton labelHorizontal={false} key={obj.value.toString()}>
             <RadioButtonInput
             obj={obj}
-            index={obj["value"]}
+            index={obj.value}
             onPress={this.handleProductChange}
             buttonInnerColor={colors.green}
             buttonOuterColor={colors.green}
-            isSelected={(obj["value"] === this.props.select)}
+            isSelected={(obj.value == this.props.select)}
             />
             <RadioButtonLabel
             obj={obj}
-            index={obj["value"]}
+            index={obj.value}
             labelHorizontal={false}
             onPress={this.handleProductChange}
             labelWrapStyle={{}}
@@ -374,20 +377,20 @@ class RadioDurationButton extends React.Component {
           formHorizontal={true}
           style={[styles.slider, styles.partialSlider]}
         >
-        {duration_props.map((obj) => {
+        {duration_map.map((obj) => {
           return (
-          <RadioButton labelHorizontal={false} key={obj["value"]}>
+          <RadioButton labelHorizontal={false} key={obj.value}>
           <RadioButtonInput
           obj={obj}
-          index={obj["value"]}
+          index={obj.value}
           onPress={this.handleDurationChange}
           buttonInnerColor={colors.green}
           buttonOuterColor={colors.green}
-          isSelected={(obj["value"] === this.props.select)}
+          isSelected={(obj.value == this.props.select)}
           />
           <RadioButtonLabel
           obj={obj}
-          index={obj["value"]}
+          index={obj.value}
           labelHorizontal={false}
           onPress={this.handleDurationChange}
           labelWrapStyle={{}}

@@ -41,15 +41,6 @@ const testObj = {
   }
 };
 
-// @connect(
-//   state => ({
-//     logs: state.logs,
-//   }),
-//   dispatch => ({
-//     action: { ...bindActionCreators(addWish, dispatch) }
-//   }),
-// )
-
 class FoundScreen extends React.Component {
   static navigationOptions = ({ navigation }) => ({
     title: 'FOUND',
@@ -74,6 +65,7 @@ class FoundScreen extends React.Component {
       name: testObj.name,
       brand: testObj.brand,
       product: testObj.product,
+      type: testObj.type,
     }
     const { navigate } = this.props.navigation;
     return (
@@ -95,8 +87,6 @@ class FoundScreen extends React.Component {
             <Image style={styles.image} source={require('../assets/images/topo.png')} />
           </View>
           <ProductBody obj={testObj} />
-
-
       </Content>
     </Container>
     );
