@@ -50,3 +50,10 @@ export function deselectLog (log) {
     type: "DESELECT_LOG",
   }
 }
+
+export function findItem (response) {
+  return {
+    type: 'FIND_ITEM',
+    payload: response,
+  }
+}
