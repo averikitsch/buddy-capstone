@@ -37,7 +37,7 @@ class ProductFormBody extends React.Component {
     this.state = {
       name: this.props.starterData ? this.props.starterData.name : '',
       brand: this.props.starterData ? this.props.starterData.brand : '',
-      type: this.props.starterData ? this.props.starterData.type : '',
+      type: this.props.starterData ? this.props.starterData.race : '',
       product: 1,
       quantity: 1,
       flavors: {spicy: false, sweet: false, sour: false, earthy: false},

@@ -84,7 +84,7 @@ export const date = () => {
   if(mm<10){
     mm='0'+mm;
   }
-  return dd+'/'+mm+'/'+yyyy;
+  return mm+'/'+dd+'/'+yyyy;
 }
 
 export const convert = (state) => {

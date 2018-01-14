@@ -9,22 +9,24 @@ import {connect} from 'react-redux';
 import { findItem } from '../Actions/index';
 
 class SearchScreen extends React.Component {
-
+  static navigationOptions = ({ navigation }) => ({
+    title: 'SEARCH',
+  });
   render() {
     return (
       <Container>
-      <BuddyHeader name="Search" />
       <View style={styles.search}>
       <SearchBar
         style={styles.searchBar}
         dispatch={this.props.findItem}
         navigation={this.props.navigation} />
+        {/*<BuddyHeader name="Search" />
       <View style={styles.camera}>
       <TouchableHighlight >
       <Text>CLICK ME</Text>
       </TouchableHighlight>
       <Text>{this.props.item ? this.props.item.name : ''}</Text>
-      </View>
+      </View>*/}
       </View>
       </Container>
     )
@@ -76,44 +78,53 @@ class SearchBar extends React.Component {
     this.handleTextChange = this.handleTextChange.bind(this);
   }
   handleTextChange(text) {
-
+    // console.log(text);
+    this.setState({
+      text: text
+    })
   }
   handleEnter(e) {
-    console.log(e)
-    if(e.nativeEvent.key == "Enter"){
       // dismissKeyboard();
+      // console.log(`http://strainapi.evanbusse.com/5QPNwCQ/strains/search/name/${this.state.text}`)
       axios.get(`http://strainapi.evanbusse.com/5QPNwCQ/strains/search/name/${this.state.text}`)
       .then((response) => {
-        console.log(response)
-        // const id = response.data[0].id;
-        // const effects = axios.get(`http://strainapi.evanbusse.com/5QPNwCQ/strains/data/effects/${id}`)
-        //   .then((response) => {
-        //     return response.data
-        //   })
-        // const flavors = axios.get(`http://strainapi.evanbusse.com/5QPNwCQ/strains/data/effects/${id}`)
-        //   .then((response) => {
-        //     return response.data
-        //   })
-        this.props.dispatch(response.data[0])
-        this.props.navigation.navigate("Found");
+        // console.log(response.data)
+        const data = response.data[0]
+        const id = response.data[0].id;
+        // let effects = {};
+        // let flavors = {};
+        axios.get(`http://strainapi.evanbusse.com/5QPNwCQ/strains/data/effects/${id}`)
+          .then((response) => {
+            console.log(response.data)
+            const effects = response.data;
+            axios.get(`http://strainapi.evanbusse.com/5QPNwCQ/strains/data/flavors/${id}`)
+              .then((response) => {
+                console.log(response.data)
+                const flavors = response.data;
+                const dataObj = {...data, effects: effects, flavors: flavors}
+                console.log(dataObj)
+                this.props.dispatch(dataObj)
+                this.props.navigation.navigate("Found");
+              })
+          })
       })
       .catch((err) => {
         console.log(err)
       })
-    } else {
-      console.log(text);
-      this.setState({
-        text: text
-      })
-    }
   }
   render() {
+    //onKeyPress={this.handleEnter}
     return (
       <Container>
         <Header searchBar>
           <Item>
-            <Icon name="ios-search" />
-            <Input placeholder="Search" onTextChange={this.handleTextChange} onKeyPress={this.handleEnter}/>
+
+            <Input placeholder="Search"
+              onChangeText={this.handleTextChange}
+            />
+            <TouchableHighlight  onPress={this.handleEnter}>
+              <Icon name="ios-search" />
+            </TouchableHighlight >
           </Item>
 
         </Header>

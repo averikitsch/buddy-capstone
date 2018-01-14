@@ -9,39 +9,6 @@ import { colors, flavorColors } from '../assets/Theme';
 import { addWish } from '../Actions/index';
 import { date, product2num } from '../lib/TrackConverter'
 
-const testObj = {
-  name: 'Seatown Lemon Haze',
-  brand: 'Dawg Star',
-  product: 'Flower',
-  type: 'sativa',
-  cross: ['Lemon Skunk', 'Super Silver Haze'],
-  description: 'Gather your friends, strap on your explorer boots, don your chef hat, or unleash your inner artist – our Seatown Lemon Haze, also known as Super Lemon Haze, offers a creative, social and energetic high to get you ready for a moment of exploration or creativity.',
-  image: '../assets/images/temp.jpeg',
-  flavors: [
-    "Lemon",
-    "Citrus",
-    "Sage"
-    ],
-  effects: {
-    positive: [
-    "Euphoric",
-    "Creative",
-    "Energetic",
-    "Uplifted"
-    ],
-    negative: [
-    "Dry Mouth"
-    ],
-    medical: [
-    "Depression",
-    "Insomnia",
-    "Pain",
-    "Fatigue",
-    "Inflammation"
-    ]
-  }
-};
-
 class FoundScreen extends React.Component {
   static navigationOptions = ({ navigation }) => ({
     title: 'FOUND',
@@ -62,21 +29,21 @@ class FoundScreen extends React.Component {
     this.props.navigation.navigate("Explore");
   }
   render() {
-    const trackObj = {
-      name: testObj.name,
-      brand: testObj.brand,
-      product: testObj.product,
-      type: testObj.type,
-    }
+    // const trackObj = {
+    //   name: testObj.name,
+    //   brand: testObj.brand,
+    //   product: testObj.product,
+    //   type: testObj.type,
+    // }
     const { navigate } = this.props.navigation;
     return (
       <Container>
       {/*<Header />*/}
         <Content style={styles.formContentBody}>
-          <ProductHeader name={testObj.name} brand={testObj.brand} product={testObj.product} image={testObj.image}/>
+          <ProductHeader product={this.props.found}/>
           <View style={styles.Buttons}>
           <TouchableHighlight style={styles.Button}
-            onPress={() => navigate("Track", trackObj)}>
+            onPress={() => navigate("Track", this.props.found)}>
             <Text style={styles.label}>{"track".toUpperCase()}</Text>
           </TouchableHighlight>
           <TouchableHighlight style={styles.Button}
@@ -87,23 +54,30 @@ class FoundScreen extends React.Component {
           <View style={styles.ImageContainer}>
             <Image style={styles.image} source={require('../assets/images/topo.png')} />
           </View>
-          <ProductBody obj={testObj} />
+          <ProductBody product={this.props.found} />
       </Content>
     </Container>
     );
   }
 };
 
+function mapStateToProps (store) {
+  return {
+    found: store.search.found,
+  }
+}
+
 function mapDispatchToProps (dispatch) {
   return {
       addWish: wish => dispatch(addWish(wish))
   };
 }
-export default connect(null, mapDispatchToProps)(FoundScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(FoundScreen);
 
 
 class ProductHeader extends React.Component {
   render() {
+    console.log(this.props.product)
     return (
       <View style={styles.HeaderContainer}>
         {/*<View style={styles.ImageContainer}>
@@ -111,14 +85,14 @@ class ProductHeader extends React.Component {
         </View>*/}
         <View style={styles.TextContainer}>
           <Text style={styles.Header}>
-            {this.props.name.toUpperCase()}
+            {this.props.product ? this.props.product.name : ''}
+          </Text>
+          {/*<Text style={styles.SubHeader}>
+            {this.props.product.brand.toUpperCase()}
           </Text>
           <Text style={styles.SubHeader}>
-            {this.props.brand.toUpperCase()}
-          </Text>
-          <Text style={styles.SubHeader}>
-            {this.props.product.toUpperCase()}
-          </Text>
+            {this.props.product.product.toUpperCase()}
+          </Text>*/}
 
         </View>
       </View>
@@ -134,31 +108,32 @@ class ProductBody extends React.Component {
       sativa: "ios-headset-outline",
       indica: "ios-body-outline"
     };
+    const product = this.props.product;
     return (
       <View style={styles.bodyContainer}>
         <View style={styles.detailContainer}>
           <View style={styles.type}>
-            <Icon name={types[this.props.obj.type]} size={35} />
+            <Icon name={types[product.race]} size={35} />
           </View>
           <View style={styles.cross}>
           <Text style={styles.text}>
-          {this.props.obj.type.toUpperCase()}
+            {product.race.toUpperCase()}
           </Text>
             {/*<Text style={styles.text}>
-            {this.props.obj.cross[0]}</Text>
+            {product.cross[0]}</Text>
             <Text style={styles.text}>
-            {this.props.obj.cross[1]}</Text>*/}
+            {product.cross[1]}</Text>*/}
           </View>
         </View>
         <View style={styles.description}>
           <Text style={styles.text}>
-          {this.props.obj.description}</Text>
+          {product.desc}</Text>
         </View>
           {/*<Text style={styles.label}>
           Flavors:
           </Text>*/}
           <View style={styles.flavorCards}>
-            {this.props.obj.flavors.map((flavor, i) => {
+            {product.flavors.map((flavor, i) => {
               return <FlavorCard flavor={flavor} key={i.toString()} />
             })}
           </View>
@@ -171,19 +146,19 @@ class ProductBody extends React.Component {
           <View style={styles.cardStack}>
             <View style={styles.effectCards}>
               <Icon name="md-add" size={35} color={`hsl(241, 41%, 43%)`} style={styles.effectIcon}/>
-                {this.props.obj.effects.positive.map((effect, i) => {
+                {product.effects.positive.map((effect, i) => {
                   return <EffectCard effect={effect} key={i.toString()} iter={i} type="positive"/>
                 })}
             </View>
             <View style={styles.effectCards}>
               <Icon name="md-remove" size={35} color={`hsl(360, 51%, 43%)`} style={styles.effectIcon}/>
-              {this.props.obj.effects.negative.map((effect, i) => {
+              {product.effects.negative.map((effect, i) => {
                 return <EffectCard effect={effect} key={i.toString()} iter={i} type="negative"/>
               })}
             </View>
             <View style={styles.effectCards}>
               <Icon name="ios-medical" size={35} color={`hsl(139, 41%, 41%)`} style={styles.effectIcon}/>
-              {this.props.obj.effects.medical.map((effect, i) => {
+              {product.effects.medical.map((effect, i) => {
                 return <EffectCard effect={effect} key={i.toString()} iter={i} type="medical"/>
               })}
             </View>
@@ -323,11 +298,11 @@ const styles = StyleSheet.create({
     margin: 15,
   },
   flavorCard: {
-    padding: 10,
+    padding: 3,
     margin: 10,
     height: 80,
     width: 80,
-    borderRadius:10,
+    borderRadius: 10,
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
@@ -344,13 +319,15 @@ const styles = StyleSheet.create({
     borderRadius:3,
   },
   effectCards: {
-    flexWrap: 'wrap',
-    flexDirection: 'row',
+    flex: 1,
+    // flexWrap: 'wrap',
+    flexDirection: 'column',
     alignItems: 'center',
-    justifyContent: 'flex-start',
+    // justifyContent: 'center',
   },
   cardStack: {
-    flexDirection: 'column',
+    flex: 1,
+    flexDirection: 'row',
     justifyContent: 'center',
   },
   effectIcon: {
@@ -361,13 +338,13 @@ const styles = StyleSheet.create({
   CardWrapper: {
     margin: 2,
     padding: 2,
-    borderWidth: 2,
-    borderColor: colors.darkGray,
-    borderStyle: 'dashed',
+    // borderWidth: 2,
+    // borderColor: colors.darkGray,
+    // borderStyle: 'dashed',
   },
   OuterCardWrapper: {
     // marginTop: 20,
-    borderWidth: 2,
-    borderColor: colors.darkGray,
+    // borderWidth: 2,
+    // borderColor: colors.darkGray,
   }
 });
