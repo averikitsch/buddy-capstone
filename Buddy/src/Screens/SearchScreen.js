@@ -1,17 +1,21 @@
 /* eslint-disable */
 import React from "react";
 import { AppRegistry, Dimensions, View, StyleSheet, Text, TouchableHighlight } from "react-native";
-import { Container, Header, Body, Content, Left, Right, Icon, Title, Input, Item, Label, Button} from "native-base";
+import { Container, Header, Body, Content, Left, Right, Icon, Title, Input, Item, Label, Button, List, ListItem} from "native-base";
 import BuddyHeader from '../Components/HeaderComponent';
 import Camera from 'react-native-camera';
 import axios from 'axios';
 import {connect} from 'react-redux';
-import { findItem } from '../Actions/index';
+import { findItem, fetchStrains } from '../Actions/index';
 
 class SearchScreen extends React.Component {
   static navigationOptions = ({ navigation }) => ({
     title: 'SEARCH',
   });
+  constructor(props) {
+    super(props);
+    this.props.fetchStrains();
+  }
   render() {
     return (
       <Container>
@@ -42,7 +46,8 @@ function mapStateToProps (store) {
 
 function mapDispatchToProps (dispatch) {
   return {
-    findItem: item => dispatch(findItem(item))
+    findItem: item => dispatch(findItem(item)),
+    fetchStrains: () => dispatch(fetchStrains()),
   }
 }
 
@@ -72,7 +77,7 @@ class SearchBar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      text: ''
+      text: '',
     }
     this.handleEnter = this.handleEnter.bind(this);
     this.handleTextChange = this.handleTextChange.bind(this);
@@ -85,14 +90,10 @@ class SearchBar extends React.Component {
   }
   handleEnter(e) {
       // dismissKeyboard();
-      // console.log(`http://strainapi.evanbusse.com/5QPNwCQ/strains/search/name/${this.state.text}`)
-      axios.get(`http://strainapi.evanbusse.com/5QPNwCQ/strains/search/name/${this.state.text}`)
+    axios.get(`http://strainapi.evanbusse.com/5QPNwCQ/strains/search/name/${this.state.text}`)
       .then((response) => {
-        // console.log(response.data)
         const data = response.data[0]
         const id = response.data[0].id;
-        // let effects = {};
-        // let flavors = {};
         axios.get(`http://strainapi.evanbusse.com/5QPNwCQ/strains/data/effects/${id}`)
           .then((response) => {
             console.log(response.data)
@@ -109,16 +110,16 @@ class SearchBar extends React.Component {
           })
       })
       .catch((err) => {
-        console.log(err)
+        console.log(err);
+        this.props.dispatch(err)
+        this.props.navigation.navigate("Found");
       })
   }
   render() {
-    //onKeyPress={this.handleEnter}
     return (
       <Container>
         <Header searchBar>
           <Item>
-
             <Input placeholder="Search"
               onChangeText={this.handleTextChange}
             />
@@ -126,16 +127,17 @@ class SearchBar extends React.Component {
               <Icon name="ios-search" />
             </TouchableHighlight >
           </Item>
-
         </Header>
+        <List>
+          <ListItem >
+              <Text></Text>
+          </ListItem>
+        </List>
       </Container>
     );
   }
 }
 
-// <Button transparent>
-//   <Text>Search</Text>
-// </Button>
 
 const styles = StyleSheet.create({
   search: {

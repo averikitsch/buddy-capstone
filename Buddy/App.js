@@ -10,6 +10,8 @@ import { Provider } from 'react-redux';
 import store from './src/store';
 
 import Navigator from './src/Navigator';
+// import {connect} from 'react-redux';
+// import { fetchStrains } from './src/Actions/index';
 
 
 
