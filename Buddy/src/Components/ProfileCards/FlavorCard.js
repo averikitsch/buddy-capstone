@@ -6,24 +6,6 @@ import { connect } from 'react-redux';
 
 
 class FlavorCard extends Component {
-  // constructor(){
-  //   super();
-  //   this.state = {
-  //     data: [],
-  //   }
-  // }
-  // componentWillMount() {
-  //   this.setState({
-  //     data: this.props.logs
-  //   })
-  // }
-  // componentWillReceiveProps(nextProps) {
-  //   if (nextProps.logs.length > this.state.data) {
-  //     this.setState({
-  //       data: this.props.logs,
-  //     })
-  //   }
-  // }
   constructData(logs) {
     const flavorData = {spicy: 0, sour: 0, sweet: 0, earthy: 0}
     logs.forEach((log) => {
@@ -39,7 +21,6 @@ class FlavorCard extends Component {
     return [flavorData];
   }
   render() {
-    // console.log(this.props.logs)
     return (
       <Container>
         <Content>
@@ -94,11 +75,8 @@ class RadarChart extends React.Component {
   }
 
   render() {
-    console.log(this.props.data)
     const dataCopy = this.props.data;
-    console.log(dataCopy)
     dataCopy.push({spicy: 100, sour: 100, sweet: 100, earthy: 100})
-    console.log(dataCopy)
     const data = this.processData(dataCopy);
     const maxima = this.getMaxima(dataCopy);
     return (
