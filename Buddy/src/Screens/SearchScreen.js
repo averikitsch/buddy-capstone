@@ -39,8 +39,8 @@ class SearchScreen extends React.Component {
             // style={styles.searchBar}
             filterText={this.state.filterText}
             onFilterTextChange={this.handleFilterTextChange}
-            // dispatch={this.props.findItem}
-            // navigation={this.props.navigation}
+            dispatch={this.props.findItem}
+            navigation={this.props.navigation}
           />
           <ListStrains
             strains={this.props.list}
@@ -64,7 +64,7 @@ function mapStateToProps (store) {
 
 function mapDispatchToProps (dispatch) {
   return {
-    // findItem: item => dispatch(findItem(item)),
+    findItem: item => dispatch(findItem(item)),
     fetchStrains: () => dispatch(fetchStrains()),
   }
 }
@@ -106,8 +106,11 @@ class SearchBar extends React.Component {
   }
   handleEnter(e) {
       // dismissKeyboard();
-      console.log(this.props.filterText)
-    axios.get(`http://strainapi.evanbusse.com/5QPNwCQ/strains/search/name/${this.props.filterText}`)
+      e.preventDefault();
+      // Alert.alert(this.props.filterText)
+      const text = this.props.filterText;
+    console.log(this.props.filterText)
+    axios.get(`http://strainapi.evanbusse.com/5QPNwCQ/strains/search/name/${text}`)
       .then((response) => {
         const data = response.data[0]
         const id = response.data[0].id;
