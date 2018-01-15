@@ -11,7 +11,7 @@ import store from './src/store';
 
 import Navigator from './src/Navigator';
 // import {connect} from 'react-redux';
-// import { fetchStrains } from './src/Actions/index';
+import { fetchStrains } from './src/Actions/index';
 
 
 
@@ -21,6 +21,7 @@ export default class Buddy extends React.Component {
     super();
   }
   render() {
+    store.dispatch(fetchStrains())
     return (
       <Provider store={store}>
         <Navigator />
