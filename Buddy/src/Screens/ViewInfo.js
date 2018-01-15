@@ -4,6 +4,9 @@ import { Container, Body, Content, Left, Right, Title, Input, Item, Label, Butto
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Icon from 'react-native-vector-icons/Ionicons';
+import { createIconSetFromIcoMoon } from 'react-native-vector-icons';
+import IcoMoonConfig from '../selection.json';
+const Icon2 = createIconSetFromIcoMoon(IcoMoonConfig);
 import Header from '../Components/HeaderComponent';
 import { colors, flavorColors } from '../assets/Theme';
 import { convert } from '../lib/TrackConverter';
@@ -62,7 +65,7 @@ class ProductHeader extends React.Component {
             {this.props.product.name.toUpperCase()}
           </Text>
           <Text style={styles.SubHeader}>
-            {this.props.product.brand.toUpperCase()}
+            {this.props.product.brand ? this.props.product.brand.toUpperCase() : ''}
           </Text>
           <Text style={styles.SubHeader}>
             {this.props.product.product.toUpperCase()}
@@ -79,8 +82,9 @@ class ProductTrackInfo extends React.Component {
     console.log(this.props.product)
     const flavorCards = this.props.product.flavors.map((flavor, i) => {
       console.log(flavor);
-      <IconButton flavor={flavor} key={i} />
+      return <IconButton flavor={flavor} key={i} />
     })
+    console.log(flavorCards)
     return (
       <View>
       <Text style={styles.label}>
@@ -93,9 +97,9 @@ class ProductTrackInfo extends React.Component {
           Quantity: {this.props.product.quantity}
         </Text>
         <Text style={styles.label}>
-          Flavors: {flavorCards}
+          Flavors:
         </Text>
-
+        {flavorCards}
         <Text style={styles.label}>
           Activity: {this.props.product.activity}
         </Text>
@@ -121,9 +125,8 @@ class IconButton extends React.Component {
       return (
         <View style={styles.iconButton}>
           <View
-            style={[{backgroundColor: color}, styles.button]}
-            onPress={this.handlerButtonOnClick}>
-            <Icon name={icon} style={{color: "white"}} size={40} />
+            style={[{backgroundColor: color}, styles.button]}>
+            <Icon2 name={icon} style={{color: "white"}} size={40} />
           </View>
           <Text style={{color: color, fontWeight: "bold"}}>
             {this.props.flavor.toUpperCase()}
@@ -273,5 +276,20 @@ const styles = StyleSheet.create({
     // marginTop: 20,
     borderWidth: 2,
     borderColor: colors.darkGray,
-  }
+  },
+  iconButton: {
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  button: {
+    flexDirection: 'column',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    padding: 10,
+    margin: 10,
+    height: 80,
+    width: 80,
+    borderRadius:10,
+  },
 });
