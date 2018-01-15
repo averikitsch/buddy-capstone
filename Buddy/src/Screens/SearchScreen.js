@@ -113,21 +113,29 @@ class SearchBar extends React.Component {
     axios.get(`http://strainapi.evanbusse.com/5QPNwCQ/strains/search/name/${text}`)
       .then((response) => {
         const data = response.data[0]
+        // console.log(data)
+        if (data) {
         const id = response.data[0].id;
-        axios.get(`http://strainapi.evanbusse.com/5QPNwCQ/strains/data/effects/${id}`)
+          axios.get(`http://strainapi.evanbusse.com/5QPNwCQ/strains/data/effects/${id}`)
           .then((response) => {
             // console.log(response.data)
             const effects = response.data;
             axios.get(`http://strainapi.evanbusse.com/5QPNwCQ/strains/data/flavors/${id}`)
-              .then((response) => {
-                console.log(response.data)
-                const flavors = response.data;
-                const dataObj = {...data, effects: effects, flavors: flavors}
-                console.log(dataObj)
-                this.props.dispatch(dataObj)
-                this.props.navigation.navigate("Found");
-              })
+            .then((response) => {
+              console.log(response.data)
+              const flavors = response.data;
+              const dataObj = {...data, effects: effects, flavors: flavors}
+              console.log(dataObj)
+              this.props.dispatch(dataObj)
+              this.props.navigation.navigate("Found");
+            })
           })
+        } else {
+          const dataObj = {name: text}
+          console.log(dataObj)
+          this.props.dispatch(dataObj)
+          this.props.navigation.navigate("Found");
+        }
       })
       // .catch((err) => {
       //   console.log(err);

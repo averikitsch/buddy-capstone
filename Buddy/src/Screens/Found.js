@@ -103,6 +103,7 @@ class ProductHeader extends React.Component {
 
 class ProductBody extends React.Component {
   render() {
+    if (Object.keys(this.props.product).length > 1) {
     const types = {
       hybrid: "ios-happy-outline",
       sativa: "ios-headset-outline",
@@ -167,6 +168,11 @@ class ProductBody extends React.Component {
       </View>
       </View>
     )
+  } else {
+    return (
+      <Text>Not found</Text>
+    )
+  }
   }
 }
 
