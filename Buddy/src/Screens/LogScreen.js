@@ -52,8 +52,8 @@ export default class LogScreen extends React.Component {
     return (
       <StyleProvider style={getTheme(platform)}>
       <Container>
-          <Header style={{backgroundColor: colors.darkGray}}>
-            <Segment style={{backgroundColor: colors.darkGray}}>
+          <Header style={{backgroundColor: colors.lightGreen}}>
+            <Segment style={{backgroundColor: colors.lightGreen}}>
               <Button first active={this.state.logs}
               onPress={this.handleLogsClick}>
                 <Text>Logs</Text>

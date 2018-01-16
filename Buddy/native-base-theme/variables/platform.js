@@ -197,12 +197,12 @@ export default {
   radioColor: this.brandPrimary,
 
   // Segment
-  segmentBackgroundColor: platform === "ios" ? "#F8F8F8" : colors.darkGray,
-  segmentActiveBackgroundColor: platform === "ios" ? colors.lightGreen : "#fff",
-  segmentTextColor: platform === "ios" ? colors.lightGreen : "#fff",
-  segmentActiveTextColor: platform === "ios" ? "#fff" : colors.darkGray,
-  segmentBorderColor: platform === "ios" ? colors.lightGreen : "#fff",
-  segmentBorderColorMain: platform === "ios" ? "#a7a6ab" : colors.darkGray,
+  segmentBackgroundColor: platform === "ios" ? "#F8F8F8" : colors.lightgreen,
+  segmentActiveBackgroundColor: platform === "ios" ? colors.green : "#fff",
+  segmentTextColor: platform === "ios" ? colors.green : "#fff",
+  segmentActiveTextColor: platform === "ios" ? colors.lightGreen : colors.darkGray,
+  segmentBorderColor: platform === "ios" ? colors.green : "#fff",
+  segmentBorderColorMain: platform === "ios" ? colors.green : colors.darkGray,
 
   // Spinner
   defaultSpinnerColor: "#45D56E",

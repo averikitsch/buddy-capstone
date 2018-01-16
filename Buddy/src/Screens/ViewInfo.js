@@ -8,15 +8,19 @@ import { createIconSetFromIcoMoon } from 'react-native-vector-icons';
 import IcoMoonConfig from '../selection.json';
 const Icon2 = createIconSetFromIcoMoon(IcoMoonConfig);
 import Header from '../Components/HeaderComponent';
-import { colors, flavorColors } from '../assets/Theme';
+import { colors, flavorColors, sharedStyles } from '../assets/Theme';
 import { convert } from '../lib/TrackConverter';
 
 class ViewInfoScreen extends React.Component {
   // const { navigate } = this.props.navigation;
   static navigationOptions = ({ navigation }) => ({
-      title: 'Log',
+      title: 'LOG',
       headerRight: <Icon name="ios-cog" size={40}
+        color={colors.green}
         onPress={() => navigation.navigate("Edit")}/>,
+      headerStyle: sharedStyles.headerStyle,
+      headerTitleStyle: sharedStyles.headerTitleStyle,
+      headerBackTitleStyle: sharedStyles.headerBack,
     });
   render() {
     const { navigate } = this.props.navigation;
