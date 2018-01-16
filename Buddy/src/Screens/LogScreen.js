@@ -1,12 +1,14 @@
 import React from 'react';
 import {  } from 'react-native';
-import { Container, Content, Button, Segment, Header, Text } from 'native-base';
+import { Container, Content, Button, Segment, Header, Text, StyleProvider } from 'native-base';
 import { connect } from 'react-redux';
 import LogList from '../Components/LogList';
 import WishList from '../Components/WishList';
 import { rmLog, updateLog, rmWish, selectLog, deselectLog } from '../Actions/index';
 import { convert } from '../lib/TrackConverter';
 import { colors } from '../assets/Theme';
+import getTheme from '../../native-base-theme/components';
+import platform from '../../native-base-theme/variables/platform';
 
 
 export default class LogScreen extends React.Component {
@@ -48,18 +50,10 @@ export default class LogScreen extends React.Component {
         // data={this.props.wishlist}
     }
     return (
+      <StyleProvider style={getTheme(platform)}>
       <Container>
-          <Header>
-            <Segment
-              style={{
-                segmentBackgroundColor: colors.green,
-                segmentActiveBackgroundColor: "#fff",
-                segmentTextColor: "#fff",
-                segmentActiveTextColor: colors.green,
-                segmentBorderColor: "#fff",
-                segmentBorderColorMain: colors.green,
-              }}
-            >
+          <Header style={{backgroundColor: colors.darkGray}}>
+            <Segment style={{backgroundColor: colors.darkGray}}>
               <Button first active={this.state.logs}
               onPress={this.handleLogsClick}>
                 <Text>Logs</Text>
@@ -74,6 +68,7 @@ export default class LogScreen extends React.Component {
             {page}
           </Content>
         </Container>
+        </StyleProvider>
       );
   }
 }

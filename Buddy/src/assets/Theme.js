@@ -73,23 +73,23 @@ const flavorColors = {
 
 const sharedStyles = StyleSheet.create({
   headerStyle: {
-    backgroundColor: colors.darkGray,
+    backgroundColor: colors.lightGreen,
     // borderBottomWidth: 2,
     // borderBottomColor: colors.darkGray,
   },
   headerTitleStyle: {
     fontFamily: 'Josefin Sans',
     fontSize: 24,
-    color: colors.lightGreen,
+    color: colors.green,
     fontWeight: 'bold',
   },
   headerBack: {
-    color: colors.grayGreen,
+    color: colors.green,
     fontFamily: 'Josefin Sans',
-    fontWeight: '300',
+    fontWeight: '400',
   },
   headerBackButton: {
-    color: '#fff',
+    color: colors.green,
   },
   label: {
     fontFamily: 'Crete Round',

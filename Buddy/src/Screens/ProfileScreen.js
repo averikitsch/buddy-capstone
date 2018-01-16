@@ -1,8 +1,9 @@
 import React from 'react';
 import { AppRegistry, View, StatusBar, Image, StyleSheet } from 'react-native';
-import { Container, Header, Tab, Tabs, Text, ScrollableTab, Thumbnail, Title } from 'native-base';
+import { Container, Header, Tab, Tabs, Text, ScrollableTab, Thumbnail, Title, StyleProvider } from 'native-base';
 import { connect } from 'react-redux';
-
+import getTheme from '../../native-base-theme/components';
+import platform from '../../native-base-theme/variables/platform';
 import Icon from 'react-native-vector-icons/Ionicons';
 import BuddyHeader from '../Components/HeaderComponent';
 import FlavorCard from '../Components/ProfileCards/FlavorCard';
@@ -21,6 +22,7 @@ export default class ProfileScreen extends React.Component {
     // const { navigate } = this.props.navigation;
     // <BuddyHeader name="Profile" />
     return (
+      <StyleProvider style={getTheme(platform)}>
       <Container>
         <View style={styles.ProfileContainer}>
           <View style={styles.ProfileHeaderContainer}>
@@ -31,6 +33,7 @@ export default class ProfileScreen extends React.Component {
           </View>
         </View>
       </Container>
+      </StyleProvider>
     );
   }
 };
@@ -57,6 +60,7 @@ class ProfileLinks extends React.Component {
 class TabsScrollable extends React.Component {
   render() {
     return (
+      <StyleProvider style={getTheme(platform)}>
       <Container>
         <Tabs renderTabBar={()=> <ScrollableTab />}>
           <Tab heading="Flavor" style={styles.Card}>
@@ -73,6 +77,7 @@ class TabsScrollable extends React.Component {
           </Tab>
         </Tabs>
       </Container>
+      </StyleProvider>
     );
   }
 }
