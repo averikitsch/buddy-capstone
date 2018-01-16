@@ -180,7 +180,7 @@ class ListStrains extends React.Component {
     const filterText = this.props.filterText;
     // console.log(this.props.strains)
     const rows = this.props.strains.filter((strain) => {
-      if (strain.indexOf(filterText) >= 0) {
+      if (strain.toLowerCase().indexOf(filterText.toLowerCase()) >= 0) {
         return strain
       }
     })
