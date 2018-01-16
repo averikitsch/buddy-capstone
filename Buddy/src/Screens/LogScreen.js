@@ -6,6 +6,7 @@ import LogList from '../Components/LogList';
 import WishList from '../Components/WishList';
 import { rmLog, updateLog, rmWish, selectLog, deselectLog } from '../Actions/index';
 import { convert } from '../lib/TrackConverter';
+import { colors } from '../assets/Theme';
 
 
 export default class LogScreen extends React.Component {
@@ -49,7 +50,16 @@ export default class LogScreen extends React.Component {
     return (
       <Container>
           <Header>
-            <Segment>
+            <Segment
+              style={{
+                segmentBackgroundColor: colors.green,
+                segmentActiveBackgroundColor: "#fff",
+                segmentTextColor: "#fff",
+                segmentActiveTextColor: colors.green,
+                segmentBorderColor: "#fff",
+                segmentBorderColorMain: colors.green,
+              }}
+            >
               <Button first active={this.state.logs}
               onPress={this.handleLogsClick}>
                 <Text>Logs</Text>

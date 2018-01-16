@@ -90,7 +90,13 @@ const sharedStyles = StyleSheet.create({
   },
   headerBackButton: {
     color: '#fff',
-  }
+  },
+  label: {
+    fontFamily: 'Crete Round',
+    fontSize: 19,
+    // fontWeight: 'bold',
+    color: colors.darkGray,
+  },
 })
 
 export {
