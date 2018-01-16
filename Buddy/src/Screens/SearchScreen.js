@@ -187,7 +187,7 @@ class ListStrains extends React.Component {
     // console.log(rows)
     rowItems = rows.map((strain, i) => {
       return (
-        <ListItem key={i} onPress={() => this.handleClick(strain)}>
+        <ListItem style={{backgroundColor: 'white'}} key={i} onPress={() => this.handleClick(strain)}>
           <Text>{strain}</Text>
         </ListItem>
       )

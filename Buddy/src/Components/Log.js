@@ -40,9 +40,15 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-start',
   },
   Header: {
-    fontWeight: 'bold',
+    fontWeight: '500',
+    fontFamily: 'Josefin Sans',
+    fontSize: 18,
+    paddingBottom: 4,
   },
   SubHeader: {
     color: 'gray',
+    fontFamily: 'Josefin Sans',
+    fontWeight: '300',
+    paddingBottom: 2,
   },
 });

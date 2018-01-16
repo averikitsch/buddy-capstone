@@ -8,13 +8,17 @@ import IcoMoonConfig from '../selection.json';
 const Icon = createIconSetFromIcoMoon(IcoMoonConfig);
 import Icon2 from 'react-native-vector-icons/FontAwesome';
 // import BuddyHeader from '../Components/HeaderComponent';
-import { colors } from '../assets/Theme';
+import { colors, sharedStyles } from '../assets/Theme';
 import { updateLog, deselectLog } from '../Actions/index';
 import { product_props, product_map, duration_map, unit, units, quantityValues, date } from '../lib/TrackConverter';
 
 class EditScreen extends React.Component {
   static navigationOptions = ({ navigation }) => ({
     title: 'EDIT',
+    headerStyle: sharedStyles.headerStyle,
+    headerTitleStyle: sharedStyles.headerTitleStyle,
+    headerBackTitleStyle: sharedStyles.headerBack,
+    headerTintColor: sharedStyles.headerBackButton,
   });
   render() {
     const { navigate } = this.props.navigation;
@@ -146,7 +150,7 @@ class ProductFormBody extends React.Component {
         </View>
         <View style={styles.submitButtonLine}>
           <TouchableHighlight onPress={this.onPress}>
-            <Text style={[styles.label, styles.submitButton]}>
+            <Text style={[sharedStyles.label, styles.submitButton]}>
               {"update!".toUpperCase()}
             </Text>
           </TouchableHighlight>
@@ -173,7 +177,7 @@ class ProductFormHeader extends React.Component {
     return (
       <View>
       <TextInput
-      style={[styles.label,{height: 40}]}
+      style={[sharedStyles.label,{height: 40}]}
       placeholder={labelName.toUpperCase()}
       onChangeText={this.handleTextChange}
       defaultValue={this.props.defaultValue ? this.props.defaultValue[labelName] : '' }
@@ -194,7 +198,7 @@ class RadioProductButton extends React.Component {
   render() {
     return (
       <View>
-        <Text style={styles.label}>
+        <Text style={sharedStyles.label}>
           {"Product Type:".toUpperCase()}
         </Text>
           <RadioForm
@@ -239,7 +243,7 @@ class QuantityPicker extends React.Component {
     const value = this.props.quantity;
     return (
       <View style={styles.container}>
-        <Text style={styles.label}>
+        <Text style={sharedStyles.label}>
           {"Quantity: ".toUpperCase() + String(value)+" "+ ((value !== 1) ? units[this.props.type] : unit[this.props.type])}
         </Text>
         <Slider
@@ -267,7 +271,7 @@ class ActivityPicker extends React.Component {
     const value = this.props.activity;
     return (
       <View style={styles.container}>
-        <Text style={styles.label}>{"Activity:".toUpperCase()}</Text>
+        <Text style={sharedStyles.label}>{"Activity:".toUpperCase()}</Text>
         <View style={styles.slider}>
         <Icon name="bed" size={25} color={colors.darkGray}/>
         <Slider
@@ -296,7 +300,7 @@ class RadioIconButton extends React.Component {
   render() {
     return (
       <View>
-        <Text style={styles.label}>
+        <Text style={sharedStyles.label}>
           {"Flavors:".toUpperCase()}
         </Text>
         <View style={styles.radioButtons}>
@@ -371,7 +375,7 @@ class RadioDurationButton extends React.Component {
   render() {
     return (
       <View>
-        <Text style={styles.label}>{"Duration:".toUpperCase()}</Text>
+        <Text style={sharedStyles.label}>{"Duration:".toUpperCase()}</Text>
         <RadioForm
           formHorizontal={true}
           style={[styles.slider, styles.partialSlider]}
@@ -414,7 +418,7 @@ class RadioRankButton extends React.Component {
     const value = this.props.ranking;
     return (
       <View style={styles.container}>
-        <Text style={styles.label}>{"Ranking:".toUpperCase()}</Text>
+        <Text style={sharedStyles.label}>{"Ranking:".toUpperCase()}</Text>
         <View style={styles.slider}>
         <Icon2 name="thumbs-down" size={25} color={colors.darkGray}/>
         <Slider

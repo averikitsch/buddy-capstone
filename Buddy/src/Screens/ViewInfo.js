@@ -21,6 +21,7 @@ class ViewInfoScreen extends React.Component {
       headerStyle: sharedStyles.headerStyle,
       headerTitleStyle: sharedStyles.headerTitleStyle,
       headerBackTitleStyle: sharedStyles.headerBack,
+      headerTintColor: sharedStyles.headerBackButton,
     });
   render() {
     const { navigate } = this.props.navigation;
