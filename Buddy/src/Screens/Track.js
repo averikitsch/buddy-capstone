@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Image, StyleSheet, Text, Slider, Dimensions, TouchableHighlight, TextInput, AsyncStorage } from 'react-native';
 import { Container, Content }  from 'native-base';
 import { connect } from 'react-redux';
+import { NavigationActions } from 'react-navigation';
 import RadioForm, {RadioButton, RadioButtonInput, RadioButtonLabel} from 'react-native-simple-radio-button';
 import { createIconSetFromIcoMoon } from 'react-native-vector-icons';
 import IcoMoonConfig from '../selection.json';
@@ -107,6 +108,13 @@ class ProductFormBody extends React.Component {
     e.preventDefault();
     const log = this.state;
     this.props.dispatch(log);
+    const resetAction = NavigationActions.reset({
+      index: 0,
+      actions: [
+        NavigationActions.navigate({ routeName: 'Search'})
+      ]
+    })
+    this.props.navigation.dispatch(resetAction)
     this.props.navigation.navigate("Explore");
   }
   render() {

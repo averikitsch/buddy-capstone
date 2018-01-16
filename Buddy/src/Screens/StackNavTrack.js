@@ -6,7 +6,8 @@ import Search from './SearchScreen';
 
 
 export default (TrackNav = StackNavigator({
-  Search: {screen: Search},
+  Search: { screen: Search },
   Found: { screen: Found },
   Track: { screen: Track },
+  // initialRouteName: { screen: Search },
 }));
