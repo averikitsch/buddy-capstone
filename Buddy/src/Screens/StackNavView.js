@@ -5,8 +5,8 @@ import Edit from './Edit';
 import LogScreen from './LogScreen';
 
 
-export default (ViewNav = StackNavigator({
+export default ViewNav = StackNavigator({
   Logs: {screen: LogScreen },
   View: { screen: ViewInfo },
   Edit: { screen: Edit },
-}));
+});
