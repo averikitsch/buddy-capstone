@@ -8,7 +8,7 @@ import { TabNavigator, StackNavigator } from 'react-navigation';
 // import Icon from 'react-native-vector-icons/Ionicons';
 import { Provider } from 'react-redux';
 import store from './src/store';
-
+import axios from 'axios';
 import Navigator from './src/Navigator';
 // import {connect} from 'react-redux';
 import { fetchStrains } from './src/Actions/index';
@@ -18,9 +18,14 @@ import { fetchStrains } from './src/Actions/index';
 export default class Buddy extends React.Component {
   constructor() {
     super();
+    axios.get(`http://strainapi.evanbusse.com/5QPNwCQ/strains/search/all`)
+      .then((response) => {
+        const names = Object.keys(response.data);
+        console.log('names', names);
+        store.dispatch(fetchStrains(names))
+      })
   }
   render() {
-    store.dispatch(fetchStrains())
     return (
       <Provider store={store}>
         <Navigator />

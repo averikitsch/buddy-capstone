@@ -15,10 +15,11 @@ class SearchScreen extends React.Component {
     headerStyle: sharedStyles.headerStyle,
     headerTitleStyle: sharedStyles.headerTitleStyle,
     headerBackTitleStyle: sharedStyles.headerBack,
+    headerTintColor: sharedStyles.headerBackButton,
   })
   constructor(props) {
     super(props);
-    // this.props.fetchStrains();
+    this.props.fetchStrains();
     this.state = {
       filterText: '',
     }

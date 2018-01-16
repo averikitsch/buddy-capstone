@@ -58,8 +58,9 @@ export function findItem (response) {
   }
 }
 
-export function fetchStrains () {
+export function fetchStrains (response) {
   return {
     type: 'GET_ALL',
+    payload: response,
   }
 }
