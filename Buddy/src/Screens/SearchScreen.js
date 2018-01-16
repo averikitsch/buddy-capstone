@@ -7,10 +7,14 @@ import Camera from 'react-native-camera';
 import axios from 'axios';
 import {connect} from 'react-redux';
 import { findItem, fetchStrains } from '../Actions/index';
+import { colors, sharedStyles } from '../assets/Theme';
 
 class SearchScreen extends React.Component {
   static navigationOptions = ({ navigation }) => ({
     title: 'SEARCH',
+    headerStyle: sharedStyles.headerStyle,
+    headerTitleStyle: sharedStyles.headerTitleStyle,
+    headerBackTitleStyle: sharedStyles.headerBack,
   })
   constructor(props) {
     super(props);
@@ -33,15 +37,15 @@ class SearchScreen extends React.Component {
   render() {
     return (
       <Container>
+        <SearchBar
+        // <View style={styles.search}>
+          // style={styles.searchBar}
+          filterText={this.state.filterText}
+          onFilterTextChange={this.handleFilterTextChange}
+          dispatch={this.props.findItem}
+          navigation={this.props.navigation}
+        />
         <Content>
-          <SearchBar
-          // <View style={styles.search}>
-            // style={styles.searchBar}
-            filterText={this.state.filterText}
-            onFilterTextChange={this.handleFilterTextChange}
-            dispatch={this.props.findItem}
-            navigation={this.props.navigation}
-          />
           <ListStrains
             strains={this.props.list}
             filterText={this.state.filterText}
@@ -195,15 +199,12 @@ class ListStrains extends React.Component {
   }
 }
 
-const styles = StyleSheet.create({
+const styles2 = StyleSheet.create({
   search: {
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'flex-start',
   },
-  // searchBar: {
-  //   flex: 1,
-  // },
   camera: {
     flex: 6,
   },

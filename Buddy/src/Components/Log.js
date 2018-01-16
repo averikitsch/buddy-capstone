@@ -13,7 +13,7 @@ export default class Log extends React.Component {
           <Body>
             <Text style={styles.Header}>{this.props.data.name.toUpperCase()}</Text>
             <Text style={styles.SubHeader}>{this.props.data.brand ? this.props.data.brand.toUpperCase() : "BRAND UNDEFINED"}</Text>
-            <Text style={styles.SubHeader}>{this.props.data.product.toUpperCase()}</Text>
+            <Text style={styles.SubHeader}>{this.props.data.product ? this.props.data.product.toUpperCase() : 'PRODUCT UNDEFINED'}</Text>
           </Body>
         </View>
       </View>

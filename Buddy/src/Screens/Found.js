@@ -5,13 +5,17 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Header from '../Components/HeaderComponent';
-import { colors, flavorColors } from '../assets/Theme';
+import { colors, flavorColors, sharedStyles } from '../assets/Theme';
 import { addWish } from '../Actions/index';
 import { date, product2num } from '../lib/TrackConverter'
 
 class FoundScreen extends React.Component {
   static navigationOptions = ({ navigation }) => ({
     title: 'FOUND',
+    headerStyle: sharedStyles.headerStyle,
+    headerTitleStyle: sharedStyles.headerTitleStyle,
+    headerBackTitleStyle: sharedStyles.headerBack,
+    headerTintColor: sharedStyles.headerBackButton,
   });
   constructor() {
     super();
@@ -21,24 +25,17 @@ class FoundScreen extends React.Component {
     e.preventDefault();
     console.log("wish", this.props)
     this.props.addWish({
-      name: testObj.name,
-      brand: testObj.brand,
-      product: product2num[testObj.product],
+      name: this.props.found.name,
+      brand: undefined,
+      product: undefined,
       date: date()
     });
     this.props.navigation.navigate("Explore");
   }
   render() {
-    // const trackObj = {
-    //   name: testObj.name,
-    //   brand: testObj.brand,
-    //   product: testObj.product,
-    //   type: testObj.type,
-    // }
     const { navigate } = this.props.navigation;
     return (
       <Container>
-      {/*<Header />*/}
         <Content style={styles.formContentBody}>
           <ProductHeader product={this.props.found}/>
           <View style={styles.Buttons}>
@@ -85,14 +82,8 @@ class ProductHeader extends React.Component {
         </View>*/}
         <View style={styles.TextContainer}>
           <Text style={styles.Header}>
-            {this.props.product ? this.props.product.name : ''}
+            {this.props.product ? this.props.product.name.toUpperCase() : ''}
           </Text>
-          {/*<Text style={styles.SubHeader}>
-            {this.props.product.brand.toUpperCase()}
-          </Text>
-          <Text style={styles.SubHeader}>
-            {this.props.product.product.toUpperCase()}
-          </Text>*/}
 
         </View>
       </View>
@@ -218,12 +209,13 @@ const styles = StyleSheet.create({
   bodyContainer: {
     flex: 4,
     flexDirection: 'column',
-    padding: 10,
+    padding: 15,
   },
   text: {
     fontFamily: 'Josefin Sans',
     fontWeight: "300",
     fontSize: 18,
+    textAlign: 'justify',
   },
   label: {
     fontFamily: 'Crete Round',
@@ -257,6 +249,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     padding: 15,
     marginBottom: 10,
+    justifyContent: 'center',
   },
   ImageContainer: {
     // flex: 2,
@@ -274,9 +267,9 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   Header: {
-    fontWeight: 'bold',
+    fontWeight: '500',
     fontFamily: 'Josefin Sans',
-    fontSize: 20,
+    fontSize: 26,
   },
   SubHeader: {
     color: 'gray',

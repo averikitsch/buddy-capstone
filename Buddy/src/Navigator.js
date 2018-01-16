@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { TabNavigator, StackNavigator } from 'react-navigation';
 import { Button, Footer, FooterTab } from 'native-base';
 import Icon from 'react-native-vector-icons/Ionicons';
-
+import { colors, sharedStyles } from './assets/Theme';
 import FoundScreen from './Screens/Found';
 import FoundNav from './Screens/StackNavTrack';
 import TrackScreen from './Screens/Track';
@@ -24,10 +24,14 @@ export default (MainScreenNavigator = TabNavigator(
   },
   {
     tabBarPosition: 'bottom',
+    tabBarOptions: {
+      activeTintColor: colors.lightGreen,
+
+    },
     tabBarComponent: props => {
       return (
         <Footer>
-          <FooterTab>
+          <FooterTab style={sharedStyles.headerStyle}>
             <Button
               vertical
               active={props.navigationState.index === 0}

@@ -25,7 +25,7 @@ class ViewInfoScreen extends React.Component {
       return (
         <Container>
 
-        <Content padder style={styles.formContentBody}>
+        <Content style={styles.formContentBody}>
         <ProductHeader product={log} />
         <ProductTrackInfo product={log} />
         </Content>
@@ -79,32 +79,46 @@ class ProductHeader extends React.Component {
 
 class ProductTrackInfo extends React.Component {
   render () {
-    console.log(this.props.product)
     const flavorCards = this.props.product.flavors.map((flavor, i) => {
-      console.log(flavor);
       return <IconButton flavor={flavor} key={i} />
     })
-    console.log(flavorCards)
     return (
       <View>
-      <Text style={styles.label}>
-        {this.props.product.date}
-      </Text>
+        <View style={styles.column}>
+          <Text style={styles.label}>
+            {this.props.product.date}
+          </Text>
+        </View>
+        <View style={styles.row}>
+          <BlockView label="Ranking" value={this.props.product.ranking} />
+          <BlockView label="Quantity" value={this.props.product.quantity} />
+        </View>
+        <View style={styles.row}>
+          <BlockView label="Activity" value={this.props.product.activity} />
+          <BlockView label="Duration" value={this.props.product.duration} />
+        </View>
+        <View style={styles.column}>
+            <Text style={styles.label}>
+              Flavors
+            </Text>
+            <View style={styles.row}>
+              {flavorCards}
+            </View>
+        </View>
+      </View>
+    )
+  }
+}
+
+class BlockView extends React.Component {
+  render() {
+    return (
+      <View style={styles.block}>
         <Text style={styles.label}>
-          Ranking: {this.props.product.ranking}
+          {this.props.label}
         </Text>
-        <Text style={styles.label}>
-          Quantity: {this.props.product.quantity}
-        </Text>
-        <Text style={styles.label}>
-          Flavors:
-        </Text>
-        {flavorCards}
-        <Text style={styles.label}>
-          Activity: {this.props.product.activity}
-        </Text>
-        <Text style={styles.label}>
-          Duration: {this.props.product.duration}
+        <Text>
+          {this.props.value}
         </Text>
       </View>
     )
@@ -121,7 +135,6 @@ class IconButton extends React.Component {
     }
     const color = flavorIcon[this.props.flavor].color;
     const icon = flavorIcon[this.props.flavor].icon;
-    console.log(icon);
       return (
         <View style={styles.iconButton}>
           <View
@@ -292,4 +305,17 @@ const styles = StyleSheet.create({
     width: 80,
     borderRadius:10,
   },
+  row: {
+    flexDirection: 'row',
+    justifyContent: 'space-around'
+  },
+  column: {
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  block: {
+    flexDirection: 'column',
+    alignItems: 'center'
+  }
 });

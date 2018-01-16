@@ -1,3 +1,5 @@
+import { StyleSheet } from "react-native";
+
 const colors = {
   darkBlue: '#313942',
   darkTan: '#c1a370',
@@ -5,16 +7,18 @@ const colors = {
   gray: '#d1d2d4',
   lightTan: '#e6dac0',
   liteTan: '#f2ede9',
+  creme: '#f0ebe7',
   lightGray: '#f7f7f7',
   green: '#5d6353',
   lightGreen: '#a8aea0',
+  grayGreen: '#98a195',
+  mossGreen: '#929963',
+  lightBlue: '#87b3c1',
   earthy: '#5e9675',
   sweet: '#3345a7',
   sour: '#fee94e',
   spicy: '#cb3f30',
 };
-
-
 
 const flavorColors = {
   Earthy: colors.earthy,
@@ -67,7 +71,30 @@ const flavorColors = {
   Violet: colors.sweet,
 }
 
+const sharedStyles = StyleSheet.create({
+  headerStyle: {
+    backgroundColor: colors.darkGray,
+    // borderBottomWidth: 2,
+    // borderBottomColor: colors.darkGray,
+  },
+  headerTitleStyle: {
+    fontFamily: 'Josefin Sans',
+    fontSize: 24,
+    color: colors.lightGreen,
+    fontWeight: 'bold',
+  },
+  headerBack: {
+    color: colors.grayGreen,
+    fontFamily: 'Josefin Sans',
+    fontWeight: '300',
+  },
+  headerBackButton: {
+    color: '#fff',
+  }
+})
+
 export {
   colors,
   flavorColors,
+  sharedStyles,
 };

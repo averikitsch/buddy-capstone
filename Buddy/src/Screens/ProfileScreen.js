@@ -9,14 +9,19 @@ import FlavorCard from '../Components/ProfileCards/FlavorCard';
 import TypeCard from '../Components/ProfileCards/TypeCard';
 import ProductCard from '../Components/ProfileCards/ProductCard';
 import UsageCard from '../Components/ProfileCards/UsageCard';
-
+import { sharedStyles } from '../assets/Theme'
 
 export default class ProfileScreen extends React.Component {
+  static navigationOptions = ({ navigation }) => ({
+    title: 'PROFILE',
+    headerStyle: sharedStyles.headerStyle,
+    headerTitleStyle: sharedStyles.headerTitleStyle,
+  });
   render() {
     // const { navigate } = this.props.navigation;
+    // <BuddyHeader name="Profile" />
     return (
       <Container>
-        <BuddyHeader name="Profile" />
         <View style={styles.ProfileContainer}>
           <View style={styles.ProfileHeaderContainer}>
             <ProfileLinks navigation={this.props.navigation}/>
