@@ -28,11 +28,10 @@ class ViewInfoScreen extends React.Component {
       const log = convert(this.props.log)
       return (
         <Container>
-
-        <Content style={styles.formContentBody}>
-        <ProductHeader product={log} />
-        <ProductTrackInfo product={log} />
-        </Content>
+          <Content style={styles.formContentBody}>
+            <ProductHeader product={log} />
+            <ProductTrackInfo product={log} />
+          </Content>
         </Container>
       )
     }
@@ -40,7 +39,8 @@ class ViewInfoScreen extends React.Component {
       <Container>
 
       <Content padder style={styles.formContentBody}>
-      <Text> No Selected Log
+      <Text>
+        No Selected Log
       </Text>
       </Content>
       </Container>
@@ -68,13 +68,13 @@ class ProductHeader extends React.Component {
           <Text style={styles.Header}>
             {this.props.product.name.toUpperCase()}
           </Text>
-          <Text style={styles.SubHeader}>
-            {this.props.product.brand ? this.props.product.brand.toUpperCase() : ''}
-          </Text>
-          <Text style={styles.SubHeader}>
-            {this.props.product.product.toUpperCase()}
-          </Text>
-
+          <View style={styles.row}>
+            <Text style={styles.SubHeader}>
+              {this.props.product.brand ? this.props.product.brand.toUpperCase()+' ' : ''}
+              <Icon2 name={"cannabis"} style={{color: "gray"}} size={20} />
+              {' ' + this.props.product.product.toUpperCase()}
+            </Text>
+          </View>
         </View>
       </View>
     )
@@ -93,6 +93,7 @@ class ProductTrackInfo extends React.Component {
             {this.props.product.date}
           </Text>
         </View>
+
         <View style={styles.row}>
           <BlockView label="Ranking" value={this.props.product.ranking} />
           <BlockView label="Quantity" value={this.props.product.quantity} />
@@ -116,14 +117,25 @@ class ProductTrackInfo extends React.Component {
 
 class BlockView extends React.Component {
   render() {
+    let value = <Text style={styles.infoText}> {this.props.value} </Text>;
+    if (this.props.label === "Activity") {
+      value = <Icon name={this.props.value} size={30} color={colors.darkGray}/>;
+    }
+    // else if (this.props.label === "Ranking") {
+    //   times = new Array(this.props.value)
+    //   value = times.map((k, i)=>{
+    //     return <Icon2 name="cannabis" key={i} />
+    //   })
+    //   console.log(times)
+    // }
     return (
       <View style={styles.block}>
         <Text style={styles.label}>
           {this.props.label}
         </Text>
-        <Text>
-          {this.props.value}
-        </Text>
+
+          {value}
+
       </View>
     )
   }
@@ -158,11 +170,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: colors.liteTan,
   },
-  bodyContainer: {
-    flex: 4,
-    flexDirection: 'column',
-    padding: 10,
-  },
   text: {
     fontFamily: 'Josefin Sans',
     fontWeight: "300",
@@ -170,9 +177,11 @@ const styles = StyleSheet.create({
   },
   label: {
     fontFamily: 'Crete Round',
-    fontSize: 18,
+    fontSize: 20,
     fontWeight: 'bold',
     color: colors.darkGray,
+    marginBottom: 10,
+    // textDecorationLine: 'underline',
   },
   detailContainer: {
     flex: 1,
@@ -181,45 +190,25 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     // justifyContent: 'space-around'
   },
-  type: {
-    flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'flex-end',
-    alignItems: 'center',
-  },
-  cross: {
-    flex: 3,
-    borderLeftWidth: 3,
-    borderLeftColor: colors.darkGray,
-    paddingLeft: 20,
-  },
   HeaderContainer: {
     flex: 1,
     borderBottomWidth: 2,
     borderBottomColor: colors.darkGray,
     flexDirection: 'row',
     padding: 15,
+    marginTop: 5,
     marginBottom: 10,
-  },
-  ImageContainer: {
-    // flex: 2,
-    flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  image: {
-    width: Dimensions.get('window').width,
-    height: 60,
-    overflow: 'hidden',
   },
   TextContainer: {
     flexDirection: 'column',
     justifyContent: 'space-between',
   },
   Header: {
-    fontWeight: 'bold',
+    fontWeight: '500',
     fontFamily: 'Josefin Sans',
-    fontSize: 20,
+    fontSize: 26,
   },
   SubHeader: {
     color: 'gray',
@@ -320,6 +309,18 @@ const styles = StyleSheet.create({
   },
   block: {
     flexDirection: 'column',
-    alignItems: 'center'
+    alignItems: 'center',
+    padding: 10,
+    margin: 10,
+    // width: Dimensions.get('window').width/2,
+    // height: Dimensions.get('window').width/2,
+    // borderWidth: 1,
+    // borderColor: colors.darkGray,
+  },
+  infoText: {
+    fontFamily: 'Josefin Sans',
+    fontWeight: '300',
+    color: colors.darkGray,
+    fontSize: 20,
   }
 });

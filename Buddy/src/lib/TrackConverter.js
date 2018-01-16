@@ -1,3 +1,4 @@
+import Icon from 'react-native-vector-icons/Ionicons';
 
 export const product_props = {
   1: 'Flower',
@@ -50,11 +51,11 @@ export const duration_props = {
 }
 
 const activity_props = {
-  0: 'bed',
-  1: 'couch',
-  2: 'neutral',
-  3: 'up',
-  4: 'party',
+  0: "ios-battery-dead",
+  1: "ios-cloudy-night",
+  2: "ios-battery-charging",
+  3: "md-walk",
+  4: "ios-cafe",
 }
 
 export const duration_map = Object.entries(duration_props).map((product) => {
