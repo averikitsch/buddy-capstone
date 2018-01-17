@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { ScrollView, Text, TextInput, View, Button } from 'react-native';
 import { connect } from 'react-redux';
 import Amplify, { Auth } from 'aws-amplify-react-native';
@@ -10,7 +10,7 @@ import { colors, sharedStyles } from '../assets/Theme';
 import getTheme from '../../native-base-theme/components';
 import platform from '../../native-base-theme/variables/platform';
 
-class Login extends Component {
+class Login extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
@@ -87,4 +87,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(Login)

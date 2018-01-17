@@ -7,4 +7,9 @@ import TabNavigator from './TabNavigator';
 export default StackTabNav = StackNavigator({
   Login: {screen: LoginScreen },
   Tabs: { screen: TabNavigator },
+},{
+  initialRouteName: 'Login',
+  navigationOptions: {
+    header: null,
+  }
 });

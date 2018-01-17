@@ -4,10 +4,10 @@ import { TabNavigator, StackNavigator } from 'react-navigation';
 import { Content, Button, Footer, FooterTab, StyleProvider } from 'native-base';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { colors, sharedStyles } from '../assets/Theme';
+import LoginScreen from './LoginScreen';
 import FoundScreen from './Found';
 import FoundNav from './StackNavTrack';
 import TrackScreen from './Track';
-// import LoginScreen from './Login';
 import ExploreScreen from './ExploreScreen';
 import SearchScreen from './SearchScreen';
 import ProfileScreen from './ProfileScreen';
@@ -20,9 +20,9 @@ export default (MainScreenNavigator = TabNavigator(
     Explore: { screen: ViewNav },
     Search: { screen:  FoundNav }, //FoundNav
     Profile: { screen: ProfileScreen },
-    // Login: { screen: FoundNav },
   },
   {
+    initialRouteName: 'Explore',
     tabBarPosition: 'bottom',
     tabBarComponent: props => {
       return (
