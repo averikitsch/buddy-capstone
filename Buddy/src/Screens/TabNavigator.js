@@ -4,7 +4,6 @@ import { TabNavigator, StackNavigator } from 'react-navigation';
 import { Content, Button, Footer, FooterTab, StyleProvider } from 'native-base';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { colors, sharedStyles } from '../assets/Theme';
-import LoginScreen from './LoginScreen';
 import FoundScreen from './Found';
 import FoundNav from './StackNavTrack';
 import TrackScreen from './Track';

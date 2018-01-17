@@ -1,5 +1,6 @@
 import React from 'react';
 import { ScrollView, Text, TextInput, View, Button } from 'react-native';
+import { NavigationActions } from 'react-navigation';
 import { connect } from 'react-redux';
 import Amplify, { Auth } from 'aws-amplify-react-native';
 import aws_exports from '../../aws-exports';
@@ -28,7 +29,13 @@ class Login extends React.Component {
       Auth.signIn(this.state.username, this.state.password)
         .then((user) => {
           this.props.onLogin(this.state.username, this.state.password);
-          this.props.navigation.navigate('Tabs');
+          const resetAction = NavigationActions.reset({
+            index: 0,
+            actions: [
+              NavigationActions.navigate({ routeName: 'Tabs' }),
+            ],
+          });
+          this.props.navigation.dispatch(resetAction);
         })
         .catch(err => console.log(err));
     } else {
