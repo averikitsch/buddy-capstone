@@ -10,14 +10,14 @@ import FlavorCard from '../Components/ProfileCards/FlavorCard';
 import TypeCard from '../Components/ProfileCards/TypeCard';
 import ProductCard from '../Components/ProfileCards/ProductCard';
 import UsageCard from '../Components/ProfileCards/UsageCard';
-import { sharedStyles } from '../assets/Theme'
+import { colors, sharedStyles } from '../assets/Theme'
 
-export default class ProfileScreen extends React.Component {
-  static navigationOptions = ({ navigation }) => ({
-    title: 'PROFILE',
-    headerStyle: sharedStyles.headerStyle,
-    headerTitleStyle: sharedStyles.headerTitleStyle,
-  });
+class ProfileScreen extends React.Component {
+  // static navigationOptions = ({ navigation }) => ({
+  //   title: 'PROFILE',
+  //   headerStyle: sharedStyles.headerStyle,
+  //   headerTitleStyle: sharedStyles.headerTitleStyle,
+  // });
   render() {
     // const { navigate } = this.props.navigation;
     // <BuddyHeader name="Profile" />
@@ -26,7 +26,10 @@ export default class ProfileScreen extends React.Component {
       <Container>
         <View style={styles.ProfileContainer}>
           <View style={styles.ProfileHeaderContainer}>
-            <ProfileLinks navigation={this.props.navigation}/>
+            <ProfileLinks
+              navigation={this.props.navigation}
+              name={this.props.name}
+            />
           </View>
           <View style={styles.TabContainer}>
             <TabsScrollable />
@@ -38,6 +41,14 @@ export default class ProfileScreen extends React.Component {
   }
 };
 
+function mapStateToProps (store) {
+  return {
+    name: store.user.username
+  }
+}
+
+export default connect(mapStateToProps)(ProfileScreen)
+
 class ProfileLinks extends React.Component {
   render() {
     const { navigate } = this.props.navigation;
@@ -48,7 +59,7 @@ class ProfileLinks extends React.Component {
           onPress={() => navigate("Logs")} />*/}
         <View style={styles.ProfileHeader}>
           <Thumbnail large source={require('../assets/images/temp.jpeg')} />
-          <Title style={styles.ProfileName}>Name</Title>
+          <Title style={styles.ProfileName}>{this.props.name}</Title>
         </View>
           {/*<Icon name="ios-cog" size={40} />*/}
         </View>
@@ -92,8 +103,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   ProfileName: {
-    fontWeight: 'bold',
     paddingTop: 10,
+    fontFamily: 'Josefin Sans',
+    fontSize: 24,
+    color: colors.green,
+    fontWeight: 'bold',
   },
   ProfileLinkContainer: {
     flexDirection: 'row',
@@ -103,6 +117,7 @@ const styles = StyleSheet.create({
   },
   ProfileHeaderContainer: {
     flex: 2,
+    backgroundColor: colors.lightGreen,
   },
   TabContainer: {
     flex: 4,

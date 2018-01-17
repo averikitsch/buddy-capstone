@@ -103,10 +103,6 @@ class SearchBar extends React.Component {
     this.handleTextChange = this.handleTextChange.bind(this);
   }
   handleTextChange(text) {
-    // console.log(text);
-    // this.setState({
-    //   text: text
-    // })
     this.props.onFilterTextChange(text);
   }
   handleEnter(e) {
@@ -187,8 +183,8 @@ class ListStrains extends React.Component {
     // console.log(rows)
     rowItems = rows.map((strain, i) => {
       return (
-        <ListItem style={{backgroundColor: 'white'}} key={i} onPress={() => this.handleClick(strain)}>
-          <Text>{strain}</Text>
+        <ListItem style={styles.listItem} key={i} onPress={() => this.handleClick(strain)}>
+          <Text style={styles.listItemText}>{strain}</Text>
         </ListItem>
       )
     })
@@ -200,7 +196,16 @@ class ListStrains extends React.Component {
   }
 }
 
-const styles2 = StyleSheet.create({
+const styles = StyleSheet.create({
+  listItemText: {
+    fontFamily: 'Josefin Sans',
+    fontWeight: '300',
+    fontSize: 18,
+  },
+  listItem: {
+    marginLeft: 0,
+    paddingLeft: 10,
+  },
   search: {
     flex: 1,
     flexDirection: 'column',

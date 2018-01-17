@@ -83,30 +83,3 @@ function mapDispatchToProps (dispatch) {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(LogList)
-
-
-const styles = StyleSheet.create({
-  HeaderContainer: {
-    flex: 1,
-    flexDirection: 'row',
-    padding: 3,
-  },
-  ImageContainer: {
-    flex: 2,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  TextContainer: {
-    flex: 4,
-    flexDirection: 'column',
-    justifyContent: 'space-around',
-    alignSelf: 'flex-start',
-  },
-  Header: {
-    fontWeight: 'bold',
-  },
-  SubHeader: {
-    color: 'gray',
-  },
-});

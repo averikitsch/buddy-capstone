@@ -1,5 +1,5 @@
 import React from 'react';
-import {  } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { Container, Content, Button, Segment, Header, Text, StyleProvider } from 'native-base';
 import { connect } from 'react-redux';
 import LogList from '../Components/LogList';
@@ -64,7 +64,7 @@ export default class LogScreen extends React.Component {
               </Button>
             </Segment>
           </Header>
-          <Content padder>
+          <Content style={styles.container}>
             {page}
           </Content>
         </Container>
@@ -72,3 +72,9 @@ export default class LogScreen extends React.Component {
       );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: '#e1e4df',
+  }
+});
