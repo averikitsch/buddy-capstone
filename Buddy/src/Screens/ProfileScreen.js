@@ -1,7 +1,8 @@
 import React from 'react';
 import { AppRegistry, View, StatusBar, Image, StyleSheet } from 'react-native';
-import { Container, Header, Tab, Tabs, Text, ScrollableTab, Thumbnail, Title, StyleProvider } from 'native-base';
+import { Container, Header, Tab, Tabs, Text, ScrollableTab, Thumbnail, Title, StyleProvider, Button, Right } from 'native-base';
 import { connect } from 'react-redux';
+import { Auth } from 'aws-amplify';
 import getTheme from '../../native-base-theme/components';
 import platform from '../../native-base-theme/variables/platform';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -18,12 +19,32 @@ class ProfileScreen extends React.Component {
   //   headerStyle: sharedStyles.headerStyle,
   //   headerTitleStyle: sharedStyles.headerTitleStyle,
   // });
+  constructor() {
+    super();
+    this.logOut = this.logOut.bind(this);
+  }
+  logOut (e) {
+    e.preventDefault();
+    Auth.signOut()
+      .then((data) => {
+        console.log(data)
+        this.props.navigation.navigate('Explore');
+      })
+      .catch(err => console.log(err));
+  }
   render() {
     // const { navigate } = this.props.navigation;
     // <BuddyHeader name="Profile" />
     return (
       <StyleProvider style={getTheme(platform)}>
       <Container>
+        <Header>
+        <Right>
+          <Button small rounded dark onPress={this.logOut}>
+            <Text>logout</Text>
+          </Button>
+        </Right>
+        </Header>
         <View style={styles.ProfileContainer}>
           <View style={styles.ProfileHeaderContainer}>
             <ProfileLinks
@@ -59,7 +80,10 @@ class ProfileLinks extends React.Component {
           onPress={() => navigate("Logs")} />*/}
         <View style={styles.ProfileHeader}>
           <Thumbnail large source={require('../assets/images/temp.jpeg')} />
-          <Title style={styles.ProfileName}>{this.props.name}</Title>
+          <Title style={styles.ProfileName}>
+            {this.props.name}
+          </Title>
+
         </View>
           {/*<Icon name="ios-cog" size={40} />*/}
         </View>
