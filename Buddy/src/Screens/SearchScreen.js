@@ -151,6 +151,7 @@ class SearchBar extends React.Component {
             <Input placeholder="Search"
               onChangeText={this.handleTextChange}
               value={this.props.filterText}
+              style={styles.listItemText}
             />
             <TouchableHighlight onPress={this.handleEnter}>
               <Icon name="ios-search" />

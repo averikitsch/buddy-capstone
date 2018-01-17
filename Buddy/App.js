@@ -15,7 +15,6 @@ import axios from 'axios';
 import Loading from './src/Screens/Loading';
 import StackLoginNav from './src/Screens/StackLoginNav';
 import Navigator from './src/Screens/TabNavigator';
-import Login from './src/Screens/Login';
 // import {connect} from 'react-redux';
 import { fetchStrains } from './src/Actions/index';
 

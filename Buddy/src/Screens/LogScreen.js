@@ -75,6 +75,6 @@ export default class LogScreen extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#e1e4df',
+    backgroundColor: colors.liteTan,
   }
 });

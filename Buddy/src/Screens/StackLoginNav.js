@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { StackNavigator } from 'react-navigation';
-import LoginScreen from './Login';
+import LoginScreen from './LoginScreen';
 import TabNavigator from './TabNavigator';
 
 
