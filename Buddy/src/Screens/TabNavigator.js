@@ -3,26 +3,24 @@ import { StyleSheet, Text, View } from 'react-native';
 import { TabNavigator, StackNavigator } from 'react-navigation';
 import { Content, Button, Footer, FooterTab, StyleProvider } from 'native-base';
 import Icon from 'react-native-vector-icons/Ionicons';
-import { colors, sharedStyles } from './assets/Theme';
-import FoundScreen from './Screens/Found';
-import FoundNav from './Screens/StackNavTrack';
-import TrackScreen from './Screens/Track';
-// import LogList from './Screens/LogList';
-import ExploreScreen from './Screens/ExploreScreen';
-import SearchScreen from './Screens/SearchScreen';
-import ProfileScreen from './Screens/ProfileScreen';
-import ViewNav from './Screens/StackNavView';
-import getTheme from '../native-base-theme/components';
-import platform from '../native-base-theme/variables/platform';
+import { colors, sharedStyles } from '../assets/Theme';
+import FoundScreen from './Found';
+import FoundNav from './StackNavTrack';
+import TrackScreen from './Track';
+// import LoginScreen from './Login';
+import ExploreScreen from './ExploreScreen';
+import SearchScreen from './SearchScreen';
+import ProfileScreen from './ProfileScreen';
+import ViewNav from './StackNavView';
+import getTheme from '../../native-base-theme/components';
+import platform from '../../native-base-theme/variables/platform';
 
 export default (MainScreenNavigator = TabNavigator(
   {
     Explore: { screen: ViewNav },
     Search: { screen:  FoundNav }, //FoundNav
     Profile: { screen: ProfileScreen },
-    // Track: { screen: TrackScreen },
-    // Logs: { screen: LogList },
-    //edit profile
+    // Login: { screen: FoundNav },
   },
   {
     tabBarPosition: 'bottom',

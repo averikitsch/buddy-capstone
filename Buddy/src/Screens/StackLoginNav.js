@@ -1,0 +1,10 @@
+import React, { Component } from 'react';
+import { StackNavigator } from 'react-navigation';
+import LoginScreen from './Login';
+import TabNavigator from './TabNavigator';
+
+
+export default StackTabNav = StackNavigator({
+  Login: {screen: LoginScreen },
+  Tabs: { screen: TabNavigator },
+});

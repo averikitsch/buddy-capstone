@@ -9,7 +9,8 @@ import { TabNavigator, StackNavigator } from 'react-navigation';
 import { Provider } from 'react-redux';
 import store from './src/store';
 import axios from 'axios';
-import Navigator from './src/Navigator';
+import StackLoginNav from './src/Screens/StackLoginNav'
+import Navigator from './src/Screens/TabNavigator';
 // import {connect} from 'react-redux';
 import { fetchStrains } from './src/Actions/index';
 
@@ -28,10 +29,10 @@ class Buddy extends React.Component {
   render() {
     return (
       <Provider store={store}>
-        <Navigator />
+        <StackLoginNav />
       </Provider>
     );
   }
 }
 
-export default withAuthenticator(Buddy);
+export default Buddy;
