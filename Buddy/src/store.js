@@ -1,8 +1,15 @@
-import { createStore } from 'redux';
+import { createStore,  applyMiddleware, compose } from 'redux';
 import reducer from './Reducers/';
-import { addLog } from './Actions/index'
+import thunk from 'redux-thunk';
+import { autoRehydrate } from 'redux-persist';
 
-const store = createStore(reducer);
+const middleware = applyMiddleware(thunk)
+
+const store = createStore(
+  reducer,
+  {},
+  compose(middleware, autoRehydrate())
+);
 
 store.subscribe(() => {
   console.log("store changed", store.getState())

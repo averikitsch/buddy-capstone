@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView, Text, TextInput, View, Button } from 'react-native';
+import { ScrollView, Text, TextInput, View, Button, StyleSheet } from 'react-native';
 import { NavigationActions } from 'react-navigation';
 import { connect } from 'react-redux';
 import Amplify, { Auth } from 'aws-amplify-react-native';
@@ -16,8 +16,8 @@ class Login extends React.Component {
     super(props);
     this.state = {
         route: 'Login',
-        username: '',
-        password: '',
+        username: 'averik',
+        password: 'Momlis33!',
         email: '',
         error: null,
     };
@@ -54,7 +54,7 @@ class Login extends React.Component {
   render () {
     let alt = (this.state.route === 'Login') ? 'SignUp' : 'Login';
     return (
-        <ScrollView style={{padding: 20}}>
+        <View style={styles.container}>
             <Text style={{fontSize: 27}}>{this.state.route}</Text>
             <TextInput
                 placeholder='Username'
@@ -75,7 +75,7 @@ class Login extends React.Component {
             <Button onPress={this.userLogin} title={this.state.route}/>
             <Text style={{fontSize: 16, color: 'blue'}} onPress={(e) => this.toggleRoute(e)}>{alt}</Text>
             <Text>{this.state.error}</Text>
-        </ScrollView>
+        </View>
     );
   }
 }
@@ -95,3 +95,12 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login)
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+  }
+});
