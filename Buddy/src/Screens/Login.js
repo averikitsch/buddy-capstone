@@ -25,18 +25,26 @@ class Login extends React.Component {
     e.preventDefault();
     Auth.signIn(this.state.username, this.state.password)
       .then((user) => {
+        console.log(user)
         this.props.onLogin(this.state.username, this.state.password);
-        const resetAction = NavigationActions.reset({
-          index: 0,
-          actions: [
-            NavigationActions.navigate({ routeName: 'Tabs' }),
-          ],
-        });
-        this.props.navigation.dispatch(resetAction);
+        this.navigate2tabs();
       })
       .catch(err => console.log(err));
   }
+  navigate2tabs () {
+    const resetAction = NavigationActions.reset({
+      index: 0,
+      actions: [
+        NavigationActions.navigate({ routeName: 'Tabs' }),
+      ],
+    });
+    this.props.navigation.dispatch(resetAction);
+  }
   render () {
+    if (this.props.isLoggedIn) {
+      console.log('logged in')
+      this.navigate2tabs();
+    }
     return (
         <View style={styles.container}>
             <Text>Login Please</Text>
