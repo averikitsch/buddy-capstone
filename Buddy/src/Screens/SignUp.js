@@ -27,7 +27,12 @@ class SignUp extends React.Component {
   userSignUp (e) {
     e.preventDefault();
     Auth.signUp(this.state.username, this.state.password, this.state.email)
-      .then((data) => console.log(data))
+      .then((data) => {
+        console.log(data)
+        this.setState({
+          confirm: true,
+        })
+      })
       .catch(err => console.log(err));
   }
   userConfirm(e) {
@@ -39,7 +44,7 @@ class SignUp extends React.Component {
   render () {
     let confirmButton = <Button onPress={this.userConfirm} title="Confirm User!"/>;
     if (this.state.confirm) {
-      confirmButton = <ConfirmUser name={this.state.username}/>
+      confirmButton = <ConfirmUser name={this.state.username} handleConfirm={this.props.onConfirm}/>
     }
     return (
         <View style={styles.container}>
@@ -91,7 +96,7 @@ class ConfirmUser extends React.Component {
     Auth.confirmSignUp(this.state.username, this.state.code.toString())
     .then((data) => {
       console.log(data)
-      this.props.onConfirm(e);
+      this.props.handleConfirm(e);
     })
     .catch(err => console.log(err));
   }

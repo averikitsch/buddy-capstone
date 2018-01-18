@@ -1,6 +1,9 @@
 import React from 'react';
 import { AppRegistry, View, StatusBar, Image, StyleSheet } from 'react-native';
-import { Container, Header, Tab, Tabs, Text, ScrollableTab, Thumbnail, Title, StyleProvider } from 'native-base';
+import { Container, Header, Tab, Tabs, Text, ScrollableTab, Thumbnail, Title, StyleProvider, Right, Button } from 'native-base';
+import Amplify, { Auth } from 'aws-amplify-react-native';
+import aws_exports from '../../aws-exports';
+Amplify.configure(aws_exports);
 import { connect } from 'react-redux';
 import getTheme from '../../native-base-theme/components';
 import platform from '../../native-base-theme/variables/platform';
@@ -11,19 +14,39 @@ import TypeCard from '../Components/ProfileCards/TypeCard';
 import ProductCard from '../Components/ProfileCards/ProductCard';
 import UsageCard from '../Components/ProfileCards/UsageCard';
 import { colors, sharedStyles } from '../assets/Theme'
-
+import { logout } from '../Actions/index'
 class ProfileScreen extends React.Component {
   // static navigationOptions = ({ navigation }) => ({
   //   title: 'PROFILE',
   //   headerStyle: sharedStyles.headerStyle,
   //   headerTitleStyle: sharedStyles.headerTitleStyle,
   // });
+  logout(e) {
+    e.preventDefault();
+    console.log('logout');
+    Auth.signOut()
+    .then((data) => {
+      console.log(data)
+      this.props.onLogOut();
+      // navigate to login
+    })
+    .catch(err => console.log(err));
+
+  }
   render() {
     // const { navigate } = this.props.navigation;
     // <BuddyHeader name="Profile" />
     return (
       <StyleProvider style={getTheme(platform)}>
       <Container>
+        <Header>
+          <Right>
+            <Button small rounded dark
+              onPress={this.logout.bind(this)}>
+              <Text>logout</Text>
+            </Button>
+          </Right>
+        </Header>
         <View style={styles.ProfileContainer}>
           <View style={styles.ProfileHeaderContainer}>
             <ProfileLinks
@@ -47,7 +70,13 @@ function mapStateToProps (store) {
   }
 }
 
-export default connect(mapStateToProps)(ProfileScreen)
+function mapDispatchToProps (dispatch) {
+  return {
+    onLogOut: () => dispatch(logout()),
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProfileScreen)
 
 class ProfileLinks extends React.Component {
   render() {
