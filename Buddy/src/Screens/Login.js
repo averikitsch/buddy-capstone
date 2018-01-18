@@ -29,32 +29,32 @@ class Login extends React.Component {
         const apiName = 'UsersCRUD';
         const userId = user.pool.clientId;
         console.log(userId)
-        let path = `/Users/${userId}`;
+        let path = `/Users`;
         API.get(apiName, path)
           .then((response) => {
             console.log(response)
             this.props.onLogin(this.state.username, userId, response );
-            this.navigate2tabs();
+            // this.navigate2tabs();
           })
           .catch((err) => {
             console.log('api error', err)
-            let myInit ={
-              body:{ UserId: userId }
-            }
-            let path = `/Users/`;
-            API.post(apiName, path, myInit)
-              .then((response) => {
-                console.log('post', response);
-                this.props.onLogin(this.state.username, userId, {logs: [], wishlist: []} );
-                this.navigate2tabs();
-              })
-              .catch((err) => {
-                console.log('err', err)
-              })
+            // let myInit ={
+            //   body:{ UserId: userId }
+            // }
+            // let path = `/Users/`;
+            // API.post(apiName, path, myInit)
+            //   .then((response) => {
+            //     console.log('post', response);
+            //     this.props.onLogin(this.state.username, userId, {logs: [], wishlist: []} );
+            //     this.navigate2tabs();
+            //   })
+            //   .catch((err) => {
+            //     console.log('err', err)
+            //   })
             // this.props.onSignUp(this.state.username, userId );
-            // this.navigate2tabs();
           })
 
+          this.navigate2tabs();
       })
       .catch(err => console.log(err));
   }

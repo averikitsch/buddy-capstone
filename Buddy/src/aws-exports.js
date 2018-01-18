@@ -18,7 +18,7 @@ const awsmobile = {
     'aws_content_delivery_cloudfront_domain': 'dgqe5unb9vy9s.cloudfront.net',
     'aws_dynamodb': 'enable',
     'aws_dynamodb_all_tables_region': 'us-west-1',
-    'aws_dynamodb_table_schemas': [{"tableName":"buddy-mobilehub-1257947803-Users","attributes":[{"name":"userId","type":"S"},{"name":"LogList","type":"L"},{"name":"WishList","type":"L"}],"indexes":[],"region":"us-west-1","hashKey":"userId"}],
+    'aws_dynamodb_table_schemas': [{"tableName":"buddy-mobilehub-1257947803-Users","attributes":[{"name":"userId","type":"S"},{"name":"LogList","type":"L"},{"name":"WishList","type":"L"}],"indexes":[],"region":"us-west-1","hashKey":"userId"},{"tableName":"buddy-mobilehub-1257947803-Logs","attributes":[{"name":"userId","type":"S"},{"name":"LogList","type":"L"},{"name":"WishList","type":"L"}],"indexes":[],"region":"us-west-1","hashKey":"userId"}],
     'aws_mobile_analytics_app_id': '6343581b8237443a829901b82d540401',
     'aws_mobile_analytics_app_region': 'us-east-1',
     'aws_project_id': '7bb13deb-1519-4d44-870e-280cb5928424',

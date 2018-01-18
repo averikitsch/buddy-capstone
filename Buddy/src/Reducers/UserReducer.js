@@ -22,6 +22,7 @@ export default function userReducer (state={
         isLoggedIn: false,
         username: '',
         userId: '',
+        password: '',
       }
       break;
     }

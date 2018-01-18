@@ -84,17 +84,9 @@ export const login = (username, userId, response) => {
 };
 
 export const logout = () => {
-  path += `${userId}`;
-  let myInit = {
-    body: {},
-  }
-
-  API.put(apiName, path, myInit).then(response => {
-      // Add your code here
-      return {
-        type: 'LOGOUT'
-      };
-  });
+  return {
+    type: 'LOGOUT'
+  };
 };
 
 export const signup = (userId) => {

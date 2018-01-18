@@ -1,10 +1,12 @@
 import React from 'react';
 import { AppRegistry, View, StatusBar, Image, StyleSheet } from 'react-native';
 import { Container, Header, Tab, Tabs, Text, ScrollableTab, Thumbnail, Title, StyleProvider, Right, Button } from 'native-base';
-import Amplify, { Auth } from 'aws-amplify-react-native';
+import { NavigationActions } from 'react-navigation';
+import Amplify, { Auth, API } from 'aws-amplify-react-native';
 import aws_exports from '../aws-exports';
 Amplify.configure(aws_exports);
 import { connect } from 'react-redux';
+import {  purgeStoredState } from 'redux-persist';
 import getTheme from '../../native-base-theme/components';
 import platform from '../../native-base-theme/variables/platform';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -15,6 +17,8 @@ import ProductCard from '../Components/ProfileCards/ProductCard';
 import UsageCard from '../Components/ProfileCards/UsageCard';
 import { colors, sharedStyles } from '../assets/Theme'
 import { logout } from '../Actions/index'
+import { AsyncStorage } from 'react-native'
+
 class ProfileScreen extends React.Component {
   // static navigationOptions = ({ navigation }) => ({
   //   title: 'PROFILE',
@@ -33,6 +37,8 @@ class ProfileScreen extends React.Component {
             <ProfileLinks
               navigation={this.props.navigation}
               name={this.props.name}
+              userId={this.props.userId}
+              data={{LogList: this.props.logs, WishList: this.props.wishlist}}
               dispatch={this.props.onLogOut}
             />
           </View>
@@ -48,7 +54,10 @@ class ProfileScreen extends React.Component {
 
 function mapStateToProps (store) {
   return {
-    name: store.user.username
+    name: store.user.username,
+    userId: store.user.userId,
+    logs: store.logs.logs,
+    wishlist: store.wishlist.wishlist,
   }
 }
 
@@ -63,20 +72,37 @@ export default connect(mapStateToProps, mapDispatchToProps)(ProfileScreen)
 class ProfileLinks extends React.Component {
   logout(e) {
     e.preventDefault();
-    console.log('logout');
-    Auth.signOut()
-    .then((data) => {
-      console.log(data)
-      this.props.dispatch();
-      const resetAction = NavigationActions.reset({
-        index: 0,
-        actions: [
-          NavigationActions.navigate({ routeName: 'Login' }),
-        ],
-      });
-      this.props.navigation.dispatch(resetAction);
-    })
-    .catch(err => console.log(err));
+    // this.props.dispatch();
+    const apiName = 'UsersCRUD';
+    let path = `/Users/`;
+    const myInit = {
+      body: {LogList: this.props.data.LogList,
+      WishList: this.props.data.WishList,}
+    }
+    console.log('logout', myInit);
+    API.post(apiName, path, myInit)
+      .then((response) => {
+        console.log('put', response);
+        // purgeStoredState({storage: AsyncStorage}).then(() => {
+        //     console.log('purge completed')
+        // }).catch(() => {
+        //     console.log('purge of someReducer failed')
+        // })
+    //     Auth.signOut()
+    //       .then((data) => {
+    // //         console.log(data)
+            this.props.dispatch();
+            const resetAction = NavigationActions.reset({
+              index: 0,
+              actions: [
+                NavigationActions.navigate({ routeName: 'Login' }),
+              ],
+            });
+            this.props.navigation.dispatch(resetAction);
+          // })
+    //       .catch(err => console.log('logout err', err));
+      })
+      .catch(err => console.log('err put', err))
   }
   render() {
     const { navigate } = this.props.navigation;
