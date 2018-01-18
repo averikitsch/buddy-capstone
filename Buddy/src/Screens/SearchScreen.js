@@ -46,7 +46,7 @@ class SearchScreen extends React.Component {
           dispatch={this.props.findItem}
           navigation={this.props.navigation}
         />
-        <Content>
+        <Content style={styles.content}>
           <ListStrains
             strains={this.props.list}
             filterText={this.state.filterText}
@@ -146,9 +146,9 @@ class SearchBar extends React.Component {
   }
   render() {
     return (
-        <Header searchBar>
-          <Item>
-            <Input placeholder="Search"
+        <Header searchBar style={styles.searchBar}>
+          <Item style={styles.searchBox}>
+            <Input placeholder=" Search"
               onChangeText={this.handleTextChange}
               value={this.props.filterText}
               style={styles.listItemText}
@@ -206,11 +206,23 @@ const styles = StyleSheet.create({
   listItem: {
     marginLeft: 0,
     paddingLeft: 10,
+    backgroundColor: colors.liteTan,
+  },
+  content: {
+    backgroundColor: colors.liteTan,
   },
   search: {
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'flex-start',
+  },
+  searchBar: {
+    backgroundColor: colors.liteTan,
+    margin: 0,
+    paddingTop: 0,
+  },
+  searchBox: {
+    borderRadius: 20,
   },
   camera: {
     flex: 6,
