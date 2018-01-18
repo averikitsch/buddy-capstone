@@ -2,7 +2,7 @@ import React from 'react';
 import { AppRegistry, View, StatusBar, Image, StyleSheet } from 'react-native';
 import { Container, Header, Tab, Tabs, Text, ScrollableTab, Thumbnail, Title, StyleProvider, Right, Button } from 'native-base';
 import Amplify, { Auth } from 'aws-amplify-react-native';
-import aws_exports from '../../aws-exports';
+import aws_exports from '../aws-exports';
 Amplify.configure(aws_exports);
 import { connect } from 'react-redux';
 import getTheme from '../../native-base-theme/components';

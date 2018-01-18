@@ -2,10 +2,10 @@ import React from 'react';
 import { ScrollView, Text, TextInput, View, Button, StyleSheet } from 'react-native';
 import { NavigationActions } from 'react-navigation';
 import { connect } from 'react-redux';
-import Amplify, { Auth } from 'aws-amplify-react-native';
-import aws_exports from '../../aws-exports';
+import Amplify, { Auth, API } from 'aws-amplify-react-native';
+import aws_exports from '../aws-exports';
 Amplify.configure(aws_exports);
-import { login } from '../Actions';
+import { login, signup } from '../Actions';
 import Navigator from './TabNavigator';
 import { colors, sharedStyles } from '../assets/Theme';
 import getTheme from '../../native-base-theme/components';
@@ -26,8 +26,35 @@ class Login extends React.Component {
     Auth.signIn(this.state.username, this.state.password)
       .then((user) => {
         console.log(user)
-        this.props.onLogin(this.state.username, this.state.password);
-        this.navigate2tabs();
+        const apiName = 'UsersCRUD';
+        const userId = user.pool.clientId;
+        console.log(userId)
+        let path = `/Users/${userId}`;
+        API.get(apiName, path)
+          .then((response) => {
+            console.log(response)
+            this.props.onLogin(this.state.username, userId, response );
+            this.navigate2tabs();
+          })
+          .catch((err) => {
+            console.log('api error', err)
+            let myInit ={
+              body:{ UserId: userId }
+            }
+            let path = `/Users/`;
+            API.post(apiName, path, myInit)
+              .then((response) => {
+                console.log('post', response);
+                this.props.onLogin(this.state.username, userId, {logs: [], wishlist: []} );
+                this.navigate2tabs();
+              })
+              .catch((err) => {
+                console.log('err', err)
+              })
+            // this.props.onSignUp(this.state.username, userId );
+            // this.navigate2tabs();
+          })
+
       })
       .catch(err => console.log(err));
   }
@@ -43,7 +70,11 @@ class Login extends React.Component {
   render () {
     if (this.props.isLoggedIn) {
       console.log('logged in')
+      // console.log(this.props.navigation)
       this.navigate2tabs();
+      // return (
+      //   <Navigator />
+      // )
     }
     return (
         <View style={styles.container}>
@@ -73,13 +104,16 @@ class Login extends React.Component {
 
 function mapStateToProps (store) {
   return {
-      isLoggedIn: store.user.isLoggedIn
+      isLoggedIn: store.user.isLoggedIn,
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-      onLogin: (username, password) => { dispatch(login(username, password)); },
+      onLogin: (username, userId, response) => { dispatch(login(username, userId, response)); },
+      onSignUp: (username, userId) => {
+        dispatch(signup(username, userId))
+      },
   }
 }
 

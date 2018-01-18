@@ -1,15 +1,18 @@
 export default function userReducer (state={
   isLoggedIn: false,
   username: '',
-  password: ''
+  userId: '',
 }, action) {
   switch (action.type) {
     case 'LOGIN': {
+      console.log(action.response)
         return {
           ...state,
           isLoggedIn: true,
           username: action.username,
-          password: action.password
+          userId: action.userId,
+          logs: action.response.logs,
+          wishlist: action.response.wishlist,
         }
         break;
       }
@@ -18,7 +21,7 @@ export default function userReducer (state={
         ...state,
         isLoggedIn: false,
         username: '',
-        password: ''
+        userId: '',
       }
       break;
     }
