@@ -21,37 +21,19 @@ class ProfileScreen extends React.Component {
   //   headerStyle: sharedStyles.headerStyle,
   //   headerTitleStyle: sharedStyles.headerTitleStyle,
   // });
-  logout(e) {
-    e.preventDefault();
-    console.log('logout');
-    Auth.signOut()
-    .then((data) => {
-      console.log(data)
-      this.props.onLogOut();
-      // navigate to login
-    })
-    .catch(err => console.log(err));
 
-  }
   render() {
     // const { navigate } = this.props.navigation;
     // <BuddyHeader name="Profile" />
     return (
       <StyleProvider style={getTheme(platform)}>
       <Container>
-        <Header>
-          <Right>
-            <Button small rounded dark
-              onPress={this.logout.bind(this)}>
-              <Text>logout</Text>
-            </Button>
-          </Right>
-        </Header>
         <View style={styles.ProfileContainer}>
           <View style={styles.ProfileHeaderContainer}>
             <ProfileLinks
               navigation={this.props.navigation}
               name={this.props.name}
+              dispatch={this.props.onLogOut}
             />
           </View>
           <View style={styles.TabContainer}>
@@ -79,18 +61,36 @@ function mapDispatchToProps (dispatch) {
 export default connect(mapStateToProps, mapDispatchToProps)(ProfileScreen)
 
 class ProfileLinks extends React.Component {
+  logout(e) {
+    e.preventDefault();
+    console.log('logout');
+    Auth.signOut()
+    .then((data) => {
+      console.log(data)
+      this.props.dispatch();
+      const resetAction = NavigationActions.reset({
+        index: 0,
+        actions: [
+          NavigationActions.navigate({ routeName: 'Login' }),
+        ],
+      });
+      this.props.navigation.dispatch(resetAction);
+    })
+    .catch(err => console.log(err));
+  }
   render() {
     const { navigate } = this.props.navigation;
     return (
       <Container>
         <View style={styles.ProfileLinkContainer}>
-          {/*<Icon name="ios-list-box" size={35}
-          onPress={() => navigate("Logs")} />*/}
-        <View style={styles.ProfileHeader}>
-          <Thumbnail large source={require('../assets/images/temp.jpeg')} />
-          <Title style={styles.ProfileName}>{this.props.name}</Title>
-        </View>
-          {/*<Icon name="ios-cog" size={40} />*/}
+          <View style={styles.ProfileHeader}>
+            <Thumbnail large source={require('../assets/images/temp.jpeg')} />
+            <Title style={styles.ProfileName}>{this.props.name}</Title>
+            <Button small rounded dark
+              onPress={this.logout.bind(this)}>
+              <Text>logout</Text>
+            </Button>
+          </View>
         </View>
       </Container>
     )
@@ -133,6 +133,7 @@ const styles = StyleSheet.create({
   },
   ProfileName: {
     paddingTop: 10,
+    paddingBottom: 10,
     fontFamily: 'Josefin Sans',
     fontSize: 24,
     color: colors.green,
