@@ -23,8 +23,11 @@ var userSchema = new Schema({
     type: String,
     required: true
   },
-  LogList: [logSchema],
-  WishList: [logSchema],
+  provider: {
+    type: String,
+  },
+  LogList: Array,
+  WishList: Array, //[logSchema]
 });
 
 

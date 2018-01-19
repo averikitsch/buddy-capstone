@@ -1,23 +1,15 @@
 
 module.exports = function(app) {
   const user = require('../controllers/users');
-  
-  app.route('/users')
-    .get(user.get_info)
-    .post(user.create_user);
+
+  app.route('/users/provider/:provider')
+    .post(user.find_user);
 
   app.route('/users/:userId')
-    .get(user.get_lists)
-    .put(user.update_lists);
+    .get(user.get_user)
+    .put(user.update_user);
 
-  // app.post('/users', (req, res) => {
-  //   const user = {username: req.body.username, userId: req.body.userId}
-  //   db.collection('users').insert(user, (err, result) => {
-  //     if (err) {
-  //       res.send({ 'error': 'An error has occurred' });
-  //     } else {
-  //       res.send(result.ops[0]);
-  //     }
-  //   });
-  // });
+  app.route('/users')
+    .get(user.get_all)
+    .post(user.create_user);
 };

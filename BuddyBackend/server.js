@@ -4,13 +4,13 @@ import routes from './routes/user_router';
 const bodyParser = require('body-parser');
 import User from './models/User';
 // const MongoClient = require('mongodb').MongoClient;
-// const db = require('/data/db/');
+const db = require('./db');
 
 const app = express();
 const port = 8000;
 
 
-const url = 'mongodb://localhost/users';
+const url = db.url;
 mongoose.Promise = global.Promise;
 mongoose.connect(url);
 
