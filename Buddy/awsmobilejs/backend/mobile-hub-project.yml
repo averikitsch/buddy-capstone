@@ -1,85 +1,11 @@
 --- !com.amazonaws.mobilehub.v0.Project 
 features:
-  cloudlogic: !com.amazonaws.mobilehub.v0.CloudLogic 
-    components:
-      sampleCloudApi: !com.amazonaws.mobilehub.v0.API 
-        attributes:
-          name: sampleCloudApi
-          requires-signin: false
-        paths:
-          /items: !com.amazonaws.mobilehub.v0.Function 
-            name: sampleLambda
-            codeFilename: uploads/sampleLambda-20180118100743.zip
-            handler: lambda.handler
-            enableCORS: true
-            runtime: nodejs6.10
-            environment: {}
-          '/items/{proxy+}': !com.amazonaws.mobilehub.v0.Function 
-            name: sampleLambda
-            codeFilename: uploads/sampleLambda-20180118100743.zip
-            handler: lambda.handler
-            enableCORS: true
-            runtime: nodejs6.10
-            environment: {}
-      AWSMobileTableCRUD: !com.amazonaws.mobilehub.v0.API 
-        attributes:
-          name: AWSMobileTableCRUD
-          requires-signin: false
-        paths:
-          /AWSMobileTable: !com.amazonaws.mobilehub.v0.Function 
-            name: AWSMobileTable
-            codeFilename: uploads/AWSMobileTable-20180118103331.zip
-            handler: lambda.handler
-            enableCORS: true
-            runtime: nodejs6.10
-            environment: {}
-          '/AWSMobileTable/{proxy+}': !com.amazonaws.mobilehub.v0.Function 
-            name: AWSMobileTable
-            codeFilename: uploads/AWSMobileTable-20180118103331.zip
-            handler: lambda.handler
-            enableCORS: true
-            runtime: nodejs6.10
-            environment: {}
-      UsersCRUD: !com.amazonaws.mobilehub.v0.API 
-        attributes:
-          name: UsersCRUD
-          requires-signin: false
-        paths:
-          /Users: !com.amazonaws.mobilehub.v0.Function 
-            name: Users
-            codeFilename: uploads/Users-20180118103807.zip
-            handler: lambda.handler
-            enableCORS: true
-            runtime: nodejs6.10
-            environment: {}
-          '/Users/{proxy+}': !com.amazonaws.mobilehub.v0.Function 
-            name: Users
-            codeFilename: uploads/Users-20180118103807.zip
-            handler: lambda.handler
-            enableCORS: true
-            runtime: nodejs6.10
-            environment: {}
   content-delivery: !com.amazonaws.mobilehub.v0.ContentDelivery 
     attributes:
       enabled: true
       visibility: public-global
     components:
       release: !com.amazonaws.mobilehub.v0.Bucket {}
-  database: !com.amazonaws.mobilehub.v0.Database 
-    components:
-      database-nosql: !com.amazonaws.mobilehub.v0.NoSQLDatabase 
-        tables:
-          - !com.amazonaws.mobilehub.v0.NoSQLTable 
-            attributes:
-              LogList: L
-              WishList: L
-            hashKeyName: userId
-            hashKeyType: S
-            rangeKeyName: ''
-            rangeKeyType: ''
-            tableName: ___DYNAMIC_PREFIX___-Users
-            tablePrivacy: private
-            indexes: []
   mobile-analytics: !com.amazonaws.mobilehub.v0.Pinpoint 
     components:
       analytics: !com.amazonaws.mobilehub.v0.PinpointAnalytics {}

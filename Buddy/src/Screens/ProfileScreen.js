@@ -73,16 +73,16 @@ class ProfileLinks extends React.Component {
   logout(e) {
     e.preventDefault();
     // this.props.dispatch();
-    const apiName = 'UsersCRUD';
-    let path = `/Users/`;
-    const myInit = {
-      body: {LogList: this.props.data.LogList,
-      WishList: this.props.data.WishList,}
-    }
-    console.log('logout', myInit);
-    API.post(apiName, path, myInit)
-      .then((response) => {
-        console.log('put', response);
+    // const apiName = 'UsersCRUD';
+    // let path = `/Users/`;
+    // const myInit = {
+    //   body: {LogList: this.props.data.LogList,
+    //   WishList: this.props.data.WishList,}
+    // }
+    // console.log('logout', myInit);
+    // API.post(apiName, path, myInit)
+    //   .then((response) => {
+    //     console.log('put', response);
         // purgeStoredState({storage: AsyncStorage}).then(() => {
         //     console.log('purge completed')
         // }).catch(() => {
@@ -101,8 +101,8 @@ class ProfileLinks extends React.Component {
             this.props.navigation.dispatch(resetAction);
           // })
     //       .catch(err => console.log('logout err', err));
-      })
-      .catch(err => console.log('err put', err))
+      // })
+      // .catch(err => console.log('err put', err))
   }
   render() {
     const { navigate } = this.props.navigation;

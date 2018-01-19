@@ -8,7 +8,7 @@
 const awsmobile = {
     'aws_app_analytics': 'enable',
     'aws_cloud_logic': 'enable',
-    'aws_cloud_logic_custom': [{"id":"wjllci47xg","name":"UsersCRUD","description":"","endpoint":"https://wjllci47xg.execute-api.us-west-1.amazonaws.com/Development","region":"us-west-1","paths":["/Users","/Users/123"]}],
+    'aws_cloud_logic_custom': [{"id":"ejweicgqzh","name":"UserLogsCRUD","description":"","endpoint":"https://ejweicgqzh.execute-api.us-west-1.amazonaws.com/Development","region":"us-west-1","paths":["/UserLogs","/UserLogs/123"]}],
     'aws_cognito_identity_pool_id': 'us-west-2:5f8350eb-7c9a-41ed-b437-9d8b421faf0c',
     'aws_cognito_region': 'us-west-2',
     'aws_content_delivery': 'enable',
@@ -18,7 +18,7 @@ const awsmobile = {
     'aws_content_delivery_cloudfront_domain': 'dgqe5unb9vy9s.cloudfront.net',
     'aws_dynamodb': 'enable',
     'aws_dynamodb_all_tables_region': 'us-west-1',
-    'aws_dynamodb_table_schemas': [{"tableName":"buddy-mobilehub-1257947803-Users","attributes":[{"name":"userId","type":"S"},{"name":"LogList","type":"L"},{"name":"WishList","type":"L"}],"indexes":[],"region":"us-west-1","hashKey":"userId"},{"tableName":"buddy-mobilehub-1257947803-Logs","attributes":[{"name":"userId","type":"S"},{"name":"LogList","type":"L"},{"name":"WishList","type":"L"}],"indexes":[],"region":"us-west-1","hashKey":"userId"}],
+    'aws_dynamodb_table_schemas': [{"tableName":"buddy-mobilehub-1257947803-UserLogs","attributes":[{"name":"userId","type":"S"},{"name":"logId","type":"S"},{"name":"logs","type":"L"},{"name":"wishs","type":"L"}],"indexes":[],"region":"us-west-1","hashKey":"userId","rangeKey":"logId"}],
     'aws_mobile_analytics_app_id': '6343581b8237443a829901b82d540401',
     'aws_mobile_analytics_app_region': 'us-east-1',
     'aws_project_id': '7bb13deb-1519-4d44-870e-280cb5928424',
