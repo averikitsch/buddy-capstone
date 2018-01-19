@@ -1,21 +1,28 @@
-import express from 'express';
-import morgan from 'morgan';
+const express = require('express');
 import mongoose from 'mongoose';
-import router from './router';
+import routes from './routes/user_router';
+const bodyParser = require('body-parser');
+import User from './models/User';
+// const MongoClient = require('mongodb').MongoClient;
+// const db = require('/data/db/');
 
-mongoose.connect('mongodb://localhost/users');
-// Initialize http server
 const app = express();
-
-// Handle / route
-// Logger that outputs all requests into the console
-app.use(morgan('combined'));
-// Use v1 as prefix for all API endpoints
-app.use('/userlogs', router);
+const port = 8000;
 
 
-// Launch the server on port 3000
-const server = app.listen(3000, () => {
+const url = 'mongodb://localhost/users';
+mongoose.Promise = global.Promise;
+mongoose.connect(url);
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+// app.use(function(req, res) {
+//   res.status(404).send({url: req.originalUrl + ' not found'})
+// });
+
+routes(app);
+
+const server = app.listen( port, () => {
   const { address, port } = server.address();
   console.log(`Listening at http://${address}:${port}`);
 });
