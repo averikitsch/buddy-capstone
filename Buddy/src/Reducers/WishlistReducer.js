@@ -22,6 +22,10 @@ export default function reducer(state={
     case "UPDATE_WISHLIST": {
       return state;
     }
+    case 'PURGE': {
+      return {}
+      break;
+    }
   }
   return state;
 }

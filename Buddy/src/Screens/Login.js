@@ -10,6 +10,7 @@ import Navigator from './TabNavigator';
 import { colors, sharedStyles } from '../assets/Theme';
 import getTheme from '../../native-base-theme/components';
 import platform from '../../native-base-theme/variables/platform';
+import axios from 'axios';
 
 class Login extends React.Component {
   constructor (props) {
@@ -26,34 +27,29 @@ class Login extends React.Component {
     Auth.signIn(this.state.username, this.state.password)
       .then((user) => {
         console.log(user)
-        const apiName = 'UsersCRUD';
         const userId = user.pool.clientId;
-        console.log(userId)
-        let path = `/Users`;
-        API.get(apiName, path)
-          .then((response) => {
-            console.log(response)
-            this.props.onLogin(this.state.username, userId, response );
-            // this.navigate2tabs();
+        const provider = "amazon";
+        const url = `http:localhost:8000/users/provider/${provider}`;
+        axios.post(url, {userId: userId})
+          .then((user) => {
+            console.log(user)
+            let logId = user.data._id
+            console.log(user.data._id)
+            if (!user.id) {
+              axios.post('http:localhost:8000/users',{
+                username: this.state.username,
+                userId: userId,
+              })
+              .then((user) => {
+                console.log(user)
+                console.log(user)
+                logId = user.data._id
+              })
+              .catch(err => console.log(err))
+            }
+            this.props.onLogin(this.state.username, userId, logId)
           })
-          .catch((err) => {
-            console.log('api error', err)
-            // let myInit ={
-            //   body:{ UserId: userId }
-            // }
-            // let path = `/Users/`;
-            // API.post(apiName, path, myInit)
-            //   .then((response) => {
-            //     console.log('post', response);
-            //     this.props.onLogin(this.state.username, userId, {logs: [], wishlist: []} );
-            //     this.navigate2tabs();
-            //   })
-            //   .catch((err) => {
-            //     console.log('err', err)
-            //   })
-            // this.props.onSignUp(this.state.username, userId );
-          })
-
+          .catch(err => console.log(err))
           this.navigate2tabs();
       })
       .catch(err => console.log(err));
@@ -110,7 +106,7 @@ function mapStateToProps (store) {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-      onLogin: (username, userId, response) => { dispatch(login(username, userId, response)); },
+      onLogin: (username, userId, logId) => { dispatch(login(username, userId, logId)); },
       onSignUp: (username, userId) => {
         dispatch(signup(username, userId))
       },

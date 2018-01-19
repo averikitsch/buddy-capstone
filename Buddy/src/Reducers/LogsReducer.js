@@ -1,3 +1,5 @@
+import { PURGE, REHYDRATE } from 'redux-persist';
+
 export default function reducer(state={
   logs: [
       // {id: 1, name: 'Lemon Drop', brand: "Dawg Star", product: 1, date:'01/01/2018', duration: 1, ranking: 3, activity: 3, type: 'hybrid', flavors: { spicy: true, sweet: false, sour: true, earthy: false }, quantity: 1},
@@ -57,7 +59,11 @@ export default function reducer(state={
         selectedLog: null,
       }
     }
-    return state;
+    case 'PURGE': {
+      return {}
+      break;
+    }
   }
+
   return state;
 }

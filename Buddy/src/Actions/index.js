@@ -70,17 +70,13 @@ export function fetchStrains (response) {
 }
 
 
-export const login = (username, userId, response) => {
-  console.log(username)
-  console.log(userId)
-  console.log(response)
-
-      return {
-        type: 'LOGIN',
-        username: username,
-        userId: userId,
-        response: response,
-      };
+export const login = (username, userId, logId) => {
+  return {
+    type: 'LOGIN',
+    username: username,
+    userId: userId,
+    logId: logId,
+  };
 };
 
 export const logout = () => {
