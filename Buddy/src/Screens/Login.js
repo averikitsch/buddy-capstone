@@ -32,9 +32,11 @@ class Login extends React.Component {
         const url = `http:localhost:8000/users/provider/${provider}`;
         axios.post(url, {userId: userId})
           .then((user) => {
-            console.log(user)
-            let logId = user.data._id
-            console.log(user.data._id)
+            let logId = user.data._id;
+            let data = {
+              logs: user.data.LogList,
+              wishlist: user.data.WishList
+            }
             if (!user.id) {
               axios.post('http:localhost:8000/users',{
                 username: this.state.username,
@@ -44,10 +46,11 @@ class Login extends React.Component {
                 console.log(user)
                 console.log(user)
                 logId = user.data._id
+                data = {}
               })
               .catch(err => console.log(err))
             }
-            this.props.onLogin(this.state.username, userId, logId)
+            this.props.onLogin(this.state.username, userId, logId, data)
           })
           .catch(err => console.log(err))
           this.navigate2tabs();
@@ -106,7 +109,7 @@ function mapStateToProps (store) {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-      onLogin: (username, userId, logId) => { dispatch(login(username, userId, logId)); },
+      onLogin: (username, userId, logId, data) => { dispatch(login(username, userId, logId, data)); },
       onSignUp: (username, userId) => {
         dispatch(signup(username, userId))
       },

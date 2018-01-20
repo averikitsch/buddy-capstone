@@ -1,5 +1,3 @@
-import { PURGE, REHYDRATE } from 'redux-persist';
-
 export default function userReducer (state={
   isLoggedIn: false,
   username: '',
@@ -15,12 +13,11 @@ export default function userReducer (state={
           username: action.username,
           userId: action.userId,
           logId: action.logId,
-          // logs: action.response.logs,
-          // wishlist: action.response.wishlist,
         }
         break;
       }
     case 'LOGOUT': {
+      console.log('logout user')
       return {
         ...state,
         isLoggedIn: false,
@@ -28,10 +25,6 @@ export default function userReducer (state={
         userId: '',
         logId: '',
       }
-      break;
-    }
-    case 'PURGE': {
-      return {}
       break;
     }
   }

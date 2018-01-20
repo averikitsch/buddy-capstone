@@ -19,6 +19,7 @@ import { colors, sharedStyles } from '../assets/Theme'
 import { logout } from '../Actions/index'
 import { AsyncStorage } from 'react-native'
 import axios from 'axios';
+import { PURGE, REHYDRATE } from 'redux-persist';
 
 class ProfileScreen extends React.Component {
   // static navigationOptions = ({ navigation }) => ({
@@ -77,18 +78,20 @@ class ProfileLinks extends React.Component {
     console.log(this.props.data)
     axios.put( url, this.props.data)
       .then((response) => {
-        console.log('put', response)
-        purgeStoredState({storage: AsyncStorage})
-          .then(() => {
-            console.log('purge completed')
-          })
-          .catch(() => {
-            console.log('purge of someReducer failed')
-          })
+        // console.log('put', response)
+        // this.props.dispatch.dispatch({
+        //    type: PURGE,
+        //    key: 'primary',
+        //    result: () => console.log('purged')
+        //  });
+        // purgeStoredState({storage: AsyncStorage})
+        AsyncStorage.clear()
+          .then(() => console.log('purge completed'))
+          .catch(() => console.log('purge of someReducer failed'))
+
         Auth.signOut()
-          .then((data) => {
-            console.log('sign out', data)
-          });
+          .then(data => console.log('sign out', data))
+          .catch(err => console.log('signout', err))
         this.props.dispatch();
             // const resetAction = NavigationActions.reset({
             //   index: 0,
@@ -99,7 +102,8 @@ class ProfileLinks extends React.Component {
             // this.props.navigation.dispatch(resetAction);
           // })
     // ;
-    }).catch(err => console.log('logout err', err));
+    })
+    // .catch(err => console.log('logout err', err));
   }
   render() {
     const { navigate } = this.props.navigation;

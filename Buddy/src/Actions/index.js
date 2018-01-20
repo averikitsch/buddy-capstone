@@ -70,12 +70,14 @@ export function fetchStrains (response) {
 }
 
 
-export const login = (username, userId, logId) => {
+export const login = (username, userId, logId, data) => {
   return {
     type: 'LOGIN',
     username: username,
     userId: userId,
     logId: logId,
+    logs: data.logs,
+    wishlist: data.wishlist,
   };
 };
 
@@ -83,16 +85,4 @@ export const logout = () => {
   return {
     type: 'LOGOUT'
   };
-};
-
-export const signup = (userId) => {
-  let myInit = {
-      body: {
-        userId: userId,
-      }
-  }
-
-  API.post(apiName, path, myInit).then(response => {
-      // Add your code here
-  });
 };

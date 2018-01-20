@@ -20,9 +20,21 @@ export default function reducer(state={
       };
     }
     case "UPDATE_WISHLIST": {
-      return state;
+      const newWishs = state.wishlist.filter(log => log.id !== action.payload.id)
+      newWishs.push(action.payload)
+      return {
+        ...state,
+        wishlist: newWishs,
+      }
     }
-    case 'PURGE': {
+    case 'LOGIN': {
+      return {
+        ...state,
+        wishlist: action.wishlist,
+      }
+    }
+    case 'LOGOUT': {
+      console.log('logout wish')
       return {}
       break;
     }
