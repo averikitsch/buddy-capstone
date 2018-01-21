@@ -10,9 +10,9 @@ const app = express();
 const port = 8000;
 
 
-const url = db.url;
+const URL = db.url;
 mongoose.Promise = global.Promise;
-mongoose.connect(url);
+mongoose.connect(URL);
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
