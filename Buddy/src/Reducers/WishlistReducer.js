@@ -28,9 +28,10 @@ export default function reducer(state={
       }
     }
     case 'LOGIN': {
+      const data = action.logs ? action.logs : [];
       return {
         ...state,
-        wishlist: action.wishlist,
+        wishlist: data,
       }
     }
     case 'LOGOUT': {

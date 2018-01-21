@@ -1,5 +1,5 @@
 export default function reducer(state={
-  logs: [
+  logs: [],
       // {id: 1, name: 'Lemon Drop', brand: "Dawg Star", product: 1, date:'01/01/2018', duration: 1, ranking: 3, activity: 3, type: 'hybrid', flavors: { spicy: true, sweet: false, sour: true, earthy: false }, quantity: 1},
       // {id: 2,  name: 'GG #4', brand: "Dawg Star", product: 1, date:'01/01/2018', duration: 1, ranking: 3, activity: 3, type: 'indica', flavors: { spicy: true, sweet: true, sour: false, earthy: false }, quantity: 1},
       // {id: 3, name: 'LA Confidential', brand: "Dawg Star", product: 1, date:'01/02/2018', duration: 1, ranking: 3, activity: 3, type: 'sativa', flavors: { spicy: true, sweet: true, sour: false, earthy: false }, quantity: 1},
@@ -8,7 +8,6 @@ export default function reducer(state={
       // {id: 6, name: 'Island Breeze', brand: "Western Cultured", product: 1, date:'01/03/2018'},
       // {id: 7, name: 'Kraken Black Pepper', brand: "Western Cultured", product: 1, date:'01/04/2018'},
       // {id: 8, name: 'PermaFrost', brand: "Western Cultured", product: 1, date:'01/04/2018'},
-    ],
   selectedLog: null,
   loaded: true,
 }, action) {
@@ -59,9 +58,10 @@ export default function reducer(state={
       }
     }
     case 'LOGIN': {
+      const data = action.logs ? action.logs : [];
       return {
         ...state,
-        logs: action.logs,
+        logs: data,
       }
       break;
     }

@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 import { Container, Header, Content, Card, CardItem,  Text, Body } from 'native-base';
 import { VictoryBar, VictoryChart, VictoryPolarAxis, VictoryTheme, VictoryGroup, VictoryArea, VictoryLabel } from "victory-native";
 import { connect } from 'react-redux';
-
+import { colors } from '../../assets/Theme'
 
 class FlavorCard extends Component {
   constructData(logs) {
@@ -22,14 +22,12 @@ class FlavorCard extends Component {
   }
   render() {
     return (
-      <Container>
-        <Content>
+      <Container style={styles.card}>
           <Card>
-            <CardItem style={styles.card}>
+            <CardItem>
               <RadarChart data={this.constructData(this.props.logs)} style={styles.chart}/>
             </CardItem>
           </Card>
-        </Content>
       </Container>
     );
   }
@@ -44,15 +42,6 @@ function mapStateToProps (store) {
 export default connect(mapStateToProps)(FlavorCard)
 
 class RadarChart extends React.Component {
-  // constructor(props) {
-  //   super(props);
-  //   this.props.data.push({spicy: 100, sour: 100, sweet: 100, earthy: 100})
-  //   this.state = {
-  //     data: this.processData(this.props.data),
-  //     maxima: this.getMaxima(this.props.data)
-  //   };
-  // }
-
   getMaxima(data) {
     const groupedData = Object.keys(data[0]).reduce((memo, key) => {
       memo[key] = data.map((d) => d[key]);
@@ -128,7 +117,7 @@ class RadarChart extends React.Component {
 
 const styles = StyleSheet.create({
   card: {
-    flex: 1,
+    backgroundColor: colors.liteTan,
   },
   chart: {
     flexDirection: 'row',

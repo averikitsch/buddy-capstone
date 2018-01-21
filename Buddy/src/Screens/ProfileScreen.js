@@ -74,17 +74,11 @@ export default connect(mapStateToProps, mapDispatchToProps)(ProfileScreen)
 class ProfileLinks extends React.Component {
   logout(e) {
     e.preventDefault();
-    const url = `http:localhost:8000/users/${this.props.logId}`;
+    // this.props.dispatch();
+    const url = `https://buddy-backend.herokuapp.com/users/${this.props.logId}`;
     console.log(this.props.data)
     axios.put( url, this.props.data)
       .then((response) => {
-        // console.log('put', response)
-        // this.props.dispatch.dispatch({
-        //    type: PURGE,
-        //    key: 'primary',
-        //    result: () => console.log('purged')
-        //  });
-        // purgeStoredState({storage: AsyncStorage})
         AsyncStorage.clear()
           .then(() => console.log('purge completed'))
           .catch(() => console.log('purge of someReducer failed'))
@@ -128,7 +122,6 @@ class TabsScrollable extends React.Component {
   render() {
     return (
       <StyleProvider style={getTheme(platform)}>
-      <Container>
         <Tabs renderTabBar={()=> <ScrollableTab />}>
           <Tab heading="Flavor" style={styles.Card}>
             <FlavorCard />
@@ -143,7 +136,6 @@ class TabsScrollable extends React.Component {
             <UsageCard />
           </Tab>
         </Tabs>
-      </Container>
       </StyleProvider>
     );
   }
@@ -178,6 +170,7 @@ const styles = StyleSheet.create({
   },
   TabContainer: {
     flex: 4,
+    backgroundColor: colors.liteTan,
   },
   Card: {
     flexDirection: 'column',

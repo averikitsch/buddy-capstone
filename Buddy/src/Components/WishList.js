@@ -11,16 +11,8 @@ class WishList extends React.Component {
   constructor(props) {
     super(props);
     this.ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
-    // this.state = {
-    //   basic: true,
-    //   listViewData: this.props.wishlist,
-    // };
   }
   deleteRow(data) {
-    // rowMap[`${secId}${rowId}`].props.closeRow();
-    // const newData = [...this.state.listViewData];
-    // const wish = newData.splice(rowId, 1)[0];
-    // this.setState({ listViewData: newData });
     this.props.actions.rmWish(data);
   }
   render() {

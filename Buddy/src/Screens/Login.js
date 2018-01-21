@@ -29,7 +29,7 @@ class Login extends React.Component {
         console.log(user)
         const userId = user.pool.clientId;
         const provider = "amazon";
-        const url = `http:localhost:8000/users/provider/${provider}`;
+        const url = `https://buddy-backend.herokuapp.com/users/provider/${provider}`;
         axios.post(url, {userId: userId})
           .then((user) => {
             let logId = user.data._id;
@@ -37,8 +37,10 @@ class Login extends React.Component {
               logs: user.data.LogList,
               wishlist: user.data.WishList
             }
-            if (!user.id) {
-              axios.post('http:localhost:8000/users',{
+            if (user.id) {
+              this.props.onLogin(this.state.username, userId, logId, data)
+            } else {
+              axios.post('https://buddy-backend.herokuapp.com/users',{
                 username: this.state.username,
                 userId: userId,
               })
@@ -47,10 +49,10 @@ class Login extends React.Component {
                 console.log(user)
                 logId = user.data._id
                 data = {}
+                this.props.onLogin(this.state.username, userId, logId, data)
               })
               .catch(err => console.log(err))
             }
-            this.props.onLogin(this.state.username, userId, logId, data)
           })
           .catch(err => console.log(err))
           this.navigate2tabs();
@@ -69,11 +71,8 @@ class Login extends React.Component {
   render () {
     if (this.props.isLoggedIn) {
       console.log('logged in')
-      // console.log(this.props.navigation)
       this.navigate2tabs();
-      // return (
-      //   <Navigator />
-      // )
+
     }
     return (
         <View style={styles.container}>
