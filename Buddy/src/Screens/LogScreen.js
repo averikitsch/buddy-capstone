@@ -56,11 +56,11 @@ export default class LogScreen extends React.Component {
             <Segment style={{backgroundColor: colors.lightGreen}}>
               <Button first active={this.state.logs}
               onPress={this.handleLogsClick}>
-                <Text>Logs</Text>
+                <Text style={styles.header}>LOGS</Text>
               </Button>
               <Button last active={this.state.wish}
               onPress={this.handleWishClick}>
-                <Text>Wishlist</Text>
+                <Text style={styles.header}>WISHLIST</Text>
               </Button>
             </Segment>
           </Header>
@@ -76,5 +76,9 @@ export default class LogScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: colors.liteTan,
+  },
+  header: {
+    fontFamily: 'Josefin Sans',
+    fontWeight: 'bold',
   }
 });

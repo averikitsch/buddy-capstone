@@ -2,14 +2,15 @@ import React from 'react';
 import { ScrollView, Text, TextInput, View, Button, StyleSheet } from 'react-native';
 import { NavigationActions } from 'react-navigation';
 import { connect } from 'react-redux';
-import Amplify, { Auth } from 'aws-amplify-react-native';
-import aws_exports from '../../aws-exports';
+import Amplify, { Auth, API } from 'aws-amplify-react-native';
+import aws_exports from '../aws-exports';
 Amplify.configure(aws_exports);
-import { login } from '../Actions';
+import { login, signup } from '../Actions';
 import Navigator from './TabNavigator';
 import { colors, sharedStyles } from '../assets/Theme';
 import getTheme from '../../native-base-theme/components';
 import platform from '../../native-base-theme/variables/platform';
+import axios from 'axios';
 
 class Login extends React.Component {
   constructor (props) {
@@ -25,18 +26,54 @@ class Login extends React.Component {
     e.preventDefault();
     Auth.signIn(this.state.username, this.state.password)
       .then((user) => {
-        this.props.onLogin(this.state.username, this.state.password);
-        const resetAction = NavigationActions.reset({
-          index: 0,
-          actions: [
-            NavigationActions.navigate({ routeName: 'Tabs' }),
-          ],
-        });
-        this.props.navigation.dispatch(resetAction);
+        console.log(user)
+        const userId = user.pool.clientId;
+        const provider = "amazon";
+        const url = `https://buddy-backend.herokuapp.com/users/provider/${provider}`;
+        axios.post(url, {userId: userId})
+          .then((user) => {
+            let logId = user.data._id;
+            let data = {
+              logs: user.data.LogList,
+              wishlist: user.data.WishList
+            }
+            if (user.id) {
+              this.props.onLogin(this.state.username, userId, logId, data)
+            } else {
+              axios.post('https://buddy-backend.herokuapp.com/users',{
+                username: this.state.username,
+                userId: userId,
+              })
+              .then((user) => {
+                console.log(user)
+                console.log(user)
+                logId = user.data._id
+                data = {}
+                this.props.onLogin(this.state.username, userId, logId, data)
+              })
+              .catch(err => console.log(err))
+            }
+          })
+          .catch(err => console.log(err))
+          this.navigate2tabs();
       })
       .catch(err => console.log(err));
   }
+  navigate2tabs () {
+    const resetAction = NavigationActions.reset({
+      index: 0,
+      actions: [
+        NavigationActions.navigate({ routeName: 'Tabs' }),
+      ],
+    });
+    this.props.navigation.dispatch(resetAction);
+  }
   render () {
+    if (this.props.isLoggedIn) {
+      console.log('logged in')
+      this.navigate2tabs();
+
+    }
     return (
         <View style={styles.container}>
             <Text>Login Please</Text>
@@ -65,13 +102,16 @@ class Login extends React.Component {
 
 function mapStateToProps (store) {
   return {
-      isLoggedIn: store.user.isLoggedIn
+      isLoggedIn: store.user.isLoggedIn,
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-      onLogin: (username, password) => { dispatch(login(username, password)); },
+      onLogin: (username, userId, logId, data) => { dispatch(login(username, userId, logId, data)); },
+      onSignUp: (username, userId) => {
+        dispatch(signup(username, userId))
+      },
   }
 }
 

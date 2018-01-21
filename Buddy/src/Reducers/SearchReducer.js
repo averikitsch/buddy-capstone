@@ -16,13 +16,13 @@ export default function searchReducer(state={
       break;
     }
     case "GET_ALL": {
-      console.log('get all reducer');
-      console.log(state.loaded, action.payload);
+      // console.log('get all reducer');
+      // console.log(state.loaded, action.payload);
       if (state.loaded || action.payload === undefined) {
-        console.log('dont do it!')
+        // console.log('dont do it!')
         return state
       } else {
-        console.log(action.payload);
+        // console.log(action.payload);
         // console.log('fetch data')
         return {
           ...state,

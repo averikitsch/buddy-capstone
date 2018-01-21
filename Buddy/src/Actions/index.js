@@ -1,3 +1,7 @@
+import Amplify, { API } from 'aws-amplify-react-native';
+import aws_exports from '../aws-exports';
+Amplify.configure(aws_exports);
+
 export function addLog (log) {
   console.log('add log');
   return {
@@ -65,21 +69,25 @@ export function fetchStrains (response) {
   }
 }
 
-export const login = (username, password) => {
-    return {
-        type: 'LOGIN',
-        username: username,
-        password: password
-    };
+export function loadLogs () {
+  return {
+    type: 'LOAD_LOGS',
+  }
+}
+
+export const login = (username, userId, logId, data) => {
+  return {
+    type: 'LOGIN',
+    username: username,
+    userId: userId,
+    logId: logId,
+    logs: data.logs,
+    wishlist: data.wishlist,
+  };
 };
 
 export const logout = () => {
-    return {
-        type: 'LOGOUT'
-    };
-};
-
-export const signup = (username, password) => {
-    return (dispatch) => {
-    };
+  return {
+    type: 'LOGOUT'
+  };
 };

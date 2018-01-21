@@ -2,15 +2,17 @@ import React from 'react';
 // import { StyleSheet, Text, View, StyleProvider } from 'react-native';
 
 import Amplify, { withAuthenticator, Storage } from 'aws-amplify-react-native';
-import aws_exports from './aws-exports';
+import aws_exports from './src/aws-exports';
 Amplify.configure(aws_exports);
 
 
 import { TabNavigator, StackNavigator } from 'react-navigation';
 import { Provider } from 'react-redux';
-import { persistStore } from 'redux-persist';
-import store from './src/store';
-import { AsyncStorage } from 'react-native';
+import { PersistGate } from 'redux-persist/lib/integration/react';
+import configureStore from './src/store'
+let { store, persistor } = configureStore()
+
+// import { AsyncStorage } from 'react-native';
 import axios from 'axios';
 import Loading from './src/Screens/Loading';
 import StackLoginNav from './src/Screens/StackLoginNav';
@@ -43,12 +45,12 @@ class Buddy extends React.Component {
         store.dispatch(fetchStrains(names))
       })
 
-    persistStore(store,
-      {
-        storage: AsyncStorage,
-      },
-      () => this.handleReady
-    )
+    // persistStore(store,
+    //   {
+    //     storage: AsyncStorage,
+    //   },
+    //   () => this.handleReady
+    // )
   }
   render() {
     if (!this.state.isReady) {
@@ -58,7 +60,9 @@ class Buddy extends React.Component {
     }
     return (
       <Provider store={store}>
+      <PersistGate loading={<Loading />} persistor={persistor}>
         <StackLoginNav />
+      </PersistGate>
       </Provider>
     );
   }

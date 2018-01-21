@@ -7,6 +7,8 @@
 // AWS Mobile Hub Project Constants
 const awsmobile = {
     'aws_app_analytics': 'enable',
+    'aws_cloud_logic': 'enable',
+    'aws_cloud_logic_custom': [{"id":"ejweicgqzh","name":"UserLogsCRUD","description":"","endpoint":"https://ejweicgqzh.execute-api.us-west-1.amazonaws.com/Development","region":"us-west-1","paths":["/UserLogs","/UserLogs/123"]}],
     'aws_cognito_identity_pool_id': 'us-west-2:5f8350eb-7c9a-41ed-b437-9d8b421faf0c',
     'aws_cognito_region': 'us-west-2',
     'aws_content_delivery': 'enable',
@@ -14,16 +16,21 @@ const awsmobile = {
     'aws_content_delivery_bucket_region': 'us-west-1',
     'aws_content_delivery_cloudfront': 'enable',
     'aws_content_delivery_cloudfront_domain': 'dgqe5unb9vy9s.cloudfront.net',
+    'aws_dynamodb': 'enable',
+    'aws_dynamodb_all_tables_region': 'us-west-1',
+    'aws_dynamodb_table_schemas': [{"tableName":"buddy-mobilehub-1257947803-UserLogs","attributes":[{"name":"userId","type":"S"},{"name":"logId","type":"S"},{"name":"logs","type":"L"},{"name":"wishs","type":"L"}],"indexes":[],"region":"us-west-1","hashKey":"userId","rangeKey":"logId"}],
     'aws_mobile_analytics_app_id': '6343581b8237443a829901b82d540401',
+    'aws_mobile_analytics_app_region': 'us-east-1',
     'aws_project_id': '7bb13deb-1519-4d44-870e-280cb5928424',
     'aws_project_name': 'Buddy-2018-01-16-17-59-01',
     'aws_project_region': 'us-west-1',
+    'aws_resource_bucket_name': 'buddy-deployments-mobilehub-1257947803',
     'aws_resource_name_prefix': 'buddy-mobilehub-1257947803',
     'aws_sign_in_enabled': 'enable',
     'aws_user_pools': 'enable',
-    'aws_user_pools_id': 'us-west-2_LQy6G8kLI',
+    'aws_user_pools_id': 'us-west-2_7WaS5h0h7',
     'aws_user_pools_mfa_type': 'OFF',
-    'aws_user_pools_web_client_id': '1850b43q6qvjsuhtqsf61uec4f',
+    'aws_user_pools_web_client_id': '40jfemo11eoa31f6oijhv9up4v',
 }
 
 export default awsmobile;

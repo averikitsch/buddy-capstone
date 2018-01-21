@@ -3,7 +3,7 @@ import { ScrollView, Text, TextInput, View, Button, StyleSheet } from 'react-nat
 import { NavigationActions } from 'react-navigation';
 import { connect } from 'react-redux';
 import Amplify, { Auth } from 'aws-amplify-react-native';
-import aws_exports from '../../aws-exports';
+import aws_exports from '../aws-exports';
 Amplify.configure(aws_exports);
 import { login } from '../Actions';
 import Navigator from './TabNavigator';
@@ -44,7 +44,7 @@ class SignUp extends React.Component {
   render () {
     let confirmButton = <Button onPress={this.userConfirm} title="Confirm User!"/>;
     if (this.state.confirm) {
-      confirmButton = <ConfirmUser name={this.state.username} handleConfirm={(e) => this.props.onConfirm(e)}/>
+      confirmButton = <ConfirmUser name={this.state.username} handleConfirm={this.props.onConfirm}/>
     }
     return (
         <View style={styles.container}>

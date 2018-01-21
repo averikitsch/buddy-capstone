@@ -11,12 +11,12 @@
 	"FrontendLastBuildTime": "",
 	"LastPublishTime": "",
 	"BackendFormat": "yml",
-	"BackendLastBuildTime": "",
-	"BackendLastUpdateTime": "",
+	"BackendLastBuildTime": "2018-01-18-17-30-07",
+	"BackendLastUpdateTime": "2018-01-18-17-30-16",
 	"BackendLastUpdateSuccessful": false,
 	"BackendProjectID": "7bb13deb-1519-4d44-870e-280cb5928424",
 	"BackendProjectName": "Buddy-2018-01-16-17-59-01",
 	"BackendProjectConsoleUrl": "https://console.aws.amazon.com/mobilehub/home#/7bb13deb-1519-4d44-870e-280cb5928424/build",
 	"BackendProjectCreationTime": "2018-01-17T01:59:02.866Z",
-	"BackendProjectLastUpdatedTime": "2018-01-17T02:42:58.136Z"
+	"BackendProjectLastUpdatedTime": "2018-01-19T00:14:58.700Z"
 }

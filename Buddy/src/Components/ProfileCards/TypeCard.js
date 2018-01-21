@@ -3,28 +3,9 @@ import { StyleSheet } from 'react-native';
 import { Container, Header, Content, Card, CardItem,  Text, Body } from 'native-base';
 import { VictoryChart, VictoryTheme, VictoryPie, VictoryAxis, VictoryLabel, VictoryTooltip } from 'victory-native';
 import { connect } from 'react-redux';
-
-// const typeData = {indica: 40, sativa: 20, hybrid: 40,};
+import { colors } from '../../assets/Theme'
 
 class TypeCard extends Component {
-  // constructor(){
-  //   super();
-  //   this.state = {
-  //     data: [],
-  //   }
-  // }
-  // componentWillMount() {
-  //   this.setState({
-  //     data: this.props.logs
-  //   })
-  // }
-  // componentWillReceiveProps(nextProps) {
-  //   if (nextProps.logs.length > this.state.data) {
-  //     this.setState({
-  //       data: this.props.logs,
-  //     })
-  //   }
-  // }
   constructData(logs) {
     const typeData = {indica: 0, sativa: 0, hybrid: 0,}
     logs.forEach((log) => {
@@ -38,14 +19,12 @@ class TypeCard extends Component {
   }
   render() {
     return (
-      <Container>
-        <Content>
+      <Container style={styles.card}>
           <Card>
             <CardItem>
               <PieChart data={this.constructData(this.props.logs)} />
             </CardItem>
           </Card>
-        </Content>
       </Container>
     );
   }
@@ -90,3 +69,14 @@ class PieChart extends React.Component {
     );
   }
 }
+
+const styles = StyleSheet.create({
+  card: {
+    backgroundColor: colors.liteTan,
+  },
+  chart: {
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start',
+  }
+})

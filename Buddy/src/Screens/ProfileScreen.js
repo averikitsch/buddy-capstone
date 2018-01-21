@@ -1,8 +1,12 @@
 import React from 'react';
 import { AppRegistry, View, StatusBar, Image, StyleSheet } from 'react-native';
-import { Container, Header, Tab, Tabs, Text, ScrollableTab, Thumbnail, Title, StyleProvider, Button, Right } from 'native-base';
+import { Container, Header, Tab, Tabs, Text, ScrollableTab, Thumbnail, Title, StyleProvider, Right, Button } from 'native-base';
+import { NavigationActions } from 'react-navigation';
+import Amplify, { Auth } from 'aws-amplify-react-native';
+import aws_exports from '../aws-exports';
+Amplify.configure(aws_exports);
 import { connect } from 'react-redux';
-import { Auth } from 'aws-amplify';
+import {  purgeStoredState } from 'redux-persist';
 import getTheme from '../../native-base-theme/components';
 import platform from '../../native-base-theme/variables/platform';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -12,6 +16,10 @@ import TypeCard from '../Components/ProfileCards/TypeCard';
 import ProductCard from '../Components/ProfileCards/ProductCard';
 import UsageCard from '../Components/ProfileCards/UsageCard';
 import { colors, sharedStyles } from '../assets/Theme'
+import { logout } from '../Actions/index'
+import { AsyncStorage } from 'react-native'
+import axios from 'axios';
+import { PURGE, REHYDRATE } from 'redux-persist';
 
 class ProfileScreen extends React.Component {
   // static navigationOptions = ({ navigation }) => ({
@@ -19,19 +27,7 @@ class ProfileScreen extends React.Component {
   //   headerStyle: sharedStyles.headerStyle,
   //   headerTitleStyle: sharedStyles.headerTitleStyle,
   // });
-  constructor() {
-    super();
-    this.logOut = this.logOut.bind(this);
-  }
-  logOut (e) {
-    e.preventDefault();
-    Auth.signOut()
-      .then((data) => {
-        console.log(data)
-        this.props.navigation.navigate('Explore');
-      })
-      .catch(err => console.log(err));
-  }
+
   render() {
     // const { navigate } = this.props.navigation;
     // <BuddyHeader name="Profile" />
@@ -50,6 +46,9 @@ class ProfileScreen extends React.Component {
             <ProfileLinks
               navigation={this.props.navigation}
               name={this.props.name}
+              logId={this.props.logId}
+              data={{LogList: this.props.logs, WishList: this.props.wishlist}}
+              dispatch={this.props.onLogOut}
             />
           </View>
           <View style={styles.TabContainer}>
@@ -64,28 +63,62 @@ class ProfileScreen extends React.Component {
 
 function mapStateToProps (store) {
   return {
-    name: store.user.username
+    name: store.user.username,
+    logId: store.user.logId,
+    logs: store.logs.logs,
+    wishlist: store.wishlist.wishlist,
   }
 }
 
-export default connect(mapStateToProps)(ProfileScreen)
+function mapDispatchToProps (dispatch) {
+  return {
+    onLogOut: () => dispatch(logout()),
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProfileScreen)
 
 class ProfileLinks extends React.Component {
+  logout(e) {
+    e.preventDefault();
+    // this.props.dispatch();
+    const url = `https://buddy-backend.herokuapp.com/users/${this.props.logId}`;
+    console.log(this.props.data)
+    axios.put( url, this.props.data)
+      .then((response) => {
+        AsyncStorage.clear()
+          .then(() => console.log('purge completed'))
+          .catch(() => console.log('purge of someReducer failed'))
+
+        Auth.signOut()
+          .then(data => console.log('sign out', data))
+          .catch(err => console.log('signout', err))
+        this.props.dispatch();
+            // const resetAction = NavigationActions.reset({
+            //   index: 0,
+            //   actions: [
+            //     NavigationActions.navigate({ routeName: 'Login' }),
+            //   ],
+            // });
+            // this.props.navigation.dispatch(resetAction);
+          // })
+    // ;
+    })
+    // .catch(err => console.log('logout err', err));
+  }
   render() {
     const { navigate } = this.props.navigation;
     return (
       <Container>
         <View style={styles.ProfileLinkContainer}>
-          {/*<Icon name="ios-list-box" size={35}
-          onPress={() => navigate("Logs")} />*/}
-        <View style={styles.ProfileHeader}>
-          <Thumbnail large source={require('../assets/images/temp.jpeg')} />
-          <Title style={styles.ProfileName}>
-            {this.props.name}
-          </Title>
-
-        </View>
-          {/*<Icon name="ios-cog" size={40} />*/}
+          <View style={styles.ProfileHeader}>
+            <Thumbnail large source={require('../assets/images/temp.jpeg')} />
+            <Title style={styles.ProfileName}>{this.props.name}</Title>
+            <Button small rounded dark
+              onPress={this.logout.bind(this)}>
+              <Text>logout</Text>
+            </Button>
+          </View>
         </View>
       </Container>
     )
@@ -96,7 +129,6 @@ class TabsScrollable extends React.Component {
   render() {
     return (
       <StyleProvider style={getTheme(platform)}>
-      <Container>
         <Tabs renderTabBar={()=> <ScrollableTab />}>
           <Tab heading="Flavor" style={styles.Card}>
             <FlavorCard />
@@ -111,7 +143,6 @@ class TabsScrollable extends React.Component {
             <UsageCard />
           </Tab>
         </Tabs>
-      </Container>
       </StyleProvider>
     );
   }
@@ -128,6 +159,7 @@ const styles = StyleSheet.create({
   },
   ProfileName: {
     paddingTop: 10,
+    paddingBottom: 10,
     fontFamily: 'Josefin Sans',
     fontSize: 24,
     color: colors.green,
@@ -145,6 +177,7 @@ const styles = StyleSheet.create({
   },
   TabContainer: {
     flex: 4,
+    backgroundColor: colors.liteTan,
   },
   Card: {
     flexDirection: 'column',

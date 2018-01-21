@@ -1,21 +1,43 @@
 import { createStore,  applyMiddleware, compose } from 'redux';
-import reducer from './Reducers/';
+import reducers from './Reducers/';
 import thunk from 'redux-thunk';
-import { autoRehydrate } from 'redux-persist';
+import { REHYDRATE, PURGE, persistCombineReducers, persistStore } from 'redux-persist';
+import storage from 'redux-persist/lib/storage'
+//
+import logs from './Reducers/LogsReducer';
+import wishlist from './Reducers/WishlistReducer';
+import user from './Reducers/UserReducer';
+import search from './Reducers/SearchReducer';
 
+// export default combineReducers()
 const middleware = applyMiddleware(thunk)
 
+const config = {
+  key: 'primary',
+  storage
+}
+
 const store = createStore(
-  reducer,
-  {},
-  compose(middleware, autoRehydrate())
+  persistCombineReducers(config, {
+    user,
+    logs,
+    wishlist,
+    search,
+  }),
+  undefined,
+  compose(middleware)
 );
 
 store.subscribe(() => {
   console.log("store changed", store.getState())
 })
 
-// store.dispatch(addLog({name: 'fake', brand:'fakey', product: 'hi'}))
+const persistor = persistStore(
+  store,
+  null,
+  () => {store.getState()}
+);
 
-
-export default store;
+export default () => {
+  return {store, persistor}
+}

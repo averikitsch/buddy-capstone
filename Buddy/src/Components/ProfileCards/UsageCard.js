@@ -3,34 +3,9 @@ import { StyleSheet } from 'react-native';
 import { Container, Header, Content, Card, CardItem,  Text, Body } from 'native-base';
 import { VictoryChart, VictoryTheme, VictoryArea, VictoryAxis, VictoryLabel } from 'victory-native';
 import { connect } from 'react-redux';
-
-const usageData = [
-  {x: "01-01-2018", y: 10},
-  {x: "01-02-2018", y: 2},
-  {x: "01-03-2018", y: 1},
-  {x: "01-05-2018", y: 4},
-  {x: "01-10-2018", y: 6},
-];
+import { colors } from '../../assets/Theme'
 
 class UsageCard extends Component {
-  // constructor(){
-  //   super();
-  //   this.state = {
-  //     data: [],
-  //   }
-  // }
-  // componentWillMount() {
-  //   this.setState({
-  //     data: this.props.logs
-  //   })
-  // }
-  // componentWillReceiveProps(nextProps) {
-  //   if (nextProps.logs.length > this.state.data) {
-  //     this.setState({
-  //       data: this.props.logs,
-  //     })
-  //   }
-  // }
   constructData(logs) {
     const dates = logs.map((log) => {
       return log.date
@@ -48,14 +23,12 @@ class UsageCard extends Component {
   }
   render() {
     return (
-      <Container>
-        <Content>
+      <Container style={styles.card}>
           <Card>
             <CardItem>
               <UseChart data={this.constructData(this.props.logs)} />
             </CardItem>
           </Card>
-        </Content>
       </Container>
     );
   }
@@ -81,3 +54,14 @@ class UseChart extends React.Component {
     )
   }
 }
+
+const styles = StyleSheet.create({
+  card: {
+    backgroundColor: colors.liteTan,
+  },
+  chart: {
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start',
+  }
+})

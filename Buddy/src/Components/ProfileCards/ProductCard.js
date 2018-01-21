@@ -3,34 +3,9 @@ import { StyleSheet } from 'react-native';
 import { Container, Header, Content, Card, CardItem,  Text, Body } from 'native-base';
 import { VictoryChart, VictoryTheme, VictoryBar, VictoryAxis, VictoryLabel, VictoryTooltip } from 'victory-native';
 import { connect } from 'react-redux';
-
-// const productData = [
-//   {product: "flower", freq: 10},
-//   {product: "concentrate", freq: 2},
-//   {product: "joints", freq: 5},
-//   {product: "vape", freq: 1},
-//   {product: "edibles", freq: 1},
-// ];
+import { colors } from '../../assets/Theme'
 
 class ProductCard extends Component {
-  // constructor(){
-  //   super();
-  //   this.state = {
-  //     data: [],
-  //   }
-  // }
-  // componentWillMount() {
-  //   this.setState({
-  //     data: this.props.logs
-  //   })
-  // }
-  // componentWillReceiveProps(nextProps) {
-  //   if (nextProps.logs.length > this.state.data) {
-  //     this.setState({
-  //       data: this.props.logs,
-  //     })
-  //   }
-  // }
   constructData(logs) {
     const productData = [
       {product: "Flower", freq: 0},
@@ -50,14 +25,12 @@ class ProductCard extends Component {
   }
   render() {
     return (
-      <Container>
-        <Content>
+      <Container style={styles.card}>
           <Card>
             <CardItem>
               <BarChart data={this.constructData(this.props.logs)} />
             </CardItem>
           </Card>
-        </Content>
       </Container>
     );
   }
@@ -73,17 +46,28 @@ export default connect(mapStateToProps)(ProductCard)
 
 class BarChart extends React.Component {
   render() {
-      return (
-        <VictoryChart
-          domainPadding={20}
-        >
-          <VictoryBar
-            data={this.props.data}
-            x="product"
-            y="freq"
-            style={{data: {fill: "green"}}}
-          />
-        </VictoryChart>
-      )
-    }
+    return (
+      <VictoryChart
+        domainPadding={20}
+      >
+        <VictoryBar
+          data={this.props.data}
+          x="product"
+          y="freq"
+          style={{data: {fill: "green"}}}
+        />
+      </VictoryChart>
+    )
   }
+}
+
+const styles = StyleSheet.create({
+  card: {
+    backgroundColor: colors.liteTan,
+  },
+  chart: {
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start',
+  }
+})
