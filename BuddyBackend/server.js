@@ -1,8 +1,8 @@
 const express = require('express');
-import mongoose from 'mongoose';
-import routes from './routes/user_router';
+const mongoose = require('mongoose');
+const routes = require('./routes/user_router');
 const bodyParser = require('body-parser');
-import User from './models/User';
+const User = require('./models/User');
 // const MongoClient = require('mongodb').MongoClient;
 const db = require('./db');
 
