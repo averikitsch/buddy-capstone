@@ -69,6 +69,11 @@ export function fetchStrains (response) {
   }
 }
 
+export function loadLogs () {
+  return {
+    type: 'LOAD_LOGS',
+  }
+}
 
 export const login = (username, userId, logId, data) => {
   return {

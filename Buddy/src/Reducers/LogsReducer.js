@@ -10,6 +10,7 @@ export default function reducer(state={
       // {id: 8, name: 'PermaFrost', brand: "Western Cultured", product: 1, date:'01/04/2018'},
     ],
   selectedLog: null,
+  loaded: true,
 }, action) {
 
   switch(action.type) {
@@ -64,11 +65,19 @@ export default function reducer(state={
       }
       break;
     }
+    case 'LOAD_LOGS': {
+      return {
+        ...state,
+        loaded: true,
+      }
+      break;
+    }
     case 'LOGOUT': {
       console.log('logout logs')
       return {
         logs: [],
         selectedLog: null,
+        loaded: false,
       }
       break;
     }
