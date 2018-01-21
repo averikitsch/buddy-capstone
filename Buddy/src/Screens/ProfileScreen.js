@@ -22,25 +22,10 @@ import axios from 'axios';
 import { PURGE, REHYDRATE } from 'redux-persist';
 
 class ProfileScreen extends React.Component {
-  // static navigationOptions = ({ navigation }) => ({
-  //   title: 'PROFILE',
-  //   headerStyle: sharedStyles.headerStyle,
-  //   headerTitleStyle: sharedStyles.headerTitleStyle,
-  // });
-
   render() {
-    // const { navigate } = this.props.navigation;
-    // <BuddyHeader name="Profile" />
     return (
       <StyleProvider style={getTheme(platform)}>
       <Container>
-        <Header>
-        <Right>
-          <Button small rounded dark onPress={this.logOut}>
-            <Text>logout</Text>
-          </Button>
-        </Right>
-        </Header>
         <View style={styles.ProfileContainer}>
           <View style={styles.ProfileHeaderContainer}>
             <ProfileLinks
@@ -94,15 +79,19 @@ class ProfileLinks extends React.Component {
           .then(data => console.log('sign out', data))
           .catch(err => console.log('signout', err))
         this.props.dispatch();
-            // const resetAction = NavigationActions.reset({
-            //   index: 0,
-            //   actions: [
-            //     NavigationActions.navigate({ routeName: 'Login' }),
-            //   ],
-            // });
-            // this.props.navigation.dispatch(resetAction);
-          // })
-    // ;
+        // const resetAction = NavigationActions.reset({
+        //   index: 0,
+        //   actions: [
+        //     NavigationActions.navigate({ routeName: 'Login' }),
+        //   ],
+        // });
+        const navigateAction= NavigationActions.navigate({
+            routeName: 'Tabs',
+            params: {},
+            action: NavigationActions.navigate({ routeName: 'Login'})
+        })
+        this.props.navigation.dispatch(navigateAction)
+
     })
     // .catch(err => console.log('logout err', err));
   }

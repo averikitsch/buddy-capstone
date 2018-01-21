@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView, Text, TextInput, View, Button, StyleSheet } from 'react-native';
+import { ScrollView, Text, TextInput, View, TouchableHighlight, StyleSheet, Dimensions } from 'react-native';
 import { NavigationActions } from 'react-navigation';
 import { connect } from 'react-redux';
 import Amplify, { Auth, API } from 'aws-amplify-react-native';
@@ -76,7 +76,7 @@ class Login extends React.Component {
     }
     return (
         <View style={styles.container}>
-            <Text>Login Please</Text>
+            <Text style={[styles.label, {margin: 30}]}>THIS JOURNAL BELONGS TO:</Text>
             <TextInput
                 placeholder='Username'
                 autoCapitalize='none'
@@ -84,16 +84,20 @@ class Login extends React.Component {
                 autoFocus={true}
                 keyboardType='email-address'
                 value={this.state.username}
-                onChangeText={(text) => this.setState({ username: text })} />
+                onChangeText={(text) => this.setState({ username: text })}
+                style={styles.textInput}/>
             <TextInput
                 placeholder='Password'
                 autoCapitalize='none'
                 autoCorrect={false}
                 secureTextEntry={true}
                 value={this.state.password}
-                onChangeText={(text) => this.setState({ password: text })} />
+                onChangeText={(text) => this.setState({ password: text })}
+                style={styles.textInput}/>
             <View style={{margin: 7}}/>
-            <Button onPress={this.userLogin} title='Login Now!'/>
+            <TouchableHighlight onPress={this.userLogin} style={styles.Button}>
+              <Text style={[styles.label, {fontSize: 18}]}>Login</Text>
+            </TouchableHighlight>
         </View>
     );
   }
@@ -122,5 +126,28 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-  }
+  },
+  label: {
+    fontFamily: 'Crete Round',
+    fontSize: 26,
+    fontWeight: 'bold',
+    color: colors.darkGray,
+  },
+  textInput: {
+    borderBottomColor: colors.darkGray,
+    borderBottomWidth: 1,
+    fontSize: 26,
+    fontFamily: 'Josefin Sans',
+    color: colors.darkGray,
+    width: Dimensions.get("window").width * .75,
+    marginTop: 30,
+  },
+  Button: {
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    borderColor: colors.darkGray,
+    borderWidth: 2,
+    marginBottom: 20,
+    marginTop: 10,
+  },
 });

@@ -32,7 +32,8 @@ class LoginScreen extends React.Component {
       return (
           <View style={styles.container}>
             <Login navigation={this.props.navigation}/>
-              <Text onPress={(e) => this.toggleRoute(e)}>
+              <Text onPress={(e) => this.toggleRoute(e)}
+                style={styles.label}>
                 {alt}
               </Text>
           </View>
@@ -43,7 +44,8 @@ class LoginScreen extends React.Component {
             <SignUp
               navigation={this.props.navigation}
               onConfirm={(e) => this.toggleRoute(e)}/>
-            <Text onPress={(e) => this.toggleRoute(e)}>
+            <Text onPress={(e) => this.toggleRoute(e)}
+              style={styles.label}>
               {alt}
             </Text>
           </View>
@@ -74,5 +76,13 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-  }
+    backgroundColor: colors.lightGreen,
+  },
+  label: {
+    fontFamily: 'Crete Round',
+    fontSize: 14,
+    fontWeight: 'bold',
+    color: colors.darkGray,
+  },
+
 });
