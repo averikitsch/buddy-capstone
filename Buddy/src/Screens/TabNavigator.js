@@ -1,24 +1,22 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { TabNavigator, StackNavigator } from 'react-navigation';
-import { Content, Button, Footer, FooterTab, StyleProvider } from 'native-base';
+import { TabNavigator } from 'react-navigation';
+import { Button, Footer, FooterTab, StyleProvider } from 'native-base';
 import Icon from 'react-native-vector-icons/Ionicons';
-import { colors, sharedStyles } from '../assets/Theme';
-import FoundScreen from './Found';
+import { colors } from '../assets/Theme';
+
+// Screens
 import FoundNav from './StackNavTrack';
-import TrackScreen from './Track';
-import ExploreScreen from './ExploreScreen';
-import SearchScreen from './SearchScreen';
-import ProfileScreen from './ProfileScreen';
 import StackProfileNav from './StackProfileNav';
 import ViewNav from './StackNavView';
+// Theme
 import getTheme from '../../native-base-theme/components';
 import platform from '../../native-base-theme/variables/platform';
 
 export default (MainScreenNavigator = TabNavigator(
   {
     Explore: { screen: ViewNav },
-    Search: { screen:  FoundNav }, //FoundNav
+    Search: { screen:  FoundNav },
     Profile: { screen: StackProfileNav },
   },
   {

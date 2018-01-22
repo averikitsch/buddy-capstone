@@ -1,5 +1,4 @@
 import React from 'react';
-// import { StyleSheet, Text, View, StyleProvider } from 'react-native';
 import { TabNavigator, StackNavigator } from 'react-navigation';
 
 // AWS
@@ -13,7 +12,7 @@ import { PersistGate } from 'redux-persist/lib/integration/react';
 import configureStore from './src/store'
 let { store, persistor } = configureStore()
 
-
+// Actions
 import axios from 'axios';
 import { fetchStrains } from './src/Actions/index';
 
@@ -21,8 +20,6 @@ import { fetchStrains } from './src/Actions/index';
 import Loading from './src/Screens/Loading';
 import StackLoginNav from './src/Screens/StackLoginNav';
 import Navigator from './src/Screens/TabNavigator';
-
-
 
 class Buddy extends React.Component {
   constructor() {
