@@ -38,6 +38,7 @@ class Login extends React.Component {
               wishlist: user.data.WishList
             }
             if (user.id) {
+              console.log('login existing')
               this.props.onLogin(this.state.username, userId, logId, data)
             } else {
               axios.post('https://buddy-backend.herokuapp.com/users',{
@@ -45,8 +46,7 @@ class Login extends React.Component {
                 userId: userId,
               })
               .then((user) => {
-                console.log(user)
-                console.log(user)
+                console.log('make a new user', user)
                 logId = user.data._id
                 data = {}
                 this.props.onLogin(this.state.username, userId, logId, data)
@@ -57,7 +57,15 @@ class Login extends React.Component {
           .catch(err => console.log(err))
           this.navigate2tabs();
       })
-      .catch(err => console.log(err));
+      .catch((err) => {
+        console.log(err.message)
+        const error = (err.message) ? err.message : err
+        console.log(error)
+        this.setState({
+          error: error,
+        })
+      }); // this error:  Username cannot be empty
+      //Login.js:60 Error: User does not exist.
   }
   navigate2tabs () {
     const resetAction = NavigationActions.reset({
@@ -95,6 +103,13 @@ class Login extends React.Component {
                 onChangeText={(text) => this.setState({ password: text })}
                 style={styles.textInput}/>
             <View style={{margin: 7}}/>
+
+            <View style={styles.errorContainer}>
+              <Text style={styles.error}>
+                {this.state.error}
+              </Text>
+            </View>
+
             <TouchableHighlight onPress={this.userLogin} style={styles.Button}>
               <Text style={[styles.label, {fontSize: 18}]}>Login</Text>
             </TouchableHighlight>
@@ -150,4 +165,12 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     marginTop: 10,
   },
+  error: {
+    color: colors.spicy,
+    fontSize: 16,
+    fontFamily: 'Josefin Sans',
+  },
+  errorContainer: {
+    paddingVertical: 5,
+  }
 });

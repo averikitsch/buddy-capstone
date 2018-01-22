@@ -10,6 +10,7 @@ import TrackScreen from './Track';
 import ExploreScreen from './ExploreScreen';
 import SearchScreen from './SearchScreen';
 import ProfileScreen from './ProfileScreen';
+import StackProfileNav from './StackProfileNav';
 import ViewNav from './StackNavView';
 import getTheme from '../../native-base-theme/components';
 import platform from '../../native-base-theme/variables/platform';
@@ -18,7 +19,7 @@ export default (MainScreenNavigator = TabNavigator(
   {
     Explore: { screen: ViewNav },
     Search: { screen:  FoundNav }, //FoundNav
-    Profile: { screen: ProfileScreen },
+    Profile: { screen: StackProfileNav },
   },
   {
     initialRouteName: 'Explore',

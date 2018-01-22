@@ -33,7 +33,7 @@ class SignUp extends React.Component {
           confirm: true,
         })
       })
-      .catch(err => console.log(err));
+      .catch(err => console.log(err)); // this error
   }
   userConfirm(e) {
     e.preventDefault();
@@ -100,13 +100,12 @@ class ConfirmUser extends React.Component {
   }
   userConfirm (e) {
     e.preventDefault();
-    console.log(this.state.code)
     Auth.confirmSignUp(this.state.username, this.state.code.toString())
     .then((data) => {
       console.log(data)
       this.props.handleConfirm(e);
     })
-    .catch(err => console.log(err));
+    .catch(err => console.log(err)); //this error
   }
   render() {
     return (

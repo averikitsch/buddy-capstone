@@ -79,18 +79,25 @@ class ProfileLinks extends React.Component {
           .then(data => console.log('sign out', data))
           .catch(err => console.log('signout', err))
         this.props.dispatch();
+
         // const resetAction = NavigationActions.reset({
         //   index: 0,
         //   actions: [
         //     NavigationActions.navigate({ routeName: 'Login' }),
         //   ],
         // });
-        const navigateAction= NavigationActions.navigate({
-            routeName: 'Tabs',
-            params: {},
-            action: NavigationActions.navigate({ routeName: 'Login'})
-        })
-        this.props.navigation.dispatch(navigateAction)
+        // const navigateAction= NavigationActions.navigate({
+        //     routeName: 'Tabs',
+        //     params: {},
+        //     action: NavigationActions.navigate({ routeName: 'Login'})
+        // })
+        this.props.navigation.navigate('Login')
+        //   type: 'Navigation/BACK',
+        //   action: {
+        //     type: 'Navigation/BACK'
+        //   }
+        // })
+      // });
 
     })
     // .catch(err => console.log('logout err', err));

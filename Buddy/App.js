@@ -40,7 +40,7 @@ class Buddy extends React.Component {
     axios.get(`http://strainapi.evanbusse.com/5QPNwCQ/strains/search/all`)
       .then((response) => {
         const names = Object.keys(response.data);
-        console.log('names', names);
+        // console.log('names', names);
         this.setState({isReady: true})
         store.dispatch(fetchStrains(names))
       })
