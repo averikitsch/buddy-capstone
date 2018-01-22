@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { Container, Content, Spinner } from 'native-base'
+import { colors } from '../assets/Theme';
 
 export default class LoadingScreen extends React.Component {
   render() {
@@ -20,5 +21,6 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: colors.liteTan,
   }
 });

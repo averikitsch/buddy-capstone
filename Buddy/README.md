@@ -1,0 +1,1 @@
+# Buddy - React Native App

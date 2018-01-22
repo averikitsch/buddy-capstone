@@ -33,7 +33,7 @@ export default (MainScreenNavigator = TabNavigator(
               vertical
               active={props.navigationState.index === 0}
               onPress={() => props.navigation.navigate('Explore')}>
-              <Icon name='ios-compass' size={30}
+              <Icon name='ios-archive' size={40}
               color={(props.navigationState.index === 0) ? colors.darkGray : colors.green}/>
             </Button>
 
@@ -41,7 +41,7 @@ export default (MainScreenNavigator = TabNavigator(
               vertical
               active={props.navigationState.index === 1}
               onPress={() => props.navigation.navigate('Search')}>
-              <Icon name='ios-camera' size={35}
+              <Icon name='ios-compass' size={35}
               color={(props.navigationState.index === 1) ? colors.darkGray : colors.green}/>
             </Button>
 
@@ -49,7 +49,7 @@ export default (MainScreenNavigator = TabNavigator(
               vertical
               active={props.navigationState.index === 2}
               onPress={() => props.navigation.navigate('Profile')}>
-              <Icon name='md-contact' size={30}
+              <Icon name='md-contact' size={35}
               color={(props.navigationState.index === 2) ? colors.darkGray : colors.green}/>
             </Button>
 

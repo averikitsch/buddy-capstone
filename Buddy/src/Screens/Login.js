@@ -46,7 +46,7 @@ class Login extends React.Component {
               logs: user.data.LogList,
               wishlist: user.data.WishList
             }
-            if (user.id) {
+            if (logId) {
               console.log('login existing')
               this.props.onLogin(this.state.username, userId, logId, data)
             } else {
