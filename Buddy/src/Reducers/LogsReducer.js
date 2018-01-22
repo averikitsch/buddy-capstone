@@ -18,9 +18,17 @@ export default function reducer(state={
       const ids = state.logs.map((obj) => {
         return obj.id
       })
-      const nextId = Math.max(...ids) + 1;
+      let nextId;
+      if (ids.length == 0) {
+        console.log('make id = 1')
+        nextId = 1;
+      } else {
+        console.log(ids)
+        nextId = Math.max(...ids) + 1;
+      }
       const newLog = action.payload;
       newLog.id = nextId;
+      console.log(newLog)
       return {
         ...state,
         logs: [...state.logs, newLog],

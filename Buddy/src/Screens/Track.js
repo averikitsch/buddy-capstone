@@ -1,15 +1,17 @@
 import React from 'react';
-import { View, Image, StyleSheet, Text, Slider, Dimensions, TouchableHighlight, TextInput, AsyncStorage } from 'react-native';
+import { View, Image, StyleSheet, Text, Slider, Dimensions, TouchableHighlight, TextInput } from 'react-native';
 import { Container, Content }  from 'native-base';
-import { connect } from 'react-redux';
 import { NavigationActions } from 'react-navigation';
+// Radio Form
 import RadioForm, {RadioButton, RadioButtonInput, RadioButtonLabel} from 'react-native-simple-radio-button';
+// Custom Icons
 import { createIconSetFromIcoMoon } from 'react-native-vector-icons';
 import IcoMoonConfig from '../selection.json';
 const Icon = createIconSetFromIcoMoon(IcoMoonConfig);
 import Icon2 from 'react-native-vector-icons/FontAwesome';
-// import BuddyHeader from '../Components/HeaderComponent';
 import { colors, sharedStyles } from '../assets/Theme';
+// Actions
+import { connect } from 'react-redux';
 import { addLog } from '../Actions/index';
 import { product_props, product_map, duration_map, unit, units, quantityValues, date } from '../lib/TrackConverter';
 

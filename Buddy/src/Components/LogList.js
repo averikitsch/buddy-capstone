@@ -15,7 +15,6 @@ class LogList extends React.Component {
     this.handleClick = this.handleClick.bind(this);
   }
   deleteLog(data) {
-    console.log(data)
     this.props.actions.rmLog(data);
   }
   handleClick(data) {
@@ -38,11 +37,11 @@ class LogList extends React.Component {
                 />
               </ListItem>
             }
-            renderLeftHiddenRow={(data, secId, rowId, rowMap) =>
+            renderLeftHiddenRow={(data) =>
               <Button full onPress={_ => this.handleClick(data)}>
                 <Icon active name="md-create" />
               </Button>}
-            renderRightHiddenRow={(data, secId, rowId, rowMap) =>
+            renderRightHiddenRow={(data) =>
               <Button full danger onPress={_ => this.deleteLog(data)}>
               {/*_ => this.deleteRow(secId, rowId, rowMap)*/}
                 <Icon active name="trash" />
