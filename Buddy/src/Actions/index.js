@@ -72,6 +72,8 @@ export function loadLogs () {
 }
 
 export const login = (username, userId, logId, data) => {
+  console.log('logs', data.logs);
+  console.log('wishlist', data.wishlist);
   return {
     type: 'LOGIN',
     username: username,

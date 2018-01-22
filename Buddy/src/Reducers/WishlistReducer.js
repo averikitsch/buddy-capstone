@@ -1,7 +1,5 @@
 export default function reducer(state={
-  wishlist:[
-    {id: 1, name: 'Mochi gelato', brand: "Dawg Star", product: 1, date:'01-01-2018', duration: 1, ranking: 5, activity: 3, type: 'sativa', flavors: { spicy: true, sweet: false, sour: false, earthy: false }, quantity: 1},
-  ]
+  wishlist:[]
 }, action) {
 
   switch(action.type) {
@@ -28,7 +26,7 @@ export default function reducer(state={
       }
     }
     case 'LOGIN': {
-      const data = action.logs ? action.logs : [];
+      const data = action.wishlist ? action.wishlist : [];
       return {
         ...state,
         wishlist: data,
@@ -36,7 +34,9 @@ export default function reducer(state={
     }
     case 'LOGOUT': {
       console.log('logout wish')
-      return {}
+      return {
+        wishlist:[]
+      }
       break;
     }
   }
