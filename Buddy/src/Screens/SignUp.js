@@ -31,14 +31,21 @@ class SignUp extends React.Component {
         console.log(data)
         this.setState({
           confirm: true,
+          error: null,
         })
       })
-      .catch(err => console.log(err)); // this error
+      .catch((err) => {
+        const error = (err.message) ? err.message : err
+        this.setState({
+          error: error,
+        })
+      }); // this error
   }
   userConfirm(e) {
     e.preventDefault();
     this.setState({
       confirm: true,
+      error: null,
     })
   }
   render () {
@@ -79,6 +86,13 @@ class SignUp extends React.Component {
                 onChangeText={(text) => this.setState({ password: text })}
                 style={styles.textInput}/>
             <View style={{margin: 7}}/>
+
+            <View style={styles.errorContainer}>
+              <Text style={styles.error}>
+                {this.state.error}
+              </Text>
+            </View>
+
             <TouchableHighlight onPress={this.userSignUp} style={styles.Button}>
               <Text style={[styles.label, {fontSize: 18}]}>Sign Up</Text>
             </TouchableHighlight>
@@ -94,6 +108,7 @@ class ConfirmUser extends React.Component {
     this.state = {
         username: this.props.name,
         code: '',
+        error: null,
     };
     // this.userSignUp = this.userSignUp.bind(this);
     this.userConfirm = this.userConfirm.bind(this);
@@ -105,7 +120,12 @@ class ConfirmUser extends React.Component {
       console.log(data)
       this.props.handleConfirm(e);
     })
-    .catch(err => console.log(err)); //this error
+    .catch((err) => {
+      const error = (err.message) ? err.message : err
+      this.setState({
+        error: error,
+      })
+    }); //this error
   }
   render() {
     return (
@@ -127,6 +147,13 @@ class ConfirmUser extends React.Component {
           keyboardType='numeric'
           onChangeText={(text) => this.setState({ code: text })}
           style={styles.textInput}/>
+
+          <View style={styles.errorContainer}>
+            <Text style={styles.error}>
+              {this.state.error}
+            </Text>
+          </View>
+
           <TouchableHighlight onPress={this.userConfirm} style={styles.Button}>
             <Text style={[styles.label, {fontSize: 18}]}>Start</Text>
           </TouchableHighlight>
@@ -178,4 +205,12 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     marginTop: 10,
   },
+  error: {
+    color: colors.spicy,
+    fontSize: 16,
+    fontFamily: 'Josefin Sans',
+  },
+  errorContainer: {
+    padding: 5,
+  }
 });

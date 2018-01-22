@@ -10,8 +10,8 @@ export default StackTabNav = StackNavigator({
 }
 ,{
   initialRouteName: 'Profile',
-  // navigationOptions: {
-  //   header: null,
-  // }
+  navigationOptions: {
+    header: null,
+  }
 }
 );

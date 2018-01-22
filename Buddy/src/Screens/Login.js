@@ -22,6 +22,12 @@ class Login extends React.Component {
     };
     this.userLogin = this.userLogin.bind(this);
   }
+  componentWillMount() {
+    if (this.props.isLoggedIn) {
+      console.log('logged in')
+      this.navigate2tabs();
+    }
+  }
   userLogin (e) {
     e.preventDefault();
     Auth.signIn(this.state.username, this.state.password)
@@ -58,14 +64,11 @@ class Login extends React.Component {
           this.navigate2tabs();
       })
       .catch((err) => {
-        console.log(err.message)
         const error = (err.message) ? err.message : err
-        console.log(error)
         this.setState({
           error: error,
         })
-      }); // this error:  Username cannot be empty
-      //Login.js:60 Error: User does not exist.
+      });
   }
   navigate2tabs () {
     const resetAction = NavigationActions.reset({
@@ -77,11 +80,6 @@ class Login extends React.Component {
     this.props.navigation.dispatch(resetAction);
   }
   render () {
-    if (this.props.isLoggedIn) {
-      console.log('logged in')
-      this.navigate2tabs();
-
-    }
     return (
         <View style={styles.container}>
             <Text style={[styles.label, {margin: 30}]}>THIS JOURNAL BELONGS TO:</Text>
@@ -171,6 +169,6 @@ const styles = StyleSheet.create({
     fontFamily: 'Josefin Sans',
   },
   errorContainer: {
-    paddingVertical: 5,
+    padding: 5,
   }
 });
