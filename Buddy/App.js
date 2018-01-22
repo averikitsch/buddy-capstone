@@ -48,19 +48,20 @@ class Buddy extends React.Component {
     // })
   }
   componentDidMount() {
-    Amplify.configure({
-      Auth: {
-          identityPoolId: 'us-west-2:5f8350eb-7c9a-41ed-b437-9d8b421faf0c', //REQUIRED - Amazon Cognito Identity Pool ID
-          region: 'us-west-2', // REQUIRED - Amazon Cognito Region
-          userPoolId: 'us-west-2_7WaS5h0h7', //OPTIONAL - Amazon Cognito User Pool ID
-          userPoolWebClientId: 'XX-XXXX-X_abcd1234', //OPTIONAL - Amazon Cognito Web Client ID
-      },
-      Analytics: {
-          appId: '6343581b8237443a829901b82d540401', //OPTIONAL -  Amazon Pinpoint App ID
-          region: 'us-east-1', //OPTIONAL -  Amazon service region
-      }
-    });
-    
+    // Amplify.configure(aws_exports);
+    // Amplify.configure({
+    //   Auth: {
+    //       identityPoolId: 'us-west-2:5f8350eb-7c9a-41ed-b437-9d8b421faf0c', //REQUIRED - Amazon Cognito Identity Pool ID
+    //       region: 'us-west-2', // REQUIRED - Amazon Cognito Region
+    //       userPoolId: 'us-west-2_7WaS5h0h7', //OPTIONAL - Amazon Cognito User Pool ID
+    //       userPoolWebClientId: 'XX-XXXX-X_abcd1234', //OPTIONAL - Amazon Cognito Web Client ID
+    //   },
+    //   Analytics: {
+    //       appId: '6343581b8237443a829901b82d540401', //OPTIONAL -  Amazon Pinpoint App ID
+    //       region: 'us-east-1', //OPTIONAL -  Amazon service region
+    //   }
+    // });
+
     axios.get(`http://strainapi.evanbusse.com/5QPNwCQ/strains/search/all`)
       .then((response) => {
         const names = Object.keys(response.data);

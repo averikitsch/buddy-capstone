@@ -112,7 +112,7 @@ class ConfirmUser extends React.Component {
     this.userConfirm = this.userConfirm.bind(this);
   }
   userConfirm (e) {
-    e.preventDefault();
+    // e.preventDefault();
     Auth.confirmSignUp(this.state.username, this.state.code.toString())
     .then((data) => {
       console.log(data)

@@ -4,6 +4,10 @@ import { NavigationActions } from 'react-navigation';
 import { connect } from 'react-redux';
 import { Auth } from 'aws-amplify-react-native';
 
+// import Amplify from 'aws-amplify-react-native';
+// import aws_exports from '../aws-exports';
+// Amplify.configure(aws_exports);
+
 import { login, signup } from '../Actions';
 import Navigator from './TabNavigator';
 import { colors, sharedStyles } from '../assets/Theme';
@@ -63,6 +67,7 @@ class Login extends React.Component {
           this.navigate2tabs();
       })
       .catch((err) => {
+        console.log('login', err)
         const error = (err.message) ? err.message : err
         this.setState({
           error: error,
