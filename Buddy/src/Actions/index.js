@@ -1,7 +1,3 @@
-import Amplify, { API } from 'aws-amplify-react-native';
-import aws_exports from '../aws-exports';
-Amplify.configure(aws_exports);
-
 export function addLog (log) {
   console.log('add log');
   return {

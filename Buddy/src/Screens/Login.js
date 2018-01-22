@@ -2,9 +2,8 @@ import React from 'react';
 import { ScrollView, Text, TextInput, View, TouchableHighlight, StyleSheet, Dimensions } from 'react-native';
 import { NavigationActions } from 'react-navigation';
 import { connect } from 'react-redux';
-import Amplify, { Auth, API } from 'aws-amplify-react-native';
-import aws_exports from '../aws-exports';
-Amplify.configure(aws_exports);
+import { Auth } from 'aws-amplify-react-native';
+
 import { login, signup } from '../Actions';
 import Navigator from './TabNavigator';
 import { colors, sharedStyles } from '../assets/Theme';
