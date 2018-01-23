@@ -49,12 +49,32 @@ class BarChart extends React.Component {
     return (
       <VictoryChart
         domainPadding={20}
+        padding={{left: 20, top: 10, bottom: 30, right: 65}}
+        height={300}
+        width={380}
       >
         <VictoryBar
           data={this.props.data}
           x="product"
           y="freq"
-          style={{data: {fill: colors.earthy}}}
+          labels={(d)=> d.y}
+          style={{
+            data: {fill: colors.earthy},
+            labels: {
+              fontFamily: 'Josefin Sans',
+              fontSize: 16,
+              fontWeight: '400'
+            }
+          }}
+        />
+        <VictoryAxis
+          style={{
+            tickLabels: {
+              fontFamily: 'Josefin Sans',
+              fontSize: 16,
+              fontWeight: '400'
+            }
+          }}
         />
       </VictoryChart>
     )
