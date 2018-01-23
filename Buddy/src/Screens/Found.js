@@ -161,7 +161,9 @@ class ProductBody extends React.Component {
     )
   } else {
     return (
-      <Text>Not found</Text>
+      <View style={styles.bodyContainer}>
+        <Text style={styles.text}>Sorry, we are unable to find this strain in our database.</Text>
+      </View>
     )
   }
   }

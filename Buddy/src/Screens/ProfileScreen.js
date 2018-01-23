@@ -110,7 +110,7 @@ class ProfileLinks extends React.Component {
             <Title style={styles.ProfileName}>{this.props.name}</Title>
             <Button small rounded dark
               onPress={this.logout.bind(this)}>
-              <Text>logout</Text>
+              <Text style={styles.label}>logout</Text>
             </Button>
           </View>
         </View>
@@ -124,16 +124,16 @@ class TabsScrollable extends React.Component {
     return (
       <StyleProvider style={getTheme(platform)}>
         <Tabs renderTabBar={()=> <ScrollableTab />}>
-          <Tab heading="Flavor" style={styles.Card}>
+          <Tab heading={"Flavor".toUpperCase()} style={styles.Card}>
             <FlavorCard />
           </Tab>
-          <Tab heading="Type" style={styles.Card}>
+          <Tab heading={"Type".toUpperCase()} style={styles.Card}>
             <TypeCard />
           </Tab>
-          <Tab heading="Products" style={styles.Card}>
+          <Tab heading={"Products".toUpperCase()} style={styles.Card}>
             <ProductCard />
           </Tab>
-          <Tab heading="Usage" style={styles.Card}>
+          <Tab heading={"Usage".toUpperCase()} style={styles.Card}>
             <UsageCard />
           </Tab>
         </Tabs>
@@ -178,5 +178,10 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     padding: 0,
     margin: 10,
+  },
+  label: {
+    fontFamily: 'Josefin Sans',
+    fontWeight: '300',
+    fontSize: 18,
   }
 })

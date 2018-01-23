@@ -13,7 +13,8 @@ export default (variables = variable) => {
         "NativeBase.Text": {
           fontSize: variables.tabFontSize,
           color: variables.sTabBarActiveTextColor,
-          fontWeight: "400"
+          fontWeight: "400",
+          fontFamily: 'Josefin Sans'
         },
         "NativeBase.IconNB": {
           color: variables.sTabBarActiveTextColor
@@ -25,7 +26,8 @@ export default (variables = variable) => {
       "NativeBase.Text": {
         fontSize: variables.tabFontSize,
         color: variables.sTabBarActiveTextColor,
-        fontWeight: "400"
+        fontWeight: "400",
+        fontFamily: 'Josefin Sans'
       },
       ".isTabActive": {
         "NativeBase.Text": {
@@ -48,7 +50,7 @@ export default (variables = variable) => {
     borderLeftWidth: 0,
     borderRightWidth: 0,
     borderBottomColor: "#ccc",
-    backgroundColor: variables.tabBgColor
+    backgroundColor: variables.tabBgColor,
   };
 
   return tabBarTheme;
