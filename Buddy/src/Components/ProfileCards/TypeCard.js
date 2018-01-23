@@ -46,19 +46,34 @@ class PieChart extends React.Component {
   }
   render() {
     return (
-      <VictoryChart theme={VictoryTheme.material}>
+      <VictoryChart
+        theme={VictoryTheme.material}
+        height={300}
+        padding={{top: 10, bottom: 10, right: 60 }}
+      >
         <VictoryPie
         data={this.processData(this.props.data)}
           colorScale={[colors.earthy, colors.sour, colors.spicy ]}
-          standalone={false}
-          width={300} height={300}
-          innerRadius={40} labelRadius={100}
+          standalone={true}
+          innerRadius={40}
+          labelRadius={70}
           padAngle={3}
-          style={{ labels: { fill: "white", fontSize: 18, } }}
-          labels={(d) => `${d.x}\n${d.y}%`}
-          labelComponent={<VictoryLabel textAnchor={"middle"} verticalAnchor={"start"}/>}
+          style={{
+            labels: {
+              fill: colors.darkGray,
+              fontSize: 18,
+              fontFamily: 'Josefin Sans',
+              fontWeight: '400'
+            }
+          }}
+          labels={(d) => `${d.x}\n${Math.floor(d.y)}%`}
+          labelComponent={<VictoryLabel />}
         />
-         <VictoryAxis style={{ axis: {stroke: "none"} }} />
+         <VictoryAxis
+          style={{
+            axis: {stroke: "none"}
+          }}
+        />
       </VictoryChart>
     );
   }
