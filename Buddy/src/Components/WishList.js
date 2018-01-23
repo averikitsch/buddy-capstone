@@ -22,6 +22,7 @@ class WishList extends React.Component {
       <Container>
         <Content>
           <List
+            enableEmptySections
             dataSource={this.ds.cloneWithRows(this.props.wishlist)}
             renderRow={ data =>
               <ListItem>

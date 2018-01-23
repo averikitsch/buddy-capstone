@@ -24,6 +24,7 @@
     "aws-amplify-react-native": "^0.1.11",
     "aws-sdk": "^2.185.0",
     "axios": "^0.17.1",
+    "moment": "^2.20.1",
     "native-base": "^2.3.6",
     "react": "16.0.0",
     "react-native": "0.50.3",

@@ -75,7 +75,7 @@ class RadarChart extends React.Component {
         height={250}
         padding={{top: 25, bottom: 25}}>
 
-        <VictoryGroup colorScale={["green","white"]}
+        <VictoryGroup colorScale={[colors.earthy,"white"]}
           style={{ data: { fillOpacity: 0.2, strokeWidth: 2 } }}>
           {data.map((data, i) => {
             return <VictoryArea key={i} data={data}/>;

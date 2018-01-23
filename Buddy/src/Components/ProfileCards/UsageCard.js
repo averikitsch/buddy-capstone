@@ -4,6 +4,7 @@ import { Container, Header, Content, Card, CardItem,  Text, Body } from 'native-
 import { VictoryChart, VictoryTheme, VictoryArea, VictoryAxis, VictoryLabel } from 'victory-native';
 import { connect } from 'react-redux';
 import { colors } from '../../assets/Theme'
+import moment from 'moment';
 
 class UsageCard extends Component {
   constructData(logs) {
@@ -15,11 +16,22 @@ class UsageCard extends Component {
       tempData[date] = 0
     })
     logs.forEach((log) => {
-      tempData[log.date] += log.quantity
+      if (log.product == 5) {
+        tempData[log.date] += log.quantity/ 10;
+      } else {
+        tempData[log.date] += log.quantity;
+      }
     })
-    return Object.keys(tempData).map((date) => {
-      return {x: date, y: tempData[date]}
+    let data =  Object.keys(tempData).map((date) => {
+      return {x: moment(date, "MM/DD/YYYY").format('MM/DD'), y: tempData[date]}
     })
+    if (data.length == 1) {
+      data.unshift({
+        x: moment(data[0].x, 'MM/DD').subtract(1, 'days').format('MM/DD'), y: 0
+      })
+    }
+
+    return data
   }
   render() {
     return (
@@ -47,7 +59,7 @@ class UseChart extends React.Component {
     return (
       <VictoryChart>
       <VictoryArea
-      style={{ data: { fill: "green" } }}
+      style={{ data: { fill: colors.earthy } }}
       data={this.props.data}
       />
       </VictoryChart>

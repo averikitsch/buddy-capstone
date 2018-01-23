@@ -30,17 +30,10 @@ class SearchScreen extends React.Component {
       filterText: filterText,
     });
   }
-  // handleClickItem(text) {
-  //   this.setState({
-  //     filterText: text,
-  //   });
-  // }
   render() {
     return (
       <Container>
         <SearchBar
-        // <View style={styles.search}>
-          // style={styles.searchBar}
           filterText={this.state.filterText}
           onFilterTextChange={this.handleFilterTextChange}
           dispatch={this.props.findItem}
@@ -51,18 +44,15 @@ class SearchScreen extends React.Component {
             strains={this.props.list}
             filterText={this.state.filterText}
             clickItem={this.handleFilterTextChange}
-            // </View>
           />
         </Content>
       </Container>
     )
   }
 }
-// <CameraComponent />
 
 function mapStateToProps (store) {
   return {
-    // item: store.search.found,
     list: store.search.allStrains
   }
 }
@@ -107,42 +97,37 @@ class SearchBar extends React.Component {
   }
   handleEnter(e) {
       // dismissKeyboard();
-      e.preventDefault();
-      // Alert.alert(this.props.filterText)
-      const text = this.props.filterText;
-    console.log(this.props.filterText)
+    e.preventDefault();
+    const text = this.props.filterText;
     axios.get(`http://strainapi.evanbusse.com/5QPNwCQ/strains/search/name/${text}`)
       .then((response) => {
-        const data = response.data[0]
-        // console.log(data)
+        let data = response.data[0]
+        if (response.data.length > 1){
+          response.data.forEach((log) => {
+            if (log.name.toLowerCase() == text.toLowerCase()) {
+              data = log;
+            }
+          })
+        }
         if (data) {
-        const id = response.data[0].id;
+        const id = data.id;
           axios.get(`http://strainapi.evanbusse.com/5QPNwCQ/strains/data/effects/${id}`)
           .then((response) => {
-            // console.log(response.data)
             const effects = response.data;
             axios.get(`http://strainapi.evanbusse.com/5QPNwCQ/strains/data/flavors/${id}`)
             .then((response) => {
-              console.log(response.data)
               const flavors = response.data;
               const dataObj = {...data, effects: effects, flavors: flavors}
-              console.log(dataObj)
               this.props.dispatch(dataObj)
               this.props.navigation.navigate("Found");
             })
           })
         } else {
           const dataObj = {name: text}
-          console.log(dataObj)
           this.props.dispatch(dataObj)
           this.props.navigation.navigate("Found");
         }
       })
-      // .catch((err) => {
-      //   console.log(err);
-      //   this.props.dispatch(err)
-      //   this.props.navigation.navigate("Found");
-      // })
   }
   render() {
     return (
@@ -168,20 +153,15 @@ class ListStrains extends React.Component {
     this.handleClick = this.handleClick.bind(this);
   }
   handleClick(text) {
-    // Alert.alert(e.target.value)
-    console.log(text)
-    // console.log(e.tarx/get.value)
     this.props.clickItem(text)
   }
   render() {
     const filterText = this.props.filterText;
-    // console.log(this.props.strains)
     const rows = this.props.strains.filter((strain) => {
       if (strain.toLowerCase().indexOf(filterText.toLowerCase()) >= 0) {
         return strain
       }
     })
-    // console.log(rows)
     rowItems = rows.map((strain, i) => {
       return (
         <ListItem style={styles.listItem} key={i} onPress={() => this.handleClick(strain)}>

@@ -54,7 +54,7 @@ class BarChart extends React.Component {
           data={this.props.data}
           x="product"
           y="freq"
-          style={{data: {fill: "green"}}}
+          style={{data: {fill: colors.earthy}}}
         />
       </VictoryChart>
     )
