@@ -57,10 +57,33 @@ export default connect(mapStateToProps)(UsageCard)
 class UseChart extends React.Component {
   render() {
     return (
-      <VictoryChart>
+      <VictoryChart
+        domainPadding={20}
+        padding={{left: 20, top: 35, bottom: 30, right: 65}}
+        height={300}
+        width={380}
+      >
       <VictoryArea
-      style={{ data: { fill: colors.earthy } }}
-      data={this.props.data}
+        style={{
+          data: { fill: colors.earthy } ,
+          labels: {
+            fontFamily: 'Josefin Sans',
+            fontSize: 18,
+            fontWeight: '400'
+          }
+        }}
+        data={this.props.data}
+        labels={(d) => `${d.y}x`}
+        labelComponent={<VictoryLabel dy={10}/>}
+      />
+      <VictoryAxis
+        style={{
+          tickLabels: {
+            fontFamily: 'Josefin Sans',
+            fontSize: 16,
+            fontWeight: '400'
+          }
+        }}
       />
       </VictoryChart>
     )
