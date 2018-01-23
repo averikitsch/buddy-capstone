@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, ListView, View, Image, Alert } from 'react-native';
 import { Container, Content, Card, CardItem, Button, Icon, List, ListItem, Title, Text, Body, Thumbnail, Left, Right, Segment, Header } from 'native-base';
+import { colors } from '../assets/Theme';
 
 export default class Log extends React.Component {
   render() {
@@ -44,6 +45,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Josefin Sans',
     fontSize: 18,
     paddingBottom: 4,
+    color: colors.darkGray
   },
   SubHeader: {
     color: 'gray',
