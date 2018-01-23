@@ -71,9 +71,13 @@ class RadarChart extends React.Component {
     return (
       <VictoryChart polar
         theme={VictoryTheme.material}
+        animate={{ duration: 1000 }}
         domain={{ y: [ 0, 1 ] }}
-        height={250}
-        padding={{top: 25, bottom: 25}}>
+        height={310}
+        width={310}
+        // padding={{top: 25, left: 5}}
+        // padding={{right: 25}}
+      >
 
         <VictoryGroup colorScale={[colors.earthy,"white"]}
           style={{ data: { fillOpacity: 0.2, strokeWidth: 2 } }}>
@@ -86,9 +90,20 @@ class RadarChart extends React.Component {
           return (
             <VictoryPolarAxis key={i} dependentAxis
               style={{
-                axisLabel: { padding: 10 },
                 axis: { stroke: "none" },
-                grid: { stroke: "grey", strokeWidth: 0.25, opacity: 0.5 }
+                grid: { stroke: "grey", strokeWidth: 0.5, opacity: 0.75 },
+                tickLabels: {
+                  fontSize: 16,
+                  fontFamily: 'Josefin Sans',
+                  fontWeight: '300'
+                },
+                axisLabel: {
+                  fontSize: 20,
+                  fontFamily: 'Josefin Sans',
+                  fontWeight: '400',
+                  padding: 15,
+                  paddingRight: 25
+                }
               }}
               tickLabelComponent={
                 <VictoryLabel labelPlacement="vertical"/>
@@ -102,11 +117,11 @@ class RadarChart extends React.Component {
         })
       }
       <VictoryPolarAxis
-        labelPlacement="parallel"
+        labelPlacement="perpendicular"
         tickFormat={() => ""}
         style={{
-          axis: { stroke: "none" },
-          grid: { stroke: "grey", opacity: 0.5 }
+          grid: { stroke: "grey", opacity: 0.5 },
+          tickLabels: {fontSize: 24}
         }}
       />
 
@@ -123,5 +138,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'flex-start',
     alignItems: 'flex-start',
+  },
+  text: {
+    fontFamily: 'Josefin Sans',
+    fontSize: 14,
   }
 })
