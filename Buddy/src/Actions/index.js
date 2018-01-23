@@ -38,6 +38,14 @@ export function updateLog (log) {
   }
 }
 
+export function updateWish (log) {
+  console.log('update wish');
+  return {
+    type: 'UPDATE_WISHLIST',
+    payload: log,
+  }
+}
+
 export function selectLog (log) {
   return {
     type: "SELECT_LOG",
@@ -45,9 +53,22 @@ export function selectLog (log) {
   }
 }
 
+export function selectWish (log) {
+  return {
+    type: "SELECT_WISH",
+    payload: log,
+  }
+}
+
 export function deselectLog (log) {
   return {
     type: "DESELECT_LOG",
+  }
+}
+
+export function deselectWish (log) {
+  return {
+    type: "DESELECT_WISH",
   }
 }
 

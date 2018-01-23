@@ -4,7 +4,7 @@ import { Container, Content, Card, CardItem, Button, Icon, List, ListItem, Title
 import { connect } from 'react-redux';
 import Log from './Log'
 import ProductHeader from '../Components/ProductHeaderComponent';
-import { rmLog, updateLog, rmWish, selectLog, deselectLog } from '../Actions/index';
+import { rmLog, updateLog, rmWish, selectWish } from '../Actions/index';
 import { convert } from '../lib/TrackConverter';
 
 class WishList extends React.Component {
@@ -14,6 +14,10 @@ class WishList extends React.Component {
   }
   deleteRow(data) {
     this.props.actions.rmWish(data);
+  }
+  handleClick(data) {
+    this.props.actions.selectWish(data);
+    this.props.navigation.navigate('EditWish');
   }
   render() {
     const { navigate } = this.props.navigation;
@@ -30,7 +34,7 @@ class WishList extends React.Component {
               </ListItem>
             }
             renderLeftHiddenRow={data =>
-              <Button full onPress={() => navigate("Track")}>
+              <Button full onPress={_ => this.handleClick(data)}>
                 <Icon active name="md-create" />
               </Button>}
             renderRightHiddenRow={(data) =>
@@ -56,6 +60,7 @@ function mapDispatchToProps (dispatch) {
   return {
   actions: {
     rmWish: wish => dispatch(rmWish(wish)),
+    selectWish: wish => dispatch(selectWish(wish))
   }}
 }
 

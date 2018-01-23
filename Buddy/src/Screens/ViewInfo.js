@@ -38,12 +38,11 @@ class ViewInfoScreen extends React.Component {
     }
     return (
       <Container>
-
-      <Content padder style={styles.formContentBody}>
-      <Text>
-        No Selected Log
-      </Text>
-      </Content>
+        <Content padder style={styles.formContentBody}>
+          <Text>
+            No Selected Log
+          </Text>
+        </Content>
       </Container>
     )
   }
@@ -62,9 +61,6 @@ class ProductHeader extends React.Component {
   render() {
     return (
       <View style={styles.HeaderContainer}>
-        {/*<View style={styles.ImageContainer}>
-          <Image style={styles.image} source={require('../assets/images/temp.jpeg')} />
-        </View>*/}
         <View style={styles.TextContainer}>
           <Text style={styles.Header}>
             {this.props.product.name.toUpperCase()}
@@ -205,6 +201,7 @@ const styles = StyleSheet.create({
   TextContainer: {
     flexDirection: 'column',
     justifyContent: 'space-between',
+    alignItems: 'center'
   },
   Header: {
     fontWeight: '500',
