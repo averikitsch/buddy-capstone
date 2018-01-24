@@ -12,7 +12,6 @@ import { colors, flavorColors, sharedStyles } from '../assets/Theme';
 import { convert } from '../lib/TrackConverter';
 
 class ViewInfoScreen extends React.Component {
-  // const { navigate } = this.props.navigation;
   static navigationOptions = ({ navigation }) => ({
       title: 'LOG',
       headerRight: <Icon name="ios-cog" size={40}
@@ -118,13 +117,6 @@ class BlockView extends React.Component {
     if (this.props.label === "Activity") {
       value = <Icon name={this.props.value} size={30} color={colors.darkGray}/>;
     }
-    // else if (this.props.label === "Ranking") {
-    //   times = new Array(this.props.value)
-    //   value = times.map((k, i)=>{
-    //     return <Icon2 name="cannabis" key={i} />
-    //   })
-    //   console.log(times)
-    // }
     return (
       <View style={styles.block}>
         <Text style={styles.label}>
@@ -178,14 +170,12 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: colors.darkGray,
     marginBottom: 10,
-    // textDecorationLine: 'underline',
   },
   detailContainer: {
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
     paddingVertical: 10,
-    // justifyContent: 'space-around'
   },
   HeaderContainer: {
     flex: 1,
@@ -310,10 +300,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 10,
     margin: 10,
-    // width: Dimensions.get('window').width/2,
-    // height: Dimensions.get('window').width/2,
-    // borderWidth: 1,
-    // borderColor: colors.darkGray,
   },
   infoText: {
     fontFamily: 'Josefin Sans',

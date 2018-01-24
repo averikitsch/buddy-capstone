@@ -5,16 +5,13 @@ export default function reducer(state={
 
   switch(action.type) {
     case "ADD_WISHLIST": {
-      console.log('trying')
       const ids = state.wishlist.map((obj) => {
         return obj.id
       })
       let nextId;
       if (ids.length == 0) {
-        console.log('make id = 1')
         nextId = 1;
       } else {
-        console.log(ids)
         nextId = Math.max(...ids) + 1;
       }
       const newLog = action.payload;
@@ -31,7 +28,6 @@ export default function reducer(state={
       };
     }
     case "UPDATE_WISHLIST": {
-      console.log('update WIsh')
       const newWishs = state.wishlist.filter(log => log.id !== action.payload.id)
       newWishs.push(action.payload)
       return {
@@ -40,14 +36,12 @@ export default function reducer(state={
       }
     }
     case "SELECT_WISH": {
-      console.log('select wish');
       return {
         ...state,
         selectedWish: action.payload,
       }
     }
     case "DESELECT_WISH": {
-      console.log('deselect wish');
       return {
         ...state,
         selectedWish: null,
@@ -61,7 +55,6 @@ export default function reducer(state={
       }
     }
     case 'LOGOUT': {
-      console.log('logout wish')
       return {
         wishlist:[]
       }

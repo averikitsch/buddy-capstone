@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Image, Dimensions } from 'react-native';
 import { Container, Content, Spinner } from 'native-base'
 import { colors } from '../assets/Theme';
 
@@ -8,7 +8,31 @@ export default class LoadingScreen extends React.Component {
     return (
       <Container>
         <View style={styles.container}>
-          <Spinner />
+        <Image
+          style={{
+            backgroundColor: colors.green,
+            flex: 1,
+            resizeMode: 'cover',
+            position: 'absolute',
+            // width: '100%',
+            height: Dimensions.get('window').height,
+            justifyContent: 'center',
+          }}
+          source={require('../assets/images/full_topo.png')}
+        />
+          <Text
+            style={{
+              backgroundColor: 'transparent',
+              color: colors.darkGray,
+              textAlign: 'center',
+              fontSize: 36,
+              padding: 40,
+              fontFamily: 'Josefin Sans',
+              fontWeight: 'bold',
+            }}
+          >
+            BUDDY
+          </Text>
         </View>
       </Container>
     )

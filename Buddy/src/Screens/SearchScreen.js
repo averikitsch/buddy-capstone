@@ -19,7 +19,6 @@ class SearchScreen extends React.Component {
   })
   constructor(props) {
     super(props);
-    // this.props.fetchStrains();
     this.state = {
       filterText: '',
     }

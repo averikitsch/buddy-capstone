@@ -77,14 +77,10 @@ class ProductHeader extends React.Component {
     console.log(this.props.product)
     return (
       <View style={styles.HeaderContainer}>
-        {/*<View style={styles.ImageContainer}>
-          <Image style={styles.image} source={require('../assets/images/temp.jpeg')} />
-        </View>*/}
         <View style={styles.TextContainer}>
           <Text style={styles.Header}>
             {this.props.product ? this.props.product.name.toUpperCase() : ''}
           </Text>
-
         </View>
       </View>
     )
@@ -111,19 +107,13 @@ class ProductBody extends React.Component {
           <Text style={styles.text}>
             {product.race.toUpperCase()}
           </Text>
-            {/*<Text style={styles.text}>
-            {product.cross[0]}</Text>
-            <Text style={styles.text}>
-            {product.cross[1]}</Text>*/}
           </View>
         </View>
         <View style={styles.description}>
           <Text style={styles.text}>
           {product.desc}</Text>
         </View>
-          {/*<Text style={styles.label}>
-          Flavors:
-          </Text>*/}
+
           <View style={styles.flavorCards}>
             {product.flavors.map((flavor, i) => {
               return <FlavorCard flavor={flavor} key={i.toString()} />
@@ -132,9 +122,6 @@ class ProductBody extends React.Component {
 
           <View style={styles.OuterCardWrapper}>
           <View style={styles.CardWrapper}>
-          {/*<Text style={styles.label}>
-          Effects:
-          </Text>*/}
           <View style={styles.cardStack}>
             <View style={styles.effectCards}>
               <Icon name="md-add" size={35} color={`hsl(241, 41%, 43%)`} style={styles.effectIcon}/>

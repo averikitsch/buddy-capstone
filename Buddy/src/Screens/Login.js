@@ -3,11 +3,6 @@ import { ScrollView, Text, TextInput, View, TouchableHighlight, StyleSheet, Dime
 import { NavigationActions } from 'react-navigation';
 import { connect } from 'react-redux';
 import { Auth } from 'aws-amplify-react-native';
-
-// import Amplify from 'aws-amplify-react-native';
-// import aws_exports from '../aws-exports';
-// Amplify.configure(aws_exports);
-
 import { login, signup } from '../Actions';
 import Navigator from './TabNavigator';
 import { colors, sharedStyles } from '../assets/Theme';
@@ -19,8 +14,8 @@ class Login extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
-        username: 'averik',
-        password: 'Momlis33!',
+        username: '',
+        password: '',
         error: null,
     };
     this.userLogin = this.userLogin.bind(this);

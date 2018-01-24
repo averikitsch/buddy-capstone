@@ -7,7 +7,6 @@ import { createIconSetFromIcoMoon } from 'react-native-vector-icons';
 import IcoMoonConfig from '../selection.json';
 const Icon = createIconSetFromIcoMoon(IcoMoonConfig);
 import Icon2 from 'react-native-vector-icons/FontAwesome';
-// import BuddyHeader from '../Components/HeaderComponent';
 import { colors, sharedStyles } from '../assets/Theme';
 import { updateLog, deselectLog } from '../Actions/index';
 import { product_props, product_map, duration_map, unit, units, quantityValues, date } from '../lib/TrackConverter';
@@ -24,7 +23,6 @@ class EditScreen extends React.Component {
     const { navigate } = this.props.navigation;
     return (
       <Container>
-      {/*<BuddyHeader name="Track" />*/}
         <Content style={styles.formContentBody}>
           <ProductFormBody starterData={this.props.log} dispatch={this.props.actions}
           navigation={this.props.navigation} />

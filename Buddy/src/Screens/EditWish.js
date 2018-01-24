@@ -21,7 +21,6 @@ class EditWishScreen extends React.Component {
   });
   render() {
     const { navigate } = this.props.navigation;
-    // console.log(this.props.actions)
     return (
       <Container>
         <Content style={styles.formContentBody}>

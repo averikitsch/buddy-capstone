@@ -6,7 +6,6 @@ export default function userReducer (state={
 }, action) {
   switch (action.type) {
     case 'LOGIN': {
-      console.log(action.response)
         return {
           ...state,
           isLoggedIn: true,
@@ -17,7 +16,6 @@ export default function userReducer (state={
         break;
       }
     case 'LOGOUT': {
-      console.log('logout user')
       return {
         ...state,
         isLoggedIn: false,

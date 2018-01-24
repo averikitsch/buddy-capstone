@@ -63,12 +63,12 @@ function mapStateToProps (store) {
 
 function mapDispatchToProps (dispatch) {
   return {
-  actions: {
-    rmLog: log => dispatch(rmLog(log)),
-    updateLog: log => dispatch(updateLog(log)),
-    selectLog: log => dispatch(selectLog(log)),
-    // deselectLog: log => dispatch(deselectLog()),
-  }}
+    actions: {
+      rmLog: log => dispatch(rmLog(log)),
+      updateLog: log => dispatch(updateLog(log)),
+      selectLog: log => dispatch(selectLog(log)),
+    }
+  }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(LogList)

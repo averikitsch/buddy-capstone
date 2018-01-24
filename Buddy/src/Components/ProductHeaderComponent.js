@@ -22,7 +22,6 @@ export default class ProductHeader extends React.Component {
 const styles = StyleSheet.create({
   HeaderContainer: {
     flex: 1,
-    // backgroundColor: 'blue',
     borderBottomWidth: StyleSheet.hairlineWidth,
     borderBottomColor: '#DDDDDD',
     flexDirection: 'row',
