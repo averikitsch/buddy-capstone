@@ -19,3 +19,5 @@ yarn-error.log*
 #awsmobilejs
 awsmobilejs/.awsmobile/backend-build
 awsmobilejs/\#current-backend-info
+
+.src/aws-exports.js
