@@ -79,6 +79,6 @@ const styles = StyleSheet.create({
   },
   header: {
     fontFamily: 'Josefin Sans',
-    fontWeight: 'bold',
+    fontWeight: '300',
   }
 });
