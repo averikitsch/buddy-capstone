@@ -493,8 +493,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 10,
     margin: 10,
-    height: 80,
-    width: 80,
+    height: 70,
+    width: 70,
     borderRadius:10,
   },
   productTypes: {

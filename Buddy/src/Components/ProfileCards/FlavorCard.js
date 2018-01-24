@@ -71,7 +71,6 @@ class RadarChart extends React.Component {
     return (
       <VictoryChart polar
         theme={VictoryTheme.material}
-        animate={{ duration: 1000 }}
         domain={{ y: [ 0, 1 ] }}
         height={290}
         width={290}
