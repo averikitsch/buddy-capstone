@@ -1,7 +1,8 @@
 # Buddy - React Native App
 
-This project is built using React Native along with AWS Mobile Hub services and a NodeJS + Express + MongoDB backend to store user data.
+Buddy is a cannabis tracking app that combines search, tracking, and summarizing abilities. This project is built using React Native along with AWS Mobile Hub services and a NodeJS + Express + MongoDB backend to store user data.
 
+Find installation instructions for the NodeJS backend here: [Buddy-Backend](https://github.com/averikitsch/buddy-backend)
 
 ### Quicklinks
  - [Getting started](#getstarted)
@@ -14,9 +15,6 @@ This project is built using React Native along with AWS Mobile Hub services and 
 - [Node.js](https://nodejs.org/) with NPM
   - `npm install -g react-native-cli`
   - `npm install -g create-react-native-app`
-- (_Optional_) [Watchman](https://facebook.github.io/watchman/)
-  - On macOS, it is recommended to install it using [Homebrew](https://brew.sh/)
-    - `brew install watchman`
 - (_Optional_) [AWS CLI](https://aws.amazon.com/cli/)  
 
 ## Getting Started <a name="getstarted"></a>
@@ -36,5 +34,10 @@ npm run ios
 
 ## Application Walkthrough <a name="walkthrough"></a>
 After the application is running, you can see the SIGN IN screen. If this is your first time running the application, choose the SIGN UP tab in the lower right and complete the process with a username, password and email address.
-
 You will receive a confirmation code for signing up through email; enter the code to confirm user.
+
+The app contains three tabs - Logs/Wishlist, Search, and Profile
+- Use the *search* tab to look up strains
+  - From the strain view, either *track* a strain or add to *wishlist*
+- From the *log screen*, view/edit or delete your logs by swiping left and right, respectively
+- View a summary of your cannabis usage on your *profile* page
