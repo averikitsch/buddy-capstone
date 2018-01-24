@@ -49,9 +49,9 @@ class BarChart extends React.Component {
     return (
       <VictoryChart
         domainPadding={20}
-        padding={{left: 20, top: 10, bottom: 30, right: 65}}
+        padding={{left: 10, top: 10, bottom: 30, right: 65}}
         height={300}
-        width={380}
+        width={320}
       >
         <VictoryBar
           data={this.props.data}

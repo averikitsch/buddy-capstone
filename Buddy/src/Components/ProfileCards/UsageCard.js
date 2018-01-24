@@ -59,9 +59,9 @@ class UseChart extends React.Component {
     return (
       <VictoryChart
         domainPadding={20}
-        padding={{left: 20, top: 35, bottom: 30, right: 65}}
+        padding={{left: 10, top: 35, bottom: 30, right: 65}}
         height={300}
-        width={380}
+        width={320}
       >
       <VictoryArea
         style={{

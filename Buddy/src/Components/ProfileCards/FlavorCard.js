@@ -73,8 +73,8 @@ class RadarChart extends React.Component {
         theme={VictoryTheme.material}
         animate={{ duration: 1000 }}
         domain={{ y: [ 0, 1 ] }}
-        height={310}
-        width={310}
+        height={290}
+        width={290}
         // padding={{top: 25, left: 5}}
         // padding={{right: 25}}
       >

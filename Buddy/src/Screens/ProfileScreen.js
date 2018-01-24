@@ -88,7 +88,6 @@ class ProfileLinks extends React.Component {
       <Container>
         <View style={styles.ProfileLinkContainer}>
           <View style={styles.ProfileHeader}>
-            <Thumbnail large source={require('../assets/images/temp.jpeg')} />
             <Title style={styles.ProfileName}>{this.props.name}</Title>
             <Button small rounded dark
               onPress={this.logout.bind(this)}>
@@ -145,10 +144,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
-    paddingTop: 40,
+    paddingTop: 20,
   },
   ProfileHeaderContainer: {
-    flex: 2,
+    flex: 1,
     backgroundColor: colors.lightGreen,
   },
   TabContainer: {
