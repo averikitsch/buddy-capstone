@@ -9,3 +9,19 @@ This is the repository for Buddy - the cannabis tracking app - an ADA capstone p
 3. [Trello Board](https://trello.com/b/SxJtfRGc/capstone)
 4. [Front End](https://github.com/averikitsch/buddy-capstone/tree/master/Buddy)
 5. [Back End](https://github.com/averikitsch/buddy-backend)
+
+### Screenshots
+#### Sign In / Sign Up
+![SignIn]('./images/OpenSignIn.gif')
+![SignUp]('./images/SignUp.gif')
+
+#### Search
+![Search]('./images/Search.gif')
+
+#### Track
+![Track]('./images/Track.gif')
+![View Info]('./images/ViewInfo.gif')
+![Wishlist]('./images/Wishlist.gif')
+
+#### Profile
+![Profile]('./images/Profile.gif')
