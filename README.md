@@ -12,16 +12,16 @@ This is the repository for Buddy - the cannabis tracking app - an ADA capstone p
 
 ### Screenshots
 #### Sign In / Sign Up
-![SignIn]('./images/OpenSignIn.gif')
-![SignUp]('./images/SignUp.gif')
+![SignIn](./images/OpenSignIn.gif)
+![SignUp](./images/SignUp.gif)
 
 #### Search
-![Search]('./images/Search.gif')
+![Search](./images/Search.gif)
 
 #### Track
-![Track]('./images/Track.gif')
-![View Info]('./images/ViewInfo.gif')
-![Wishlist]('./images/Wishlist.gif')
+![Track](./images/Track.gif)
+![View Info](./images/ViewInfo.gif)
+![Wishlist](./images/Wishlist.gif)
 
 #### Profile
-![Profile]('./images/Profile.gif')
+![Profile](./images/Profile.gif)
